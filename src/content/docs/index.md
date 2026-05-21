@@ -51,12 +51,12 @@ Event-focused organisations devoted to new forms of culture and enquiry.
 
 :::note[Traditional Dream Factory]
 Web3-enabled regenerative ecovillage in Portugal for collective living.  
-[https://www.karmahq.xyz/project/traditional-dream-factory-1/about](https://www.karmahq.xyz/project/traditional-dream-factory-1/about)  
+[https://traditionaldreamfactory.com/](https://traditionaldreamfactory.com/)  
 :::
 
 :::note[Gardens]
 Next generation community governance.  
-[https://gap.karmahq.xyz/project/gardens-](https://gap.karmahq.xyz/project/gardens-)  
+[https://gardens.fund/](https://gardens.fund/)  
 :::
 
 :::note[Citizen Wallet]
