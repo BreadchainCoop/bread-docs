@@ -18,12 +18,16 @@ This makes a clear incentive for why projects would want to become a Bread membe
 
 Half of the disbursed funds are evenly split among the current [member projects](/solidarity-primitives/crowdstaking/member-projects/):
 
-- Bread Core Team
+- Bread Coop Core
+- Symbiota
 - Crypto Commons Association
-- Symbiota Coop
-- LaborDAO
 - Citizen Wallet
-- ReFi DAO
+- Regen Coordination
+- Traditional Dream Factory
+- Gardens
+- Solidarity Fund Treasury
+
+You can always see the live list and current voting cycle at [fund.bread.coop/governance](https://fund.bread.coop/governance).
 
 ## Token Voting
 
@@ -42,9 +46,9 @@ Token Voting = 100 BREAD spread based on the vote
 Example Vote and Disbursement:
 
 - Crypto Commons Association = 25% = 25 BREAD
-- Symbiota Coop = 40% = 40 BREAD
-- LaborDAO = 15% = 15 BREAD
-- Bread Core Team = 20% = 20 BREAD
+- Symbiota = 40% = 40 BREAD
+- Regen Coordination = 15% = 15 BREAD
+- Bread Coop Core = 20% = 20 BREAD
 
 # Future Potential Additions
 
