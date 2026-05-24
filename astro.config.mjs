@@ -14,7 +14,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://docs.bread.coop',
-  trailingSlash: 'never',
+  trailingSlash: 'ignore',
   integrations: [
       react(),
       markdoc(),
@@ -55,9 +55,9 @@ export default defineConfig({
               { icon: 'discord', label: 'Discord', href: 'https://discord.gg/bread' },
           ],
           sidebar: [
-              { label: 'About', autogenerate: { directory: 'about' } },
-              { label: 'Solidarity Primitives', autogenerate: { directory: 'solidarity-primitives' } },
-              { label: 'Bread Cooperative', autogenerate: { directory: 'bread-cooperative' } },
+              { label: 'About', items: [{ autogenerate: { directory: 'about' } }] },
+              { label: 'Solidarity Primitives', items: [{ autogenerate: { directory: 'solidarity-primitives' } }] },
+              { label: 'Bread Cooperative', items: [{ autogenerate: { directory: 'bread-cooperative' } }] },
           ],
       }),
   	],
