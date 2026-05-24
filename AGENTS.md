@@ -1,5 +1,7 @@
 # bread-docs — Agent Instructions
 
+> **This file is the single source of truth for all AI agents working on this project.** It applies to OpenCode, Claude Code, Cursor, GitHub Copilot, and any other AI coding tool. OpenCode-specific setup is in the [AI Agent Setup](#ai-agent-setup-openagents-control) section at the bottom.
+
 Documentation website for Bread Cooperative. Built with **Astro + Starlight**, deployed as a static site to `docs.bread.coop`.
 
 ---
@@ -240,3 +242,39 @@ npm run preview   # preview production build
 - **Markdown** (not MDX) for all content — `.md` files only
 - Conventional commits: `docs:`, `feat:`, `fix:`, `chore:`
 - Do not modify `node_modules/`, `dist/`, or `.astro/`
+
+---
+
+## AI Agent Setup (OpenAgents Control)
+
+This repo includes a self-contained [OpenAgents Control](https://github.com/darrenhinde/OpenAgentsControl) configuration so AI agents follow project standards automatically. No separate OAC install needed.
+
+### Prerequisites
+
+1. [OpenCode CLI](https://opencode.ai/docs) installed
+2. An [OpenRouter](https://openrouter.ai) API key set as `OPENROUTER_API_KEY`
+
+### Usage
+
+```bash
+cd bread-docs
+opencode              # starts with the build agent (full workflow)
+opencode --agent plan # starts with the plan agent (plan-first workflow)
+```
+
+### What's Included
+
+| Component | Location | Purpose |
+|-----------|----------|---------|
+| Project config | `opencode.json` | Model (OpenRouter deepseek-v4), MCP servers, provider setup |
+| Main agents | `.opencode/agents/core/` | `build.md` (docs specialist), `plan.md` (planning agent) |
+| Subagents | `.opencode/agents/subagents/core/` | ContextScout, ExternalScout, TaskManager |
+| Context files | `.opencode/context/` | Project standards, Astro patterns, content workflows |
+| Skills | `.opencode/skills/` | Task management CLI, Context7 doc fetching |
+
+### Key Behaviors
+
+- **Approval gates**: Agents propose changes before executing — review and approve each step
+- **Context-aware**: Agents load project standards from `.opencode/context/` before working
+- **Docs-focused workflow**: Optimized for content creation, not heavy software development
+- **Self-contained**: No global OAC config needed — everything lives in the repo

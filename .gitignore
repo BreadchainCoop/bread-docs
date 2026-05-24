@@ -15,6 +15,10 @@ pnpm-debug.log*
 # temporary files
 tmp/
 temp/
+.tmp/
+
+# opencode local config (each dev maintains their own)
+.opencode/
 
 # environment variables
 .env
