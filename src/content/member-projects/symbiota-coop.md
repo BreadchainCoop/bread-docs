@@ -4,6 +4,8 @@ description: A collective of event-focused organisations devoted to new forms of
 url: https://symbiota.coop/
 Project Lead: https://x.com/stephenreid_net
 Email: stephen@symbiota.coop
+status: active
+image: "../../../images/member-projects/symbiota.png"
 ---
 
 - https://symbiota.coop

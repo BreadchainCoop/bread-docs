@@ -5,6 +5,7 @@ import starlightPageActions from 'starlight-page-actions';
 import starlightMarkdownBlocks, { Draft } from 'starlight-markdown-blocks';
 import starlightAutoSidebar from 'starlight-auto-sidebar';
 import starlightFilesBeforeFolders from './src/plugins/starlightFilesBeforeFolders.ts';
+import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import markdoc from '@astrojs/markdoc';
 import keystatic from '@keystatic/astro';
@@ -60,6 +61,7 @@ export default defineConfig({
               { label: 'Bread Cooperative', items: [{ autogenerate: { directory: 'bread-cooperative' } }] },
           ],
       }),
+      mdx(),
   	],
 
   

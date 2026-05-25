@@ -13,7 +13,7 @@ The Citizen Wallet is an open source crypto wallet that you can preconfigure for
 
 The Crowdstaking Application is a smart contract on Gnosis Chain that accepts a user’s xDAI and turns it into sDAI. In exchange, stakers receive BREAD tokens, minted at a 1-to-1 ratio with the collateralized xDAI.
 
-All of the interest earned on the sDAI is helps fund the collective and its various member projects based on a monthly vote from BREAD holders. The Crowdstaking Application functions as a fundraising engine for the Bread Cooperative, while the BREAD token acts as a local currency within the ecosystem, promoting financial sustainability.
+All of the interest earned on the sDAI helps fund the collective and its various member projects based on a monthly vote from BREAD holders. The Crowdstaking Application functions as a fundraising engine for the Bread Cooperative, while the BREAD token acts as a local currency within the ecosystem, promoting financial sustainability.
 
 Additionally, BREAD holders are able to vote on how the yield generated from the sDAI is distributed among the projects part of the Bread Cooperative Network every month. At the moment this includes Symbiota, Crypto Commons Association, Citizen Wallet, Regen Coordination, Traditional Dream Factory, and Gardens — in addition to Bread Coop Core and the Solidarity Fund Treasury. The live list and results can always be found at [fund.bread.coop/governance](https://fund.bread.coop/governance).
 

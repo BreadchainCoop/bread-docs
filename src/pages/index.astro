@@ -1,0 +1,279 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { getCollection } from 'astro:content';
+import MemberProjectCards from '../components/MemberProjectCards.astro';
+
+const allProjects = await getCollection('memberProjects');
+const activeProjects = allProjects
+	.filter((p) => p.data.status === 'active')
+	.sort((a, b) => (a.data.title ?? '').localeCompare(b.data.title ?? ''));
+---
+
+<StarlightPage
+	frontmatter={{
+		title: 'Bread Cooperative Wiki',
+		description:
+			'Documentation for the Bread Cooperative — a collective federation of decentralized cooperative projects building solidarity primitives.',
+	}}
+>
+	<div class="home-page">
+		<p class="intro-text">
+			Bread Cooperative is a{' '}
+			<strong>collective federation of decentralized cooperative projects</strong>{' '}
+			looking to advance a{' '}
+			<strong>progressive vision for blockchain</strong> and its effect on
+			society. We aim to do this by building and utilizing what we call{' '}
+			<a href="/solidarity-primitives/">Solidarity Primitives</a> — development
+			tools which help to forge solidarity between individuals and collectives.
+		</p>
+
+		<p class="intro-text">
+			The first <strong>solidarity primitive</strong> created by the Bread
+			Cooperative is the{' '}
+			<a href="/about/bread-token/">Bread Community Token</a>, created through
+			the{' '}
+			<a href="https://app.breadchain.xyz/">
+				Bread Crowdstaking Application
+			</a>
+			. We call this <em>"Baking $BREAD"</em>. The token acts as both a{' '}
+			<strong>claim on the xDAI collateral</strong> as well as a{' '}
+			<strong>digital local currency</strong>, which will be used within the
+			Bread Cooperative Network of projects and broader ecosystem.
+		</p>
+
+		<p class="intro-text">
+			The primary infrastructure being built at Bread Cooperative is to ask
+			ourselves{' '}
+			<em>
+				what if progressives had their own{' '}
+				<a href="/about/bread-token/">token</a> and{' '}
+				<a href="/solidarity-primitives/crowdstaking/yield-governance/">
+					governance
+				</a>
+				?
+			</em>{' '}
+			Where would we decide to put resources towards to build a post-capitalist
+			political economy?
+		</p>
+
+		<!-- Quick Links admonition -->
+		<div class="starlight-aside starlight-aside--caution">
+			<p class="starlight-aside__title">
+				<svg
+					class="starlight-aside__icon"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+				>
+					<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+					<line x1="12" y1="9" x2="12" y2="13" />
+					<line x1="12" y1="17" x2="12.01" y2="17" />
+				</svg>
+				Quick Links
+			</p>
+			<div class="starlight-aside__content">
+				<ul>
+					<li>
+						<a href="/bread-cooperative/">About Bread Cooperative</a>
+						<ul>
+							<li><a href="/contact/">Contact Information</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="/about/bread-token/">$BREAD Token</a>
+						<ul>
+							<li>
+								<a href="/solidarity-primitives/crowdstaking/">
+									Crowdstaking Application
+								</a>
+							</li>
+							<li>
+								<a href="/about/bread-token/marketplace/">
+									$BREAD Marketplace
+								</a>
+							</li>
+							<li>
+								<a href="/solidarity-primitives/crowdstaking/member-projects/">
+									Member Projects
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Open Collective note -->
+		<div class="starlight-aside starlight-aside--note">
+			<p class="starlight-aside__title">
+				<svg
+					class="starlight-aside__icon"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+				>
+					<circle cx="12" cy="12" r="10" />
+					<line x1="12" y1="16" x2="12" y2="12" />
+					<line x1="12" y1="8" x2="12.01" y2="8" />
+				</svg>
+				Bread Cooperative — Open Collective
+			</p>
+			<div class="starlight-aside__content">
+				<p>
+					Bread Cooperative is a cooperative of blockchain projects working to
+					advance a progressive vision for the technology and its effect on
+					society.{' '}
+					<a href="https://opencollective.com/breadchain-cooperative">
+						https://opencollective.com/breadchain-cooperative
+					</a>
+				</p>
+			</div>
+		</div>
+
+		<div class="call-to-action">
+			<strong>Help us develop post-capitalist blockchain applications!</strong>
+		</div>
+
+		<hr />
+
+		<!-- Member Projects card grid -->
+		<h2 class="section-heading">Member Projects</h2>
+		<p class="section-intro">
+			<strong>
+				Read more on the members of Bread Cooperative, and see which ones
+				you'd want to vote for!
+			</strong>
+		</p>
+
+		<MemberProjectCards projects={activeProjects} status="active" />
+
+		<hr />
+
+		<!-- Contribute section -->
+		<h2 class="section-heading">Looking to Contribute?</h2>
+		<p class="intro-text">
+			If you have skills (both technical and non-technical) that you believe
+			would benefit our mission, you can fill out the Google form{' '}
+			<a href="https://forms.gle/UU4FmHq4CZbiEKPc6">here</a>. Expect to hear
+			from a member of our team shortly regarding any potential opportunities
+			for collaboration.
+		</p>
+		<p class="intro-text">
+			For more information on what it means to contribute to Bread Cooperative
+			and how to become a contributor or core team member, check out the{' '}
+			<a href="/bread-cooperative/contributors/contributor-onboarding/">
+				Contributor Onboarding Page
+			</a>
+			.
+		</p>
+
+		<img
+			src="/images/bread_imagine_banner.webp"
+			alt="Bread Imagine Banner"
+			class="banner-image"
+		/>
+
+		<hr />
+
+		<!-- Other Initiatives -->
+		<h2 class="section-heading">Other Initiatives</h2>
+		<ul class="initiatives-list">
+			<li>
+				<a href="/solidarity-primitives/stacks/">Bread Stacks</a>
+			</li>
+			<li>
+				<a href="/bread-cooperative/sourdough-systems/">
+					Sourdough Systems
+				</a>
+			</li>
+			<li>
+				<a href="/bread-cooperative/sourdough-systems/gas-killer/">
+					Gas Killer
+				</a>
+			</li>
+			<li>
+				<a href="/about/bread-token/gardens-setup/">
+					$BREAD Gardens Pool Setup
+				</a>
+			</li>
+		</ul>
+	</div>
+</StarlightPage>
+
+<style>
+	.home-page {
+		font-family: var(--font-breadBody);
+	}
+
+	.intro-text {
+		font-family: var(--font-breadBody);
+		font-size: 1rem;
+		line-height: 1.6;
+		color: var(--color-surface-ink);
+		margin-bottom: 1.25rem;
+		max-width: 70ch;
+	}
+
+	.section-heading {
+		font-family: var(--font-breadDisplay);
+		font-weight: 900;
+		font-size: 1.5rem;
+		color: var(--color-surface-ink);
+		margin: 2rem 0 0.75rem;
+		letter-spacing: -0.025em;
+	}
+
+	.section-intro {
+		margin-bottom: 1.5rem;
+		color: var(--color-surface-ink);
+	}
+
+	.call-to-action {
+		margin: 1.5rem 0;
+		font-size: 1.05rem;
+	}
+
+	.banner-image {
+		width: 100%;
+		border-radius: 0.5rem;
+		margin: 1.5rem 0;
+	}
+
+	.initiatives-list {
+		list-style: disc;
+		padding-inline-start: 1.25rem;
+		margin-bottom: 2rem;
+	}
+
+	.initiatives-list li {
+		margin-bottom: 0.35rem;
+	}
+
+	hr {
+		margin: 2rem 0;
+		border: 0;
+		border-top: 1px solid var(--color-paper-2);
+	}
+
+	:global([data-theme='dark']) .intro-text {
+		color: var(--color-paper-0);
+	}
+
+	:global([data-theme='dark']) .section-heading {
+		color: var(--color-paper-0);
+	}
+
+	:global([data-theme='dark']) .section-intro {
+		color: var(--color-paper-0);
+	}
+
+	:global([data-theme='dark']) hr {
+		border-color: var(--color-gray-700);
+	}
+
+	:global([data-theme='dark']) .call-to-action {
+		color: var(--color-paper-0);
+	}
+</style>
