@@ -1,0 +1,262 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import coreLogo from '../images/member-projects/core.svg';
+import citizenWalletLogo from '../images/member-projects/citizen_wallet.png';
+import ccaLogo from '../images/member-projects/cca.png';
+import gardensLogo from '../images/member-projects/gardens.png';
+import regenLogo from '../images/member-projects/regen.png';
+import symbiotaLogo from '../images/member-projects/symbiota.png';
+import treasuryLogo from '../images/member-projects/treasury.svg';
+import tdfLogo from '../images/member-projects/traditional_dream_factory.png';
+
+interface Props {
+	projects: CollectionEntry<'memberProjects'>[];
+	status: 'active' | 'archived';
+	basePath?: string;
+}
+
+const { projects, status, basePath = '/solidarity-primitives/crowdstaking/member-projects' } = Astro.props;
+
+const sectionTitle = status === 'active' ? 'Active Members' : 'Archived';
+const getHref = (id: string) => `${basePath}/${id}/`;
+
+const imageMap: Record<string, any> = {
+	'bread-co-op': coreLogo,
+	'citizen-wallet': citizenWalletLogo,
+	'crypto-commons-association': ccaLogo,
+	'gardens': gardensLogo,
+	'regen-coordination': regenLogo,
+	'shared-treasury': treasuryLogo,
+	'symbiota-coop': symbiotaLogo,
+	'traditional-dream-factory': tdfLogo,
+};
+
+if (projects.length === 0) return null;
+
+const archived = status === 'archived';
+---
+
+<section class={`projects-section${archived ? ' archived' : ''}`}>
+	<h2 class="section-title">{sectionTitle}</h2>
+	<div class="card-grid">
+		{
+			projects.map((project) => {
+				const logo = !archived ? imageMap[project.id] : null;
+				return (
+					<article class={`project-card${archived ? ' archived' : ''}`}>
+						<a href={getHref(project.id)} class="card-primary-link">
+							<div class="card-inner">
+								{logo && (
+									<div class="card-logo">
+										<Image src={logo} alt={`${project.data.title} logo`} width={44} height={44} />
+									</div>
+								)}
+								<h3 class="card-title">{project.data.title}</h3>
+								{project.data.description && (
+									<p class="card-description">{project.data.description}</p>
+								)}
+							</div>
+						</a>
+						{project.data.url && (
+							<a
+								href={project.data.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="external-link"
+							>
+								Visit site
+								<svg
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									width="12"
+									height="12"
+								>
+									<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+									<polyline points="15 3 21 3 21 9" />
+									<line x1="10" y1="14" x2="21" y2="3" />
+								</svg>
+							</a>
+						)}
+					</article>
+				);
+			})
+		}
+	</div>
+</section>
+
+<style>
+	.projects-section {
+		margin-bottom: 3rem;
+	}
+
+	.section-title {
+		font-family: var(--font-breadDisplay);
+		font-weight: 900;
+		font-size: 1.5rem;
+		color: var(--color-surface-ink);
+		margin-bottom: 1.25rem;
+		letter-spacing: -0.025em;
+	}
+
+	.projects-section.archived .section-title {
+		color: var(--color-surface-grey);
+	}
+
+	/* Match Starlight CardGrid grid pattern — proven to work in this layout */
+	.card-grid {
+		display: grid;
+		grid-template-columns: 100%;
+		gap: 1rem;
+	}
+
+	.card-grid > :global(*) {
+		margin-top: 0 !important;
+	}
+
+	@media (min-width: 50rem) {
+		.card-grid {
+			grid-template-columns: 1fr 1fr;
+			gap: 1.5rem;
+		}
+	}
+
+	/* Card */
+	.project-card {
+		position: relative;
+		background-color: var(--color-paper-0);
+		border: 1px solid var(--color-paper-2);
+		border-radius: 0.5rem;
+		padding: 1.25rem;
+		box-shadow: 0 1px 2px rgba(27, 32, 26, 0.05);
+		transition: box-shadow 200ms ease, border-color 200ms ease;
+	}
+
+	.project-card:hover {
+		box-shadow: 0 4px 12px rgba(27, 32, 26, 0.08);
+		border-color: var(--color-primary-orange);
+	}
+
+	.project-card.archived {
+		opacity: 0.6;
+	}
+
+	/* Primary link */
+	.card-primary-link {
+		color: inherit;
+		text-decoration: none;
+		display: block;
+	}
+
+	.card-primary-link::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+	}
+
+	/* Inner wrapper — flex container for card content */
+	.card-inner {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 0.5rem;
+	}
+
+	/* Logo */
+	.card-logo {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 72px;
+		height: 72px;
+		border-radius: 50%;
+		background-color: rgba(27, 32, 26, 0.06);
+		margin-bottom: 0.25rem;
+	}
+
+	.card-logo :global(img) {
+		width: 44px;
+		height: 44px;
+		object-fit: contain;
+	}
+
+	/* Title */
+	.card-title {
+		font-family: var(--font-breadBody);
+		font-weight: 600;
+		font-size: 1rem;
+		color: var(--color-surface-ink);
+		margin: 0;
+		line-height: 1.3;
+	}
+
+	/* Description */
+	.card-description {
+		font-family: var(--font-breadBody);
+		font-size: 0.8125rem;
+		color: var(--color-surface-grey);
+		margin: 0;
+		line-height: 1.4;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	/* External link */
+	.external-link {
+		position: relative;
+		z-index: 1;
+		font-family: var(--font-breadBody);
+		font-size: 0.75rem;
+		color: var(--color-primary-orange);
+		text-decoration: none;
+		margin-top: 0.25rem;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.25rem;
+		padding: 0.25rem 0.5rem;
+		border-radius: 0.25rem;
+		transition: background-color 150ms ease;
+	}
+
+	.external-link:hover {
+		background-color: rgba(234, 96, 35, 0.08);
+		text-decoration: underline;
+	}
+
+	/* Dark mode */
+	:global([data-theme='dark']) .section-title {
+		color: var(--color-paper-0);
+	}
+
+	:global([data-theme='dark']) .projects-section.archived .section-title {
+		color: var(--color-gray-500);
+	}
+
+	:global([data-theme='dark']) .project-card {
+		background-color: var(--color-surface-ink);
+		border-color: var(--color-gray-700);
+	}
+
+	:global([data-theme='dark']) .project-card:hover {
+		border-color: var(--color-primary-orange);
+	}
+
+	:global([data-theme='dark']) .card-title {
+		color: var(--color-paper-0);
+	}
+
+	:global([data-theme='dark']) .card-description {
+		color: var(--color-gray-500);
+	}
+
+	:global([data-theme='dark']) .card-logo {
+		background-color: rgba(253, 252, 249, 0.08);
+	}
+</style>

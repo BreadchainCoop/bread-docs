@@ -1,0 +1,55 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { getCollection } from 'astro:content';
+import MemberProjectCards from '../../../../components/MemberProjectCards.astro';
+
+const allProjects = await getCollection('memberProjects');
+
+const activeProjects = allProjects
+	.filter((p) => p.data.status === 'active')
+	.sort((a, b) => (a.data.title ?? '').localeCompare(b.data.title ?? ''));
+
+const archivedProjects = allProjects
+	.filter((p) => p.data.status === 'archived')
+	.sort((a, b) => (a.data.title ?? '').localeCompare(b.data.title ?? ''));
+---
+
+<StarlightPage
+	frontmatter={{
+		title: 'Member Projects',
+		description:
+			'Projects in the Bread Cooperative Network receiving yield distributions.',
+	}}
+>
+	<div class="member-projects-page">
+		<p class="intro-text">
+			Here you can find all of the projects that are currently part of the
+			cohort of Bread Cooperative Network member projects that are receiving
+			distributions from the monthly Bread Cooperative voting cycles. Check out
+			this page to learn how you can apply for your organization to become a
+			part of the network.
+		</p>
+
+		<MemberProjectCards projects={activeProjects} status="active" />
+		<MemberProjectCards projects={archivedProjects} status="archived" />
+	</div>
+</StarlightPage>
+
+<style>
+	.member-projects-page {
+		font-family: var(--font-breadBody);
+	}
+
+	.intro-text {
+		font-family: var(--font-breadBody);
+		font-size: 1rem;
+		line-height: 1.6;
+		color: var(--color-surface-ink);
+		margin-bottom: 2.5rem;
+		max-width: 65ch;
+	}
+
+	:global([data-theme='dark']) .intro-text {
+		color: var(--color-paper-0);
+	}
+</style>
