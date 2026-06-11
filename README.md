@@ -27,12 +27,14 @@ npm run preview   # preview production build
 
 ```
 src/
-├── content/docs/       # Markdown documentation (one file = one page)
-├── overrides/          # Custom Starlight component overrides
-├── plugins/            # Custom Starlight plugins
-├── styles/global.css   # Bread design system + Starlight theme overrides
-└── content.config.ts   # Content collection schema
-astro.config.mjs        # Starlight config: sidebar, plugins, overrides
+├── content/docs/           # Markdown documentation (one file = one page)
+├── content/member-projects/ # Member project profiles (MDX)
+├── overrides/              # Custom Starlight component overrides
+├── plugins/                # Custom Starlight plugins
+├── styles/global.css       # Bread design system + Starlight theme overrides
+└── content.config.ts       # Content collection schema
+astro.config.mjs            # Starlight config: sidebar, plugins, overrides
+keystatic.config.tsx        # CMS collections, schema, storage
 ```
 
 Content is organized into three sidebar sections:
@@ -109,6 +111,43 @@ Deployed to Netlify.
 
 The site runs in static mode — Keystatic CMS is disabled in production.
 
+## Editing Content
+
+Content is managed through [Keystatic CMS](https://keystatic.com), which provides a web-based editing interface.
+
+### Local Development
+
+1. **Set up environment** — Copy the Keystatic secrets to `.env` (contact a maintainer for the values):
+   ```
+   KEYSTATIC_GITHUB_CLIENT_ID, KEYSTATIC_GITHUB_CLIENT_SECRET,
+   KEYSTATIC_SECRET, PUBLIC_KEYSTATIC_GITHUB_APP_SLUG
+   ```
+
+2. **Create a branch** — The `main` branch is protected; all edits go through pull requests:
+   ```bash
+   git checkout -b keystatic/<username>/<description>
+   ```
+
+3. **Start the editor**:
+   ```bash
+   npm run dev
+   ```
+
+4. **Open** `http://localhost:4321/keystatic` and log in with your GitHub account.
+
+5. **Save your changes** — Keystatic commits to your branch, then create a pull request:
+   ```bash
+   gh pr create --base main --head keystatic/<branch> --title "Content update: <description>"
+   ```
+
+### How the Workflow Works
+
+- The `main` branch is **protected** — saving on main prompts Keystatic to create a new branch.
+- All `keystatic/*` branches appear in Keystatic's branch dropdown.
+- After review and merge, Netlify deploys the updated site.
+
 ## Contributing
 
-See [AGENTS.md](./AGENTS.md) for a full reference on how this project is structured, how to add content, and the design system conventions.
+Content edits go through Keystatic (see [Editing Content](#editing-content) above). Code and configuration changes follow the standard fork-and-PR workflow.
+
+For detailed technical reference — project layout, design system conventions, frontmatter schema, plugin documentation, and agent instructions — see [AGENTS.md](./AGENTS.md).
