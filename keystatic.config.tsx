@@ -1,10 +1,11 @@
 import { config, fields, collection } from '@keystatic/core'
 
 export default config({
-  storage: { kind: 'cloud' },
-
-  // Keystatic Cloud project: bread/bread-docs
-  cloud: { project: 'bread/bread-docs' },
+  storage: {
+    kind: 'github',
+    repo: 'BreadchainCoop/bread-docs',
+    branchPrefix: 'keystatic/',
+  },
 
   ui: { 
     brand: { 
@@ -29,28 +30,12 @@ export default config({
       }
     },
     navigation: {
-      'Documentation': ['home', 'about', 'solidarityPrimitives', 'breadCooperative'],
+      'Documentation': ['about', 'solidarityPrimitives', 'breadCooperative'],
+      'Data': ['memberProjects'],
     },
   },
 
   collections: {
-    home: collection({
-      label: 'Home',
-      slugField: 'title',
-      path: 'src/content/docs/*',
-      format: { contentField: 'content' },
-      columns: ['title', 'description'],
-      entryLayout: 'content',
-      schema: {
-        title: fields.slug({ name: { label: 'Title' } }),
-        description: fields.text({ label: 'Description' }),
-        slug: fields.text({ label: 'Slug override' }),
-        url: fields.url({ label: 'External URL' }),
-        draft: fields.checkbox({ label: 'Draft', defaultValue: false }),
-        content: fields.markdoc({ label: 'Content', extension: 'md' }),
-      },
-    }),
-
     about: collection({
       label: 'About',
       slugField: 'title',
@@ -99,6 +84,33 @@ export default config({
         url: fields.url({ label: 'External URL' }),
         draft: fields.checkbox({ label: 'Draft', defaultValue: false }),
         content: fields.markdoc({ label: 'Content', extension: 'md' }),
+      },
+    }),
+
+    memberProjects: collection({
+      label: 'Member Projects',
+      slugField: 'title',
+      path: 'src/content/member-projects/**',
+      format: { contentField: 'content' },
+      columns: ['title', 'description', 'status'],
+      entryLayout: 'content',
+      schema: {
+        title: fields.slug({ name: { label: 'Title' } }),
+        description: fields.text({ label: 'Description' }),
+        status: fields.select({
+          label: 'Status',
+          options: [
+            { label: 'Active', value: 'active' },
+            { label: 'Archived', value: 'archived' },
+          ],
+          defaultValue: 'active',
+        }),
+        url: fields.url({ label: 'Project URL' }),
+        image: fields.text({ label: 'Image' }),
+        'Project Lead': fields.text({ label: 'Project Lead' }),
+        Email: fields.text({ label: 'Email' }),
+        Treasury: fields.text({ label: 'Treasury' }),
+        content: fields.mdx({ label: 'Content', extension: 'mdx' }),
       },
     }),
   },
