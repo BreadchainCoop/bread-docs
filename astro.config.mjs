@@ -15,11 +15,11 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://docs.bread.coop',
+  output: 'static',
   trailingSlash: 'ignore',
   integrations: [
       react(),
       markdoc(),
-      ...(process.env.NODE_ENV !== 'production' ? [keystatic()] : []),
       starlight({
           plugins: [
               starlightAutoSidebar(),
@@ -61,6 +61,7 @@ export default defineConfig({
               { label: 'Bread Cooperative', items: [{ autogenerate: { directory: 'bread-cooperative' } }] },
           ],
       }),
+      ...(process.env.NODE_ENV !== 'production' ? [keystatic()] : []),
       mdx(),
   	],
 

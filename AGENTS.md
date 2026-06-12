@@ -6,6 +6,52 @@ Documentation website for Bread Cooperative. Built with **Astro + Starlight**, d
 
 ---
 
+## Quick Start for AI Agents
+
+> **Use this section as a reliable recipe.** Point any AI coding agent at this repo and start here.
+
+**When a user asks you to edit content via Keystatic:**
+
+1. **Verify prerequisites** — All four Keystatic secrets must exist in `.env` (gitignored):
+   ```
+   KEYSTATIC_GITHUB_CLIENT_ID, KEYSTATIC_GITHUB_CLIENT_SECRET,
+   KEYSTATIC_SECRET, PUBLIC_KEYSTATIC_GITHUB_APP_SLUG
+   ```
+   Also verify the "Bread Docs CMS" GitHub App is installed on `BreadchainCoop/bread-docs`.
+
+2. **Create a branch** — Always create a branch before starting the dev server. The `keystatic/` prefix ensures Keystatic's branch dropdown shows it:
+   ```bash
+   git checkout -b keystatic/<username>/<description>
+   ```
+
+3. **Launch Keystatic** — Start the dev server on the new branch:
+   ```bash
+   npm run dev
+   ```
+
+4. **Direct the user** to `http://localhost:4321/keystatic` — they log in with their GitHub account. Their `keystatic/<username>/*` branch is selected in the branch dropdown.
+
+5. **Manage the PR** — After the user saves (Keystatic commits to the branch):
+   ```bash
+   gh pr create --base main --head keystatic/<branch> \
+     --title "Content update: <description>" \
+     --body "Edited via Keystatic by @<username>"
+   ```
+   Optionally add reviewers: `gh pr create --reviewer <handle>`
+
+6. **Clean up** — After the PR is merged:
+   ```bash
+   git checkout main && git pull && git branch -d keystatic/<branch>
+   ```
+
+**What the agent should NEVER do:**
+- Edit files directly in `src/content/docs/` — changes must go through Keystatic or a PR
+- Push directly to `main` — it's protected
+- Commit `.env` or any secrets
+- Modify `node_modules/`, `dist/`, or `.astro/`
+
+---
+
 ## Stack
 
 | Layer | Tool |
@@ -24,6 +70,7 @@ Documentation website for Bread Cooperative. Built with **Astro + Starlight**, d
 ```
 bread-docs/
 ├── astro.config.mjs              # Starlight config, sidebar, plugins, component overrides
+├── keystatic.config.tsx          # CMS collections, schema, storage (GitHub mode)
 ├── src/
 │   ├── content.config.ts         # Astro content collection (docsLoader + docsSchema)
 │   ├── content/docs/             # All markdown content — one file = one page
@@ -31,6 +78,7 @@ bread-docs/
 │   │   ├── about/
 │   │   ├── solidarity-primitives/
 │   │   └── bread-cooperative/
+│   ├── content/member-projects/  # Member project profiles (MDX, separate collection)
 │   ├── overrides/
 │   │   └── SiteTitle.astro       # Replaces Starlight header title with Bread logo
 │   ├── plugins/
@@ -38,9 +86,10 @@ bread-docs/
 │   │   └── filesBeforeFolders.ts           # Shared utility
 │   └── styles/
 │       └── global.css            # Full design system: fonts, tokens, Starlight overrides
-└── public/
-    ├── fonts/                    # Pogaca woff2 files (Bread Display, Bread Body)
-    └── images/                   # Static images referenced in markdown
+├── public/
+│   ├── fonts/                    # Pogaca woff2 files (Bread Display, Bread Body)
+│   └── images/                   # Static images referenced in markdown
+
 ```
 
 ---
@@ -178,37 +227,70 @@ Reads `_meta.yml` files in each directory to configure sidebar labels, ordering,
 
 ## Keystatic CMS
 
-[Keystatic](https://keystatic.com) provides a web-based interface for managing content. It runs in **cloud mode**, authenticating via [Keystatic Cloud](https://keystatic.cloud) so team members can edit content through the admin UI without needing individual GitHub accounts or a custom GitHub App.
+[Keystatic](https://keystatic.com) provides a web-based interface for managing content. It runs in **GitHub mode**, authenticating via a custom [GitHub App](https://keystatic.com/docs/github-mode) so anyone with `write` access to the repo can edit content through the admin UI. No user limits — unlimited team members.
 
 ### Prerequisites
 
-Before using Keystatic Cloud, a team admin must:
-1. Register at [keystatic.cloud](https://keystatic.cloud) and create a team named `bread`
-2. Create a project named `bread-docs` within that team
-3. Connect the `BreadchainCoop/bread-docs` GitHub repository to the project
-4. Invite team members (free plan: up to 3 users per team; Pro: $10/mo + $5/user for more)
+A GitHub App named **"Bread Docs CMS"** must be installed on the `BreadchainCoop/bread-docs` repository. This is created automatically by Keystatic's setup wizard on first login. The app grants:
+- **Contents:** Read & write
+- **Metadata:** Read-only
+
+Required environment variables (stored in `.env`, gitignored):
+- `KEYSTATIC_GITHUB_CLIENT_ID` — GitHub App client ID
+- `KEYSTATIC_GITHUB_CLIENT_SECRET` — GitHub App client secret
+- `KEYSTATIC_SECRET` — Random session secret
+- `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` — GitHub App slug
 
 ### Documentation Links
 - [Keystatic Official Docs](https://keystatic.com/docs)
-- [Keystatic Cloud Guide](https://keystatic.com/docs/cloud)
-- [GitHub Mode Guide](https://keystatic.com/docs/github-mode) (alternative auth, requires custom GitHub App)
+- [GitHub Mode Guide](https://keystatic.com/docs/github-mode)
 - [Collections & Fields](https://keystatic.com/docs/collections)
 
 ### Usage
 
 | Environment | CMS Status | URL |
 |-------------|------------|-----|
-| Development (`npm run dev`) | Enabled (Cloud Mode) | `http://localhost:4321/keystatic` |
+| Development (`npm run dev`) | Enabled (GitHub Mode) | `http://localhost:4321/keystatic` |
 | Production | Disabled | N/A |
 
-### Workflow
-1. **Launch**: Start the dev server with `npm run dev`.
-2. **Authenticate**: Open the Admin UI at `/keystatic`. Log in via Keystatic Cloud (GitHub OAuth).
-3. **Edit**: Make content changes in the admin UI.
-4. **Save**: Click **Save**. Keystatic Cloud commits changes to the GitHub repository via the GitHub API.
-5. **Deploy**: Netlify auto-deploys from the GitHub repository after each commit.
+### Branch & Pull Request Workflow
 
-CMS configuration is located in `keystatic.config.tsx`. It is integrated into Astro via `@keystatic/astro` and is conditionally disabled for production builds via:
+The `main` branch is **protected** — direct pushes are blocked. All content edits go through pull requests. Keystatic works with `branchPrefix: 'keystatic/'` (set in `keystatic.config.tsx`) to scope its branch dropdown to only show CMS-created branches.
+
+**How saving works:**
+
+1. **On `main`**: Saving is blocked by branch protection. Keystatic shows a dialog: *"Create a new branch to save changes."* Enter a branch name and click **Create branch and save**.
+2. **On a `keystatic/*` branch**: Saving commits directly to that branch.
+3. **After saving**: Create a pull request via `gh pr create` (see [Workflow (Local Agent Users)](#workflow-local-agent-users)) or use Keystatic's header menu to open a pre-filled PR form.
+4. **Review**: Request review, discuss, and merge. Netlify deploys on merge.
+
+### Workflow (Local Agent Users)
+
+For users running Keystatic locally with an AI agent:
+
+1. **Agent verifies prerequisites** — All four `.env` vars must be set (see [Prerequisites](#prerequisites)) and the "Bread Docs CMS" GitHub App must be installed on the repo. The agent must also have `gh` CLI authenticated.
+2. **Agent creates branch** — Always create a branch before starting the dev server. The `keystatic/` prefix ensures Keystatic's branch dropdown recognizes it:
+   ```bash
+   git checkout -b keystatic/<username>/<description>
+   ```
+3. **Agent launches server** — Start the dev server. Keystatic reads the current git branch, so the agent must already be on the `keystatic/*` branch:
+   ```bash
+   npm run dev
+   ```
+4. **User edits** at `http://localhost:4321/keystatic` — they log in with their GitHub account. Since the agent is on a `keystatic/*` branch, that branch appears as the current branch in Keystatic's dropdown.
+5. **Agent creates PR** — After the user saves in Keystatic (commits are pushed to the branch):
+   ```bash
+   gh pr create --base main --head keystatic/<branch> \
+     --title "Content update: <description>" \
+     --body "Edited via Keystatic by @<username>"
+   ```
+6. **Agent can add reviewers**: `gh pr create --reviewer <handle>`
+7. **After merge** — Agent cleans up the local branch:
+   ```bash
+   git checkout main && git pull && git branch -d keystatic/<branch>
+   ```
+
+CMS configuration is located in `keystatic.config.tsx`. It is integrated into Astro via `@keystatic/astro` (registered after Starlight in `astro.config.mjs`) and is conditionally disabled for production builds via:
 
 ```js
 ...(process.env.NODE_ENV !== 'production' ? [keystatic()] : [])
@@ -216,13 +298,13 @@ CMS configuration is located in `keystatic.config.tsx`. It is integrated into As
 
 ### Fallback to Local Mode
 
-If Keystatic Cloud is unavailable or for quick local edits, temporarily switch to local mode in `keystatic.config.tsx`:
+For offline or quick local edits, temporarily switch to local mode in `keystatic.config.tsx`:
 
 ```tsx
 storage: { kind: 'local' },  // Direct file writes, no GitHub API
 ```
 
-Remember to switch back to `cloud` before committing, as cloud mode is the team standard.
+Remember to switch back to `github` before committing, as GitHub mode is the team standard.
 
 ---
 
@@ -240,7 +322,7 @@ npm run preview   # preview production build
 
 - **TypeScript** for all `.ts` / `.astro` config files
 - **Markdown** (not MDX) for all content — `.md` files only
-- Conventional commits: `docs:`, `feat:`, `fix:`, `chore:`
+- Conventional commits: `docs:`, `feat:`, `fix:`, `chore:` — applies to manual commits; Keystatic auto-generates its own messages (e.g. `Update src/content/docs/about/index`) which are fine as-is
 - Do not modify `node_modules/`, `dist/`, or `.astro/`
 
 ---
