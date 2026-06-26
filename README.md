@@ -18,7 +18,7 @@ Documentation website for [Bread Cooperative](https://bread.coop), built with [A
 
 ```bash
 npm install       # install dependencies
-npm run dev       # dev server at localhost:4321
+npm run dev       # dev server at 127.0.0.1:4321
 npm run build     # build to ./dist/
 npm run preview   # preview production build
 ```
@@ -133,7 +133,7 @@ Content is managed through [Keystatic CMS](https://keystatic.com), which provide
    npm run dev
    ```
 
-4. **Open** `http://localhost:4321/keystatic` and log in with your GitHub account.
+4. **Open** `http://127.0.0.1:4321/keystatic` and log in with your GitHub account.
 
 5. **Save your changes** — Keystatic commits to your branch, then create a pull request:
    ```bash
