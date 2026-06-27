@@ -2,7 +2,7 @@
 
 > **This file is the single source of truth for all AI agents working on this project.** It applies to OpenCode, Claude Code, Cursor, GitHub Copilot, and any other AI coding tool. OpenCode-specific setup is in the [AI Agent Setup](#ai-agent-setup-openagents-control) section at the bottom.
 
-Documentation website for Bread Cooperative. Built with **Astro + Starlight**, deployed as a static site to `docs.bread.coop`.
+Documentation website for Bread Cooperative. Built with **Astro + Starlight**, deployed to `docs.bread.coop` via Netlify with static pre-rendering and on-demand SSR for CMS API routes.
 
 ---
 
@@ -17,7 +17,7 @@ Documentation website for Bread Cooperative. Built with **Astro + Starlight**, d
    KEYSTATIC_GITHUB_CLIENT_ID, KEYSTATIC_GITHUB_CLIENT_SECRET,
    KEYSTATIC_SECRET, PUBLIC_KEYSTATIC_GITHUB_APP_SLUG
    ```
-   Also verify the "Bread Docs CMS" GitHub App is installed on `BreadchainCoop/bread-docs`.
+   Also verify the "Bread Docs Editor" GitHub App is installed on `BreadchainCoop/bread-docs`.
 
 2. **Create a branch** — Always create a branch before starting the dev server. The `keystatic/` prefix ensures Keystatic's branch dropdown shows it:
    ```bash
@@ -29,7 +29,7 @@ Documentation website for Bread Cooperative. Built with **Astro + Starlight**, d
    npm run dev
    ```
 
-4. **Direct the user** to `http://localhost:4321/keystatic` — they log in with their GitHub account. Their `keystatic/<username>/*` branch is selected in the branch dropdown.
+4. **Direct the user** to `http://127.0.0.1:4321/keystatic` — they log in with their GitHub account. Their `keystatic/<username>/*` branch is selected in the branch dropdown.
 
 5. **Manage the PR** — After the user saves (Keystatic commits to the branch):
    ```bash
@@ -231,7 +231,7 @@ Reads `_meta.yml` files in each directory to configure sidebar labels, ordering,
 
 ### Prerequisites
 
-A GitHub App named **"Bread Docs CMS"** must be installed on the `BreadchainCoop/bread-docs` repository. This is created automatically by Keystatic's setup wizard on first login. The app grants:
+A GitHub App named **"Bread Docs Editor"** must be installed on the `BreadchainCoop/bread-docs` repository. This is created automatically by Keystatic's setup wizard on first login. The app grants:
 - **Contents:** Read & write
 - **Metadata:** Read-only
 
@@ -240,6 +240,20 @@ Required environment variables (stored in `.env`, gitignored):
 - `KEYSTATIC_GITHUB_CLIENT_SECRET` — GitHub App client secret
 - `KEYSTATIC_SECRET` — Random session secret
 - `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` — GitHub App slug
+
+### OAuth Callback URLs
+
+GitHub OAuth requires the "Bread Docs Editor" app to know which URLs may exchange an authorization code for an access token. The dev server is bound to `127.0.0.1` (not `localhost`) because GitHub's OAuth provider treats the two as different hosts. Register both callback URLs on the app at [github.com/organizations/BreadchainCoop/settings/apps/bread-docs-editor](https://github.com/organizations/BreadchainCoop/settings/apps/bread-docs-editor):
+
+| Environment | Callback URL |
+|-------------|--------------|
+| Development | `http://127.0.0.1:4321/api/keystatic/github/oauth/callback` |
+| Production | `https://docs.bread.coop/api/keystatic/github/oauth/callback` |
+| Deploy Previews | `https://deploy-preview-N--bread-docs.netlify.app/api/keystatic/github/oauth/callback` |
+
+Deploy preview URLs must be added per-PR (each preview gets its own subdomain `deploy-preview-N`).
+
+Without these, the GitHub login flow returns a `redirect_uri_mismatch` error after the user authorizes the app.
 
 ### Documentation Links
 - [Keystatic Official Docs](https://keystatic.com/docs)
@@ -250,8 +264,8 @@ Required environment variables (stored in `.env`, gitignored):
 
 | Environment | CMS Status | URL |
 |-------------|------------|-----|
-| Development (`npm run dev`) | Enabled (GitHub Mode) | `http://localhost:4321/keystatic` |
-| Production | Disabled | N/A |
+| Development (`npm run dev`) | Enabled (GitHub Mode) | `http://127.0.0.1:4321/keystatic` |
+| Production | Enabled (GitHub Mode) | `https://docs.bread.coop/keystatic` |
 
 ### Branch & Pull Request Workflow
 
@@ -268,7 +282,7 @@ The `main` branch is **protected** — direct pushes are blocked. All content ed
 
 For users running Keystatic locally with an AI agent:
 
-1. **Agent verifies prerequisites** — All four `.env` vars must be set (see [Prerequisites](#prerequisites)) and the "Bread Docs CMS" GitHub App must be installed on the repo. The agent must also have `gh` CLI authenticated.
+1. **Agent verifies prerequisites** — All four `.env` vars must be set (see [Prerequisites](#prerequisites)) and the "Bread Docs Editor" GitHub App must be installed on the repo. The agent must also have `gh` CLI authenticated.
 2. **Agent creates branch** — Always create a branch before starting the dev server. The `keystatic/` prefix ensures Keystatic's branch dropdown recognizes it:
    ```bash
    git checkout -b keystatic/<username>/<description>
@@ -277,7 +291,7 @@ For users running Keystatic locally with an AI agent:
    ```bash
    npm run dev
    ```
-4. **User edits** at `http://localhost:4321/keystatic` — they log in with their GitHub account. Since the agent is on a `keystatic/*` branch, that branch appears as the current branch in Keystatic's dropdown.
+4. **User edits** at `http://127.0.0.1:4321/keystatic` — they log in with their GitHub account. Since the agent is on a `keystatic/*` branch, that branch appears as the current branch in Keystatic's dropdown.
 5. **Agent creates PR** — After the user saves in Keystatic (commits are pushed to the branch):
    ```bash
    gh pr create --base main --head keystatic/<branch> \
@@ -290,11 +304,13 @@ For users running Keystatic locally with an AI agent:
    git checkout main && git pull && git branch -d keystatic/<branch>
    ```
 
-CMS configuration is located in `keystatic.config.tsx`. It is integrated into Astro via `@keystatic/astro` (registered after Starlight in `astro.config.mjs`) and is conditionally disabled for production builds via:
+CMS configuration is located in `keystatic.config.tsx`. It is integrated into Astro via `@keystatic/astro` (registered after Starlight in `astro.config.mjs`):
 
 ```js
-...(process.env.NODE_ENV !== 'production' ? [keystatic()] : [])
+keystatic(),
 ```
+
+The `@astrojs/netlify` adapter handles SSR for Keystatic API routes (`/api/keystatic/*`) while all docs pages remain statically pre-rendered.
 
 ### Fallback to Local Mode
 
@@ -311,7 +327,7 @@ Remember to switch back to `github` before committing, as GitHub mode is the tea
 ## Dev Commands
 
 ```bash
-npm run dev       # dev server at localhost:4321
+npm run dev       # dev server at 127.0.0.1:4321
 npm run build     # static build to ./dist/
 npm run preview   # preview production build
 ```

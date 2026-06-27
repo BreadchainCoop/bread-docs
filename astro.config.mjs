@@ -12,11 +12,14 @@ import keystatic from '@keystatic/astro';
 
 import tailwindcss from '@tailwindcss/vite';
 
+import netlify from '@astrojs/netlify';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://docs.bread.coop',
   output: 'static',
   trailingSlash: 'ignore',
+
   integrations: [
       react(),
       markdoc(),
@@ -61,11 +64,9 @@ export default defineConfig({
               { label: 'Bread Cooperative', items: [{ autogenerate: { directory: 'bread-cooperative' } }] },
           ],
       }),
-      ...(process.env.NODE_ENV !== 'production' ? [keystatic()] : []),
+      keystatic(),
       mdx(),
   	],
-
-  
 
   vite: {
     plugins: [tailwindcss()],
@@ -99,4 +100,6 @@ export default defineConfig({
     '/bread-cooperative/contributors/index': '/bread-cooperative/contributors',
     '/bread-cooperative/index': '/bread-cooperative',
   },
+
+  adapter: netlify(),
 });
