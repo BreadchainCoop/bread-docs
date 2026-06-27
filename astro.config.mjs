@@ -64,7 +64,7 @@ export default defineConfig({
               { label: 'Bread Cooperative', items: [{ autogenerate: { directory: 'bread-cooperative' } }] },
           ],
       }),
-      ...(process.env.SKIP_KEYSTATIC ? [] : [keystatic()]),
+      keystatic(),
       mdx(),
   	],
 
