@@ -54,6 +54,62 @@ export default defineConfig({
               // Override SiteTitle with Bread logo
               SiteTitle: './src/overrides/SiteTitle.astro',
           },
+          // PNG favicon fallback for browsers/rss readers that don't render SVG.
+          // SVG favicon is added automatically by Starlight at /favicon.svg.
+          head: [
+              {
+                  tag: 'link',
+                  attrs: {
+                      rel: 'icon',
+                      type: 'image/png',
+                      href: '/favicon.png',
+                      sizes: '200x200',
+                  },
+              },
+              // Default social/OG image — used when a page doesn't set its own.
+              {
+                  tag: 'meta',
+                  attrs: {
+                      property: 'og:image',
+                      content: 'https://docs.bread.coop/og-image.png',
+                  },
+              },
+              {
+                  tag: 'meta',
+                  attrs: {
+                      property: 'og:image:url',
+                      content: 'https://docs.bread.coop/og-image.png',
+                  },
+              },
+              {
+                  tag: 'meta',
+                  attrs: {
+                      name: 'twitter:image',
+                      content: 'https://docs.bread.coop/og-image.png',
+                  },
+              },
+              {
+                  tag: 'meta',
+                  attrs: {
+                      property: 'og:image:type',
+                      content: 'image/png',
+                  },
+              },
+              {
+                  tag: 'meta',
+                  attrs: {
+                      property: 'og:image:width',
+                      content: '3840',
+                  },
+              },
+              {
+                  tag: 'meta',
+                  attrs: {
+                      property: 'og:image:height',
+                      content: '2160',
+                  },
+              },
+          ],
           social: [
               { icon: 'github', label: 'GitHub', href: 'https://github.com/BreadchainCoop' },
               { icon: 'discord', label: 'Discord', href: 'https://discord.gg/bread' },
