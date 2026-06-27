@@ -2,7 +2,7 @@
 
 > **This file is the single source of truth for all AI agents working on this project.** It applies to OpenCode, Claude Code, Cursor, GitHub Copilot, and any other AI coding tool. OpenCode-specific setup is in the [AI Agent Setup](#ai-agent-setup-openagents-control) section at the bottom.
 
-Documentation website for Bread Cooperative. Built with **Astro + Starlight**, deployed as a static site to `docs.bread.coop`.
+Documentation website for Bread Cooperative. Built with **Astro + Starlight**, deployed to `docs.bread.coop` via Netlify with static pre-rendering and on-demand SSR for CMS API routes.
 
 ---
 
@@ -249,6 +249,9 @@ GitHub OAuth requires the "Bread Docs Editor" app to know which URLs may exchang
 |-------------|--------------|
 | Development | `http://127.0.0.1:4321/api/keystatic/github/oauth/callback` |
 | Production | `https://docs.bread.coop/api/keystatic/github/oauth/callback` |
+| Deploy Previews | `https://deploy-preview-N--bread-docs.netlify.app/api/keystatic/github/oauth/callback` |
+
+Deploy preview URLs must be added per-PR (each preview gets its own subdomain `deploy-preview-N`).
 
 Without these, the GitHub login flow returns a `redirect_uri_mismatch` error after the user authorizes the app.
 
@@ -262,7 +265,7 @@ Without these, the GitHub login flow returns a `redirect_uri_mismatch` error aft
 | Environment | CMS Status | URL |
 |-------------|------------|-----|
 | Development (`npm run dev`) | Enabled (GitHub Mode) | `http://127.0.0.1:4321/keystatic` |
-| Production | Disabled | N/A |
+| Production | Enabled (GitHub Mode) | `https://docs.bread.coop/keystatic` |
 
 ### Branch & Pull Request Workflow
 
@@ -301,11 +304,13 @@ For users running Keystatic locally with an AI agent:
    git checkout main && git pull && git branch -d keystatic/<branch>
    ```
 
-CMS configuration is located in `keystatic.config.tsx`. It is integrated into Astro via `@keystatic/astro` (registered after Starlight in `astro.config.mjs`) and is conditionally disabled for production builds via:
+CMS configuration is located in `keystatic.config.tsx`. It is integrated into Astro via `@keystatic/astro` (registered after Starlight in `astro.config.mjs`):
 
 ```js
-...(process.env.NODE_ENV !== 'production' ? [keystatic()] : [])
+keystatic(),
 ```
+
+The `@astrojs/netlify` adapter handles SSR for Keystatic API routes (`/api/keystatic/*`) while all docs pages remain statically pre-rendered.
 
 ### Fallback to Local Mode
 
