@@ -115,9 +115,28 @@ export default defineConfig({
               { icon: 'discord', label: 'Discord', href: 'https://discord.gg/bread' },
           ],
           sidebar: [
-              { label: 'About', items: [{ autogenerate: { directory: 'about' } }] },
-              { label: 'Solidarity Primitives', items: [{ autogenerate: { directory: 'solidarity-primitives' } }] },
-              { label: 'Bread Cooperative', items: [{ autogenerate: { directory: 'bread-cooperative' } }] },
+              {
+                  label: 'Getting Started',
+                  items: [{ autogenerate: { directory: 'getting-started' } }],
+              },
+              {
+                  label: 'Bread Tools and Mechanisms',
+                  items: [{ autogenerate: { directory: 'bread-tools-and-mechanisms' } }],
+              },
+              {
+                  label: 'Bread Cooperative',
+                  items: [{ autogenerate: { directory: 'bread-cooperative' } }],
+              },
+              // Elevated entries — stock Starlight sidebar items
+              {
+                  slug: 'manifesto',
+                  attrs: { style: 'font-weight: 400; font-size: var(--sl-text-sm); color: inherit' },
+              },
+              {
+                  label: 'Contact',
+                  link: '/contact/',
+                  attrs: { style: 'font-weight: 400; font-size: var(--sl-text-sm); color: inherit' },
+              },
           ],
           markdown: {
               processedDirs: ['./src/content/projects/'],
