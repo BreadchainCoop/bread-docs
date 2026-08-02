@@ -3,9 +3,9 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import { getCollection } from 'astro:content';
 import MemberProjectCards from '../components/MemberProjectCards.astro';
 
-const allProjects = await getCollection('memberProjects');
+const allProjects = await getCollection('projects');
 const activeProjects = allProjects
-	.filter((p) => p.data.status === 'active')
+	.filter((p) => p.data.isMemberProject && p.data.status === 'active')
 	.sort((a, b) => (a.data.title ?? '').localeCompare(b.data.title ?? ''));
 ---
 

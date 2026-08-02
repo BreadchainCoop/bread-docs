@@ -6,6 +6,7 @@ Project Lead: https://x.com/stephenreid_net
 Email: stephen@symbiota.coop
 status: active
 image: "../../../images/member-projects/symbiota.png"
+isMemberProject: true
 ---
 
 - https://symbiota.coop

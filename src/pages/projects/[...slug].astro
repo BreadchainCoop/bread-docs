@@ -3,7 +3,7 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-	const projects = await getCollection('memberProjects');
+	const projects = await getCollection('projects');
 	return projects.map((project) => ({
 		params: { slug: project.id },
 		props: { project },
@@ -12,8 +12,14 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
-<StarlightPage frontmatter={{ title: project.data.title }}>
+<StarlightPage
+	frontmatter={{
+		title: project.data.title,
+		head: [{ tag: 'link', attrs: { rel: 'canonical', href: canonicalURL.href } }],
+	}}
+>
 	<Content />
 </StarlightPage>

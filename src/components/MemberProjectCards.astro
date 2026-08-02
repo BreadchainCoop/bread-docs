@@ -11,12 +11,12 @@ import treasuryLogo from '../images/member-projects/treasury.svg';
 import tdfLogo from '../images/member-projects/traditional_dream_factory.png';
 
 interface Props {
-	projects: CollectionEntry<'memberProjects'>[];
+	projects: CollectionEntry<'projects'>[];
 	status: 'active' | 'archived';
 	basePath?: string;
 }
 
-const { projects, status, basePath = '/solidarity-primitives/crowdstaking/member-projects' } = Astro.props;
+const { projects, status, basePath = '/projects' } = Astro.props;
 
 const sectionTitle = status === 'active' ? 'Active Members' : 'Archived';
 const getHref = (id: string) => `${basePath}/${id}/`;

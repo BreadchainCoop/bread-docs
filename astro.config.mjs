@@ -119,6 +119,9 @@ export default defineConfig({
               { label: 'Solidarity Primitives', items: [{ autogenerate: { directory: 'solidarity-primitives' } }] },
               { label: 'Bread Cooperative', items: [{ autogenerate: { directory: 'bread-cooperative' } }] },
           ],
+          markdown: {
+              processedDirs: ['./src/content/projects/'],
+          },
       }),
       keystatic(),
       mdx(),
