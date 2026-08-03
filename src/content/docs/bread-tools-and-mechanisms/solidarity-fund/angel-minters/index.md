@@ -132,7 +132,7 @@ Note: This is the most up to date version of how to use the Bread Crowdstaking A
 
 ### What do I get for this?
 
-First and foremost, besides all the benefits that already come with owning [$BREAD](/token/) like [voting power](/voting-power/) and the [$BREAD Marketplace](/marketplace/) the **satisfaction of knowing that you are not succumbing to nihilism** about the state of the world and contributing to a real collective fighting for an alternative. ✊
+First and foremost, besides all the benefits that already come with owning [$BREAD](/token/) like [voting power](/voting-power/) and the [Friends of Bread](/getting-started/bread-community-currency/friends-of-bread/) the **satisfaction of knowing that you are not succumbing to nihilism** about the state of the world and contributing to a real collective fighting for an alternative. ✊
 
 Second, the details are not confirmed, but in one of our next major updates we will be creating a framework for **voting boosts** for specific actions done or specific tokens held by people on Gnosis Chain. We would like to thank those who believed and contributed to us early with a special voting boost token to commemorate their contributions. 🏅
 

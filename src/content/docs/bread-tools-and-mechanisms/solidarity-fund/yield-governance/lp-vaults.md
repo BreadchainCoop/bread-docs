@@ -2,24 +2,16 @@
 title: Liquidity Provider Voting Vaults
 ---
 
-In order for voting power to be counted, **our smart contract that calculates voting power needs to have the inputs to know how to calculate it.** This is done by default when users hold the BREAD token, however one of the most useful things a user can do is provide liquidity for BREAD on DeFi markets so that others can swap in and out of BREAD positions.
+When you provide liquidity for $BREAD on a DeFi market, you receive LP tokens in return. By default, the Bread governance system can't see those LP tokens — it only tracks $BREAD held directly in your wallet. This means liquidity providers would lose their voting power by moving $BREAD out of their wallet.
 
-Smart contracts do not have a way to automatically know that a user has provided liquidity and so **the only way to do that is to provide the LP tokens a user receives** for [providing liquidity to a vault](https://breadchain.mirror.xyz/m8qgquZRQE-apOMLLw6bEQB7H1J9H6MVFaaE_YnnV_s) where our voting power calculating smart contract can include that BREAD in it’s calculations.
+The LP Vaults solve this. By depositing your LP tokens into a vault, the governance system can include your $BREAD in its voting power calculations, as if you were holding it directly.
 
-**[This is what our LP Vault page is for!](https://app.breadchain.xyz/governance/lp-vaults)**
+## How to get started
 
-![image 15](/images/image%2015.webp)
+1. **Provide liquidity** — add liquidity for $BREAD on the listed liquidity pool to receive LP tokens
+2. **Stake your LP tokens** — deposit them into the vault at app.breadchain.xyz/governance/lp-vaults
+3. **Participate in governance** — vote on the monthly distribution as normal
 
-This page lets you provide liquidity for **BREAD** while maintaining your voting power for governing the monthly BREAD crowdstaking yield distribution. By staking your LP tokens into a vault, you still get your voting power as if you are holding BREAD normally.
+Full guide: https://paragraph.com/@breadchain-cooperative/adding-liquidity-to-breadchain-a-complete-guide
 
-Get Started:
-
-1. **Provide Liquidity**: Add liquidity for BREAD on the listed liquidity pool of the vault to receive LP tokens.
-2. **Stake Your LP Tokens**: Deposit your LP tokens into the vault to retain your governance rights.
-3. **Participate in Governance**: Share your preferences for the monthly distribution on the vote page.
-
-  
-
-**[FIND A FULL GUIDE HERE ON OUR MIRROR BLOG](https://breadchain.mirror.xyz/m8qgquZRQE-apOMLLw6bEQB7H1J9H6MVFaaE_YnnV_s)**
-
-[https://breadchain.mirror.xyz/m8qgquZRQE-apOMLLw6bEQB7H1J9H6MVFaaE_YnnV_s](https://breadchain.mirror.xyz/m8qgquZRQE-apOMLLw6bEQB7H1J9H6MVFaaE_YnnV_s)
+[Back to Yield Governance](/bread-tools-and-mechanisms/solidarity-fund/yield-governance/)

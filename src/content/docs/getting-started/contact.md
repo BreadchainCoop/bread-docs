@@ -1,39 +1,38 @@
 ---
 title: Contacts and Links
+slug: "contact"
 ---
 
-### Contact **Bread Cooperative** at the following
+## Get in touch
 
----
+**Email**
+contact@bread.coop
 
-:::caution[**Email:**]
-**contact@bread.coop**
-:::
-
-:::caution[**Twitter:**]
-**[@breadcoop](https://x.com/breadcoop)**
-:::
-
-:::caution[**Discord:**]
-**[Crypto Leftists server](https://discord.com/invite/zmNqsHRHDa)**
-:::
+**Discord**
+https://discord.com/invite/zmNqsHRHDa
 
 ---
 
-### Useful Links
+## Social
 
-:::caution[**Open Collective:**]
-**[Bread Cooperative](https://opencollective.com/breadchain-cooperative)**
-:::
+**Twitter/X**
+https://x.com/breadcoop
 
-:::caution[**Newsletter:**]
-**[Breadchain Newsletter](https://breadchain.mailchimpsites.com/)**
-:::
+**Farcaster**
+https://farcaster.xyz/breadcoop
 
-:::caution[**Mirror:**]
-**[Breadchain on Mirror](https://breadchain.mirror.xyz/)**
-:::
+**Bluesky**
+https://bsky.app/profile/breadcoop.bsky.social
 
-:::caution[Guild:]
-[**Bread Cooperative Guild**](https://era.guild.xyz/breadcoop)
-:::
+---
+
+## Useful links
+
+**Newsletter**
+https://paragraph.com/@breadcoop
+
+**Open Collective**
+https://opencollective.com/breadchain-cooperative
+
+**Guild**
+https://guild.xyz/breadcoop
