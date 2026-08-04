@@ -1,0 +1,106 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { getCollection } from 'astro:content';
+
+const memberProjects = (await getCollection('projects'))
+	.filter((p) => p.data.isMemberProject)
+	.sort((a, b) => (a.data.title ?? '').localeCompare(b.data.title ?? ''));
+---
+
+<StarlightPage frontmatter={{ title: '$BREAD Community Currency' }}>
+	<p>
+		$BREAD is the community currency of the Bread Cooperative, running on
+		Gnosis Chain. It's stable, spendable, and every token in circulation is
+		backed 1:1 by xDAI — a stablecoin pegged to USD.
+	</p>
+
+	<p>
+		What makes $BREAD different from other stablecoins is what happens to the
+		interest. When you mint $BREAD through the Bread Solidarity Fund, your
+		xDAI gets put to work generating yield. That yield funds the cooperative
+		and its member projects, distributed every month by a community vote. Your
+		principal stays intact. Only the earnings get shared.
+	</p>
+
+	<div
+		style="
+			border-left: 4px solid var(--color-primary-orange);
+			background: var(--sl-color-bg-accent);
+			padding: 1rem 1.25rem;
+			margin: 1.5rem 0;
+			border-radius: 0 4px 4px 0;
+		"
+	>
+		<strong>Want to get started?</strong>
+		<br />
+		Download the Citizen Wallet app to send and receive $BREAD peer-to-peer
+		today.
+		<br />
+		<a href="https://citizenwallet.xyz/">https://citizenwallet.xyz/</a>
+	</div>
+
+	<h2>How it works</h2>
+
+	<p>
+		The Bread Solidarity Fund is a smart contract on Gnosis Chain. It accepts
+		xDAI, converts it to sDAI, and mints $BREAD tokens at a 1:1 ratio with
+		your deposit. The interest earned on the sDAI pool is distributed monthly
+		to Bread's member projects, based on a vote from $BREAD holders. The more
+		$BREAD you hold, the more voting power you have.
+	</p>
+
+	<p>Yield is currently distributed to:</p>
+
+	<ul>
+		{memberProjects.map((proj) => (
+			<li>
+				<a href={`/projects/${proj.id}/`}>{proj.data.title}</a>
+			</li>
+		))}
+	</ul>
+
+	<p>
+		To learn more about how voting and yield governance work, see the{' '}
+		<a href="/bread-tools-and-mechanisms/solidarity-fund/">
+			Solidarity Fund section
+		</a>
+		.
+	</p>
+
+	<h2>Useful info</h2>
+
+	<p>
+		<strong>How to participate in the Bread Solidarity Fund</strong>
+		<br />
+		Step-by-step guide:{' '}
+		<a href="https://paragraph.com/@breadcoop/how-to-participate-in-the-bread-solidarity-fund">
+			https://paragraph.com/@breadcoop/how-to-participate-in-the-bread-solidarity-fund
+		</a>
+	</p>
+
+	<p>
+		<strong>Contract address (Gnosis Chain)</strong>
+		<br />
+		<code
+			>0xa555d5344f6fb6c65da19e403cb4c1ec4a1a5ee3</code
+		>
+		<br />
+		View on explorer:{' '}
+		<a href="https://gnosisscan.io/token/0xa555d5344f6fb6c65da19e403cb4c1ec4a1a5ee3">
+			https://gnosisscan.io/token/0xa555d5344f6fb6c65da19e403cb4c1ec4a1a5ee3
+		</a>
+	</p>
+
+	<h2>Where to use your $BREAD</h2>
+
+	<p>
+		From events to donations to token-gated community spaces, there are a
+		growing number of places where $BREAD is accepted.
+	</p>
+
+	<p>
+		<a href="/getting-started/bread-community-currency/friends-of-bread/">
+			Friends of Bread
+		</a>
+	</p>
+</StarlightPage>

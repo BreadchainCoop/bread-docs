@@ -3,9 +3,9 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import { getCollection } from 'astro:content';
 import MemberProjectCards from '../components/MemberProjectCards.astro';
 
-const allProjects = await getCollection('memberProjects');
+const allProjects = await getCollection('projects');
 const activeProjects = allProjects
-	.filter((p) => p.data.status === 'active')
+	.filter((p) => p.data.isMemberProject && p.data.status === 'active')
 	.sort((a, b) => (a.data.title ?? '').localeCompare(b.data.title ?? ''));
 ---
 
@@ -23,14 +23,14 @@ const activeProjects = allProjects
 			looking to advance a{' '}
 			<strong>progressive vision for blockchain</strong> and its effect on
 			society. We aim to do this by building and utilizing what we call{' '}
-			<a href="/solidarity-primitives/">Solidarity Primitives</a> — development
+			<a href="/bread-tools-and-mechanisms/">Solidarity Primitives</a> — development
 			tools which help to forge solidarity between individuals and collectives.
 		</p>
 
 		<p class="intro-text">
 			The first <strong>solidarity primitive</strong> created by the Bread
 			Cooperative is the{' '}
-			<a href="/about/bread-token/">Bread Community Token</a>, created through
+			<a href="/getting-started/bread-community-currency/">Bread Community Token</a>, created through
 			the{' '}
 			<a href="https://app.breadchain.xyz/">
 				Bread Crowdstaking Application
@@ -46,8 +46,8 @@ const activeProjects = allProjects
 			ourselves{' '}
 			<em>
 				what if progressives had their own{' '}
-				<a href="/about/bread-token/">token</a> and{' '}
-				<a href="/solidarity-primitives/crowdstaking/yield-governance/">
+				<a href="/getting-started/bread-community-currency/">token</a> and{' '}
+				<a href="/bread-tools-and-mechanisms/solidarity-fund/yield-governance/">
 					governance
 				</a>
 				?
@@ -81,20 +81,20 @@ const activeProjects = allProjects
 						</ul>
 					</li>
 					<li>
-						<a href="/about/bread-token/">$BREAD Token</a>
+						<a href="/getting-started/bread-community-currency/">$BREAD Token</a>
 						<ul>
 							<li>
-								<a href="/solidarity-primitives/crowdstaking/">
+								<a href="/bread-tools-and-mechanisms/solidarity-fund/">
 									Crowdstaking Application
 								</a>
 							</li>
 							<li>
-								<a href="/about/bread-token/marketplace/">
+								<a href="/getting-started/bread-community-currency/friends-of-bread/">
 									$BREAD Marketplace
 								</a>
 							</li>
 							<li>
-								<a href="/solidarity-primitives/crowdstaking/member-projects/">
+								<a href="/bread-tools-and-mechanisms/solidarity-fund/member-projects/">
 									Member Projects
 								</a>
 							</li>
@@ -163,7 +163,7 @@ const activeProjects = allProjects
 		<p class="intro-text">
 			For more information on what it means to contribute to Bread Cooperative
 			and how to become a contributor or core team member, check out the{' '}
-			<a href="/bread-cooperative/contributors/contributor-onboarding/">
+			<a href="/bread-cooperative/contributors/">
 				Contributor Onboarding Page
 			</a>
 			.
@@ -181,20 +181,7 @@ const activeProjects = allProjects
 		<h2 class="section-heading">Other Initiatives</h2>
 		<ul class="initiatives-list">
 			<li>
-				<a href="/solidarity-primitives/stacks/">Bread Stacks</a>
-			</li>
-			<li>
-				<a href="/bread-cooperative/sourdough-systems/">
-					Sourdough Systems
-				</a>
-			</li>
-			<li>
-				<a href="/bread-cooperative/sourdough-systems/gas-killer/">
-					Gas Killer
-				</a>
-			</li>
-			<li>
-				<a href="/about/bread-token/gardens-setup/">
+				<a href="/getting-started/bread-community-currency/bread-gardens-pool-setup/">
 					$BREAD Gardens Pool Setup
 				</a>
 			</li>
