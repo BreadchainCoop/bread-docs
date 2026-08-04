@@ -30,16 +30,16 @@ export default config({
       }
     },
     navigation: {
-      'Documentation': ['about', 'solidarityPrimitives', 'breadCooperative'],
-      'Data': ['memberProjects'],
+      'Documentation': ['gettingStarted', 'breadToolsAndMechanisms', 'breadCooperative'],
+      'Data': ['projects'],
     },
   },
 
   collections: {
-    about: collection({
-      label: 'About',
+    gettingStarted: collection({
+      label: 'Getting Started',
       slugField: 'title',
-      path: 'src/content/docs/about/**',
+      path: 'src/content/docs/getting-started/**',
       format: { contentField: 'content' },
       columns: ['title', 'description'],
       entryLayout: 'content',
@@ -53,10 +53,10 @@ export default config({
       },
     }),
 
-    solidarityPrimitives: collection({
-      label: 'Solidarity Primitives',
+    breadToolsAndMechanisms: collection({
+      label: 'Bread Tools and Mechanisms',
       slugField: 'title',
-      path: 'src/content/docs/solidarity-primitives/**',
+      path: 'src/content/docs/bread-tools-and-mechanisms/**',
       format: { contentField: 'content' },
       columns: ['title', 'description'],
       entryLayout: 'content',
@@ -87,10 +87,10 @@ export default config({
       },
     }),
 
-    memberProjects: collection({
-      label: 'Member Projects',
+    projects: collection({
+      label: 'Projects',
       slugField: 'title',
-      path: 'src/content/member-projects/**',
+      path: 'src/content/projects/**',
       format: { contentField: 'content' },
       columns: ['title', 'description', 'status'],
       entryLayout: 'content',
@@ -105,12 +105,18 @@ export default config({
           ],
           defaultValue: 'active',
         }),
+        // Classification booleans
+        isMemberProject: fields.checkbox({ label: 'Is Member Project', defaultValue: false }),
+        isAngelMinter: fields.checkbox({ label: 'Is Angel Minter', defaultValue: false }),
+        isFriendOfBread: fields.checkbox({ label: 'Is Friend of Bread', defaultValue: false }),
+        isContributingProject: fields.checkbox({ label: 'Is Contributing Project', defaultValue: false }),
+        // Shared metadata
         url: fields.url({ label: 'Project URL' }),
         image: fields.text({ label: 'Image' }),
         'Project Lead': fields.text({ label: 'Project Lead' }),
         Email: fields.text({ label: 'Email' }),
         Treasury: fields.text({ label: 'Treasury' }),
-        content: fields.mdx({ label: 'Content', extension: 'mdx' }),
+        content: fields.mdx({ label: 'Content', extension: 'md' }),
       },
     }),
   },
