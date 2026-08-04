@@ -154,7 +154,6 @@ export default defineConfig({
     // Permalinks (Root level canonical URLs)
     '/getting-started/manifesto': '/manifesto',
     '/bread-tools-and-mechanisms/solidarity-fund/how-to-become-a-member-project': '/bread-tools-and-mechanisms/solidarity-fund/member-projects/',
-    '/bread-tools-and-mechanisms/solidarity-fund/yield-governance/voting-power': '/voting-power',
 
     // Aliases & Legacy short-paths
     '/bread-token': '/getting-started/bread-community-currency/',
