@@ -1,5 +1,7 @@
 ---
 title: BREAD Solidarity Fund
+sidebar:
+  order: 0
 ---
 
 *Give without giving.*

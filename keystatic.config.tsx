@@ -49,6 +49,11 @@ export default config({
         slug: fields.text({ label: 'Slug override' }),
         url: fields.url({ label: 'External URL' }),
         draft: fields.checkbox({ label: 'Draft', defaultValue: false }),
+        sidebar: fields.object({
+          label: fields.text({ label: 'Sidebar label' }),
+          order: fields.number({ label: 'Sidebar order' }),
+          hidden: fields.checkbox({ label: 'Hidden from sidebar', defaultValue: false }),
+        }),
         content: fields.markdoc({ label: 'Content', extension: 'md' }),
       },
     }),
@@ -66,6 +71,11 @@ export default config({
         slug: fields.text({ label: 'Slug override' }),
         url: fields.url({ label: 'External URL' }),
         draft: fields.checkbox({ label: 'Draft', defaultValue: false }),
+        sidebar: fields.object({
+          label: fields.text({ label: 'Sidebar label' }),
+          order: fields.number({ label: 'Sidebar order' }),
+          hidden: fields.checkbox({ label: 'Hidden from sidebar', defaultValue: false }),
+        }),
         content: fields.markdoc({ label: 'Content', extension: 'md' }),
       },
     }),
@@ -83,6 +93,11 @@ export default config({
         slug: fields.text({ label: 'Slug override' }),
         url: fields.url({ label: 'External URL' }),
         draft: fields.checkbox({ label: 'Draft', defaultValue: false }),
+        sidebar: fields.object({
+          label: fields.text({ label: 'Sidebar label' }),
+          order: fields.number({ label: 'Sidebar order' }),
+          hidden: fields.checkbox({ label: 'Hidden from sidebar', defaultValue: false }),
+        }),
         content: fields.markdoc({ label: 'Content', extension: 'md' }),
       },
     }),
@@ -110,6 +125,7 @@ export default config({
         isAngelMinter: fields.checkbox({ label: 'Is Angel Minter', defaultValue: false }),
         isFriendOfBread: fields.checkbox({ label: 'Is Friend of Bread', defaultValue: false }),
         isContributingProject: fields.checkbox({ label: 'Is Contributing Project', defaultValue: false }),
+        amountContributed: fields.text({ label: 'Amount Contributed' }),
         // Shared metadata
         url: fields.url({ label: 'Project URL' }),
         image: fields.text({ label: 'Image' }),

@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+import MemberProjectCards from './MemberProjectCards.astro';
+
+const allProjects = await getCollection('projects');
+
+const activeProjects = allProjects
+	.filter((p) => p.data.isMemberProject && p.data.status === 'active')
+	.sort((a, b) => (a.data.title ?? '').localeCompare(b.data.title ?? ''));
+
+const archivedProjects = allProjects
+	.filter((p) => p.data.isMemberProject && p.data.status === 'archived')
+	.sort((a, b) => (a.data.title ?? '').localeCompare(b.data.title ?? ''));
+---
+
+<MemberProjectCards projects={activeProjects} status="active" />
+<MemberProjectCards projects={archivedProjects} status="archived" />

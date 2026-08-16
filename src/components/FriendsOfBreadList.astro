@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+
+const friends = (await getCollection('projects'))
+	.filter((p) => p.data.isFriendOfBread)
+	.sort((a, b) => (a.data.title ?? '').localeCompare(b.data.title ?? ''));
+---
+
+<ul>
+	{friends.map((friend) => (
+		<li>
+			<a href={`/projects/${friend.id}/`}>{friend.data.title}</a>
+			{friend.data.description && <span> — {friend.data.description}</span>}
+		</li>
+	))}
+</ul>

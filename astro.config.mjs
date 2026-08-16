@@ -116,8 +116,8 @@ export default defineConfig({
           ],
           sidebar: [
               {
-                  label: 'Getting Started',
-                  items: [{ autogenerate: { directory: 'getting-started' } }],
+                  label: '$BREAD Community Currency',
+                  items: [{ autogenerate: { directory: 'bread-community-currency' } }],
               },
               {
                   label: 'Bread Tools and Mechanisms',
@@ -148,6 +148,16 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      // The Keystatic CMS bundles its entire admin editor (React + Keystatic UI)
+      // into a single ~2.6 MB chunk (`_astro/keystatic-page.*.js`). This is
+      // intentional and route-isolated: it is only served on-demand to the
+      // `/keystatic` admin route via the Netlify SSR function, never on public
+      // docs pages (readers load only the ~178 kB Starlight runtime). Raising
+      // the limit here documents that size as accepted rather than letting the
+      // warning fire on every build and obscure genuinely new regressions.
+      chunkSizeWarningLimit: 3000,
+    },
   },
 
   redirects: {
@@ -156,9 +166,9 @@ export default defineConfig({
     '/bread-tools-and-mechanisms/solidarity-fund/how-to-become-a-member-project': '/bread-tools-and-mechanisms/solidarity-fund/member-projects/',
 
     // Aliases & Legacy short-paths
-    '/bread-token': '/getting-started/bread-community-currency/',
-    '/token': '/getting-started/bread-community-currency/',
-    '/marketplace': '/getting-started/bread-community-currency/friends-of-bread/',
+    '/bread-token': '/bread-community-currency/',
+    '/token': '/bread-community-currency/',
+    '/marketplace': '/bread-community-currency/friends-of-bread/',
     '/solidarity-fund': '/bread-tools-and-mechanisms/solidarity-fund/',
     '/angel-minters': '/bread-tools-and-mechanisms/solidarity-fund/angel-minter-program/',
     '/member-projects': '/bread-tools-and-mechanisms/solidarity-fund/member-projects/',
@@ -168,18 +178,18 @@ export default defineConfig({
     '/bread-tools-and-mechanisms/solidarity-fund/member-projects/refi-dao': '/projects/regen-coordination/',
 
     // Shelved content redirects
-    '/roadmap': '/getting-started/',
-    '/about/roadmap/': '/getting-started/',
+    '/roadmap': '/bread-cooperative/',
+    '/about/roadmap/': '/bread-cooperative/',
     '/solidarity-primitives/stacks': '/bread-tools-and-mechanisms/',
     '/solidarity-primitives/crowdstaking/how-to-become-a-member-project/': '/bread-tools-and-mechanisms/solidarity-fund/member-projects/',
 
     // Consolidated pages: Old marketplace → Friends of Bread listing
-    '/about/bread-token/marketplace/': '/getting-started/bread-community-currency/friends-of-bread/',
-    '/about/bread-token/marketplace/bread-discord/': '/getting-started/bread-community-currency/friends-of-bread/',
-    '/about/bread-token/marketplace/cca-events/': '/getting-started/bread-community-currency/friends-of-bread/',
-    '/about/bread-token/marketplace/dandelion-events/': '/getting-started/bread-community-currency/friends-of-bread/',
-    '/about/bread-token/marketplace/giveth-donations/': '/getting-started/bread-community-currency/friends-of-bread/',
-    '/about/bread-token/marketplace/tbs-dao/': '/getting-started/bread-community-currency/friends-of-bread/',
+    '/about/bread-token/marketplace/': '/bread-community-currency/friends-of-bread/',
+    '/about/bread-token/marketplace/bread-discord/': '/bread-community-currency/friends-of-bread/',
+    '/about/bread-token/marketplace/cca-events/': '/bread-community-currency/friends-of-bread/',
+    '/about/bread-token/marketplace/dandelion-events/': '/bread-community-currency/friends-of-bread/',
+    '/about/bread-token/marketplace/giveth-donations/': '/bread-community-currency/friends-of-bread/',
+    '/about/bread-token/marketplace/tbs-dao/': '/bread-community-currency/friends-of-bread/',
 
     // Consolidated pages: Old angel-minters docs → Angel Minter Program listing
     '/solidarity-primitives/crowdstaking/angel-minters/': '/bread-tools-and-mechanisms/solidarity-fund/angel-minter-program/',
@@ -212,9 +222,16 @@ export default defineConfig({
     // Contributor onboarding → absorbed into Contributors index
     '/bread-cooperative/contributors/contributor-onboarding/': '/bread-cooperative/contributors/',
 
+    // Old "Getting Started" section → replaced by $BREAD Community Currency
+    '/getting-started/': '/bread-community-currency/',
+    '/getting-started/bread-community-currency/': '/bread-community-currency/',
+    '/getting-started/bread-community-currency/friends-of-bread/': '/bread-community-currency/friends-of-bread/',
+    '/getting-started/bread-community-currency/bread-gardens-pool-setup/': '/bread-community-currency/bread-gardens-pool-setup/',
+    '/getting-started/index': '/bread-community-currency/',
+    '/getting-started/bread-community-currency/index': '/bread-community-currency/',
+
     // Index path handling (for links explicitly including /index)
-    '/getting-started/bread-community-currency/index': '/getting-started/bread-community-currency/',
-    '/getting-started/index': '/getting-started/',
+    '/bread-community-currency/index': '/bread-community-currency/',
     '/bread-tools-and-mechanisms/solidarity-fund/yield-governance/index': '/bread-tools-and-mechanisms/solidarity-fund/yield-governance/',
     '/bread-tools-and-mechanisms/solidarity-fund/index': '/bread-tools-and-mechanisms/solidarity-fund/',
     '/bread-tools-and-mechanisms/solidarity-fund/member-projects/index': '/bread-tools-and-mechanisms/solidarity-fund/member-projects/',
