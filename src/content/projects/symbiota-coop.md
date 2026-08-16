@@ -1,6 +1,6 @@
 ---
 title: Symbiota Co-op
-description: A collective of event-focused organisations devoted to new forms of culture and enquiry, structured as a not-for-profit worker co-operative.
+description: Symbiota is a worker co-operative and collective of event-focused organisations devoted to exploring new forms of culture, community, and consciousness.
 url: https://symbiota.coop/
 Project Lead: https://x.com/stephenreid_net
 Email: stephen@symbiota.coop
@@ -17,20 +17,9 @@ isMemberProject: true
 
 ### About
 
-[https://www.youtube.com/watch?v=0EH6S-2Zt0k](https://www.youtube.com/watch?v=0EH6S-2Zt0k)
+Symbiota is a worker co-operative and collective of event-focused organisations devoted to exploring new forms of culture, community, and consciousness. Their initiatives include Dandelion, the Psychedelic Society, True Nature, and Adventures in Awareness.
 
-Symbiota is a collective of event-focused organisations devoted to exploring new forms of culture, community, and consciousness. We operate as a not-for-profit worker co-operative, bringing together several aligned initiatives:
-
-- The Psychedelic Society - Promoting understanding and thoughtful use of psychedelics through education, events, and community.
-- Dandelion - Our regenerative events platform supporting co-created gatherings and conscious community building.
-- True Nature - Offering transformative retreats and events to help people reconnect with their authentic selves and the natural world.
-- Adventures in Awareness - Curating experiences to expand consciousness and explore the nature of reality.
-
-Our mission is to foster personal growth, social connection, and cultural evolution through immersive experiences and gatherings. We believe in the power of community to catalyze positive change, and we're dedicated to creating spaces for people to come together, learn, and grow.
-
-As a worker co-operative, we're committed to democratic principles and ethical business practices. Our structure allows us to prioritise our social and environmental mission while operating sustainably.
-
-We envision a world where people feel deeply connected - to themselves, to each other, and to the living planet. Through our varied offerings, we aim to support individuals and communities in awakening to new possibilities and co-creating a more conscious, compassionate world.
+Dandelion — Symbiota's regenerative events platform — is Bread's official events partner. All Bread Cooperative events are hosted on Dandelion and can be paid for in $BREAD.
 
 ### Purpose
 

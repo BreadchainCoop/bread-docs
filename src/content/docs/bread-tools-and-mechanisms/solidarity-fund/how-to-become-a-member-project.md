@@ -42,8 +42,8 @@ These wish lists are meant to help potential future members of BREAD Cooperative
 • https://era.guild.xyz/breadcoop
 • Have minted at least 10 BREAD, preferably much more
 • [add new crowdstaking]
-• Joined the crypto leftist discord
-• https://cryptoleftists.xyz/
+• Joined the Bread Cooperative Discord
+• https://discord.com/invite/zmNqsHRHDa
 • Checked out our roadmap
 • 🗺️ Roadmap
 • Read our constitution

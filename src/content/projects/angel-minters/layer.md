@@ -1,4 +1,0 @@
----
-title: Layer
-isAngelMinter: true
----

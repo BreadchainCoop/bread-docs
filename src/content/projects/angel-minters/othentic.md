@@ -1,4 +1,0 @@
----
-title: Othentic
-isAngelMinter: true
----
