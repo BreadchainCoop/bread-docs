@@ -1,0 +1,17 @@
+---
+import Default from '@astrojs/starlight/components/MarkdownContent.astro';
+import YieldRecipientsList from '../components/YieldRecipientsList.astro';
+import FriendsOfBreadList from '../components/FriendsOfBreadList.astro';
+import AngelMinterList from '../components/AngelMinterList.astro';
+import MemberProjectsSection from '../components/MemberProjectsSection.astro';
+
+const gallery = Astro.locals.starlightRoute.entry.data.gallery;
+---
+
+<Default>
+  <slot />
+  {gallery === 'yield-recipients' && <YieldRecipientsList />}
+  {gallery === 'friends-of-bread' && <FriendsOfBreadList />}
+  {gallery === 'angel-minters' && <AngelMinterList />}
+  {gallery === 'member-projects' && <MemberProjectsSection />}
+</Default>

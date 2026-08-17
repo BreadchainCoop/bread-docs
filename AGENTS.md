@@ -75,9 +75,9 @@ bread-docs/
 │   ├── content.config.ts         # Astro content collection (docsLoader + docsSchema)
 │   ├── content/docs/             # All markdown content — one file = one page
 │   │   ├── index.md              # Home page
-│   │   ├── about/
-│   │   ├── solidarity-primitives/
-│   │   └── bread-cooperative/
+│   │   ├── token/
+│   │   ├── tools/
+│   │   └── organization/
 │   ├── content/member-projects/  # Member project profiles (MDX, separate collection)
 │   ├── overrides/
 │   │   └── SiteTitle.astro       # Replaces Starlight header title with Bread logo
@@ -151,9 +151,9 @@ Defined in `astro.config.mjs` via `autogenerate`. Adding a directory under one o
 
 | Sidebar Section | Directory |
 |----------------|-----------|
-| About | `src/content/docs/about/` |
-| Solidarity Primitives | `src/content/docs/solidarity-primitives/` |
-| Bread Cooperative | `src/content/docs/bread-cooperative/` |
+| $BREAD Community Currency | `src/content/docs/token/` |
+| Bread Tools and Mechanisms | `src/content/docs/tools/` |
+| Bread Cooperative | `src/content/docs/organization/` |
 
 To add a new top-level section, add an entry to the `sidebar` array in `astro.config.mjs`.
 

@@ -22,4 +22,4 @@ Your voting power is calculated by dividing your raw accumulated voting power by
 
 Your vote only affects 50% of the yield distribution. The other 50% is split evenly among all member projects regardless of the vote outcome.
 
-[Back to Yield Governance](/bread-tools-and-mechanisms/solidarity-fund/yield-governance/)
+[Back to Yield Governance](/tools/solidarity-fund/yield-governance/)

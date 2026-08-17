@@ -8,7 +8,11 @@ import { glob } from 'astro/loaders';
 export const collections = {
 	docs: defineCollection({
 		loader: docsLoader(),
-		schema: docsSchema(),
+		schema: docsSchema({
+			extend: z.object({
+				gallery: z.string().optional(),
+			}),
+		}),
 	}),
 	autoSidebar: defineCollection({
 		loader: autoSidebarLoader(),

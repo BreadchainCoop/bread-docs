@@ -8,10 +8,9 @@ status: active
 image: "../../../images/member-projects/treasury.svg"
 isMemberProject: true
 ---
-import { Card } from '@astrojs/starlight/components';
-
 
 **Useful links**
+
 - More detailed descriptions of governance to come soon!
 
 # BASICS
@@ -22,7 +21,7 @@ import { Card } from '@astrojs/starlight/components';
 
 The Bread Shared Treasury is the on-chain wallet (multi-signature) for managing the shared resources of the Bread Cooperative Network. Here are some quick facts.
 
-- The multi-signature wallet’s signers include one representative of each organization that is part of the network.
+- The multi-signature wallet's signers include one representative of each organization that is part of the network.
 - New members of the multi-signature wallet are based on consensus-driven acceptance of new projects into Bread Cooperative.
 - Each representative is based on how each project chooses their representative for the multi-signature wallet.
 - Members of the wallet are expected to join monthly governance calls with the rest of the representatives to give updates and align on strategic objectives.
@@ -39,26 +38,18 @@ The purpose of the treasury is to store and allocate assets meant for pursuing n
 
 ### How do you plan to incorporate BREAD in your org?
 
-<Card title="The main asset held in the treasury is BREAD and is the asset to be used to fund grants. The priority will always be to use BREAD as much as possible even for sponsorships so that other organizations can start to hold BREAD as well.">
-
-</Card>
+The main asset held in the treasury is BREAD and is the asset to be used to fund grants. The priority will always be to use BREAD as much as possible even for sponsorships so that other organizations can start to hold BREAD as well.
 
 ### What do you plan to do in the short term with the funds received from Bread Cooperative?
 
-<Card title="In the short term we plan on continuing to sponsor aligned events through the year to share what Bread Cooperative and its member projects are doing with aligned individuals and communities. We additionally are working on starting a fund for helping kickstart new initiative within the network.">
-
-</Card>
+In the short term we plan on continuing to sponsor aligned events through the year to share what Bread Cooperative and its member projects are doing with aligned individuals and communities. We additionally are working on starting a fund for helping kickstart new initiative within the network.
 
 ### What processes do you have to determine how funds from Bread Cooperative are allocated?
 
 e.g., proposals, directly to contributors, etc.
 
-<Card title="At the moment the process for determining how funds are allocated is through proposal, deliberation, and consensus to make transactions from the multi-signature wallet. We allow for signers as well as members of individual projects to make proposals for the use of funds.">
-
-</Card>
+At the moment the process for determining how funds are allocated is through proposal, deliberation, and consensus to make transactions from the multi-signature wallet. We allow for signers as well as members of individual projects to make proposals for the use of funds.
 
 ### What have you done so far with the funds you've received?
 
-<Card title="So far with the funds we’ve received in the treasury we have paid sponsorships for several Crypto Common Association organized events like the Crypto Commons Gathering 2023, ReFi Spring 2023, CoFi Liege, and others. We have also used funds from the treasury to help fund specific development work to integrate BREAD into platforms like Dandelion so users can buy and sell tickets to events in BREAD.">
-
-</Card>
+So far with the funds we've received in the treasury we have paid sponsorships for several Crypto Common Association organized events like the Crypto Commons Gathering 2023, ReFi Spring 2023, CoFi Liege, and others. We have also used funds from the treasury to help fund specific development work to integrate BREAD into platforms like Dandelion so users can buy and sell tickets to events in BREAD.

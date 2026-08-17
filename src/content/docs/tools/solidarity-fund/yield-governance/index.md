@@ -18,5 +18,5 @@ Voting power accumulates with a one-month delay as a safety measure. $BREAD held
 
 ## More information
 
-- [Understanding Bread Voting Power](/bread-tools-and-mechanisms/solidarity-fund/yield-governance/voting-power/)
-- [Liquidity Provider Voting Vaults](/bread-tools-and-mechanisms/solidarity-fund/yield-governance/lp-vaults/)
+- [Understanding Bread Voting Power](/voting-power/)
+- [Liquidity Provider Voting Vaults](/tools/solidarity-fund/yield-governance/lp-vaults/)

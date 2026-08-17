@@ -3,8 +3,8 @@ title: "Angel Minter Program"
 description: "Aligned individuals and organisations minting $BREAD to bootstrap the Solidarity Fund."
 sidebar:
   order: 1
+gallery: angel-minters
 ---
-import AngelMinterList from '../../../../components/AngelMinterList.astro';
 
 The Angel Minter Program invites aligned individuals and organisations to mint a minimum of 10,000 $BREAD and become early supporters of the Bread Cooperative ecosystem.
 
@@ -23,10 +23,6 @@ Baking $BREAD gives you voting power in the monthly yield distribution. The more
 Angel Minters also get recognised publicly. Organisations that mint into their treasuries are featured in the Angel Minter gallery, and we'll announce the partnership across our network if you'd like.
 
 Future updates will introduce voting boosts for early supporters — a way of thanking those who believed in the project early.
-
-## Current Angel Minters
-
-<AngelMinterList />
 
 ## Ready to get involved?
 

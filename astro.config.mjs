@@ -53,6 +53,7 @@ export default defineConfig({
           components: {
               // Override SiteTitle with Bread logo
               SiteTitle: './src/overrides/SiteTitle.astro',
+              MarkdownContent: './src/overrides/MarkdownContent.astro',
           },
           // PNG favicon fallback for browsers/rss readers that don't render SVG.
           // SVG favicon is added automatically by Starlight at /favicon.svg.
@@ -117,15 +118,15 @@ export default defineConfig({
           sidebar: [
               {
                   label: '$BREAD Community Currency',
-                  items: [{ autogenerate: { directory: 'bread-community-currency' } }],
+                  items: [{ autogenerate: { directory: 'token' } }],
               },
               {
                   label: 'Bread Tools and Mechanisms',
-                  items: [{ autogenerate: { directory: 'bread-tools-and-mechanisms' } }],
+                  items: [{ autogenerate: { directory: 'tools' } }],
               },
               {
                   label: 'Bread Cooperative',
-                  items: [{ autogenerate: { directory: 'bread-cooperative' } }],
+                  items: [{ autogenerate: { directory: 'organization' } }],
               },
               // Elevated entries — stock Starlight sidebar items
               {
@@ -163,45 +164,40 @@ export default defineConfig({
   redirects: {
     // Permalinks (Root level canonical URLs)
     '/getting-started/manifesto': '/manifesto',
-    '/bread-tools-and-mechanisms/solidarity-fund/how-to-become-a-member-project': '/bread-tools-and-mechanisms/solidarity-fund/member-projects/',
 
     // Aliases & Legacy short-paths
-    '/bread-token': '/bread-community-currency/',
-    '/token': '/bread-community-currency/',
-    '/marketplace': '/bread-community-currency/friends-of-bread/',
-    '/solidarity-fund': '/bread-tools-and-mechanisms/solidarity-fund/',
-    '/angel-minters': '/bread-tools-and-mechanisms/solidarity-fund/angel-minter-program/',
-    '/member-projects': '/bread-tools-and-mechanisms/solidarity-fund/member-projects/',
-    '/how-to-become-a-member-project': '/bread-tools-and-mechanisms/solidarity-fund/member-projects/',
-
-    // Renamed: ReFi DAO → Regen Coordination (new canonical target)
-    '/bread-tools-and-mechanisms/solidarity-fund/member-projects/refi-dao': '/projects/regen-coordination/',
+    '/bread-token': '/token/',
+    '/marketplace': '/token/friends-of-bread/',
+    '/solidarity-fund': '/tools/solidarity-fund/',
+    '/angel-minters': '/tools/solidarity-fund/angel-minter-program/',
+    '/member-projects': '/tools/solidarity-fund/member-projects/',
+    '/how-to-become-a-member-project': '/tools/solidarity-fund/member-projects/',
 
     // Shelved content redirects
-    '/roadmap': '/bread-cooperative/',
-    '/about/roadmap/': '/bread-cooperative/',
-    '/solidarity-primitives/stacks': '/bread-tools-and-mechanisms/',
-    '/solidarity-primitives/crowdstaking/how-to-become-a-member-project/': '/bread-tools-and-mechanisms/solidarity-fund/member-projects/',
+    '/roadmap': '/organization/',
+    '/about/roadmap/': '/organization/',
+    '/solidarity-primitives/stacks': '/tools/',
+    '/solidarity-primitives/crowdstaking/how-to-become-a-member-project/': '/tools/solidarity-fund/member-projects/',
 
     // Consolidated pages: Old marketplace → Friends of Bread listing
-    '/about/bread-token/marketplace/': '/bread-community-currency/friends-of-bread/',
-    '/about/bread-token/marketplace/bread-discord/': '/bread-community-currency/friends-of-bread/',
-    '/about/bread-token/marketplace/cca-events/': '/bread-community-currency/friends-of-bread/',
-    '/about/bread-token/marketplace/dandelion-events/': '/bread-community-currency/friends-of-bread/',
-    '/about/bread-token/marketplace/giveth-donations/': '/bread-community-currency/friends-of-bread/',
-    '/about/bread-token/marketplace/tbs-dao/': '/bread-community-currency/friends-of-bread/',
+    '/about/bread-token/marketplace/': '/token/friends-of-bread/',
+    '/about/bread-token/marketplace/bread-discord/': '/token/friends-of-bread/',
+    '/about/bread-token/marketplace/cca-events/': '/token/friends-of-bread/',
+    '/about/bread-token/marketplace/dandelion-events/': '/token/friends-of-bread/',
+    '/about/bread-token/marketplace/giveth-donations/': '/token/friends-of-bread/',
+    '/about/bread-token/marketplace/tbs-dao/': '/token/friends-of-bread/',
 
     // Consolidated pages: Old angel-minters docs → Angel Minter Program listing
-    '/solidarity-primitives/crowdstaking/angel-minters/': '/bread-tools-and-mechanisms/solidarity-fund/angel-minter-program/',
-    '/solidarity-primitives/crowdstaking/angel-minters/1hive/': '/bread-tools-and-mechanisms/solidarity-fund/angel-minter-program/',
-    '/solidarity-primitives/crowdstaking/angel-minters/commons-hub/': '/bread-tools-and-mechanisms/solidarity-fund/angel-minter-program/',
-    '/solidarity-primitives/crowdstaking/angel-minters/gnosis-dao/': '/bread-tools-and-mechanisms/solidarity-fund/angel-minter-program/',
-    '/solidarity-primitives/crowdstaking/angel-minters/layer/': '/bread-tools-and-mechanisms/solidarity-fund/angel-minter-program/',
-    '/solidarity-primitives/crowdstaking/angel-minters/mask-network/': '/bread-tools-and-mechanisms/solidarity-fund/angel-minter-program/',
-    '/solidarity-primitives/crowdstaking/angel-minters/othentic/': '/bread-tools-and-mechanisms/solidarity-fund/angel-minter-program/',
-    '/solidarity-primitives/crowdstaking/angel-minters/token-engineering-commons/': '/bread-tools-and-mechanisms/solidarity-fund/angel-minter-program/',
-    '/solidarity-primitives/crowdstaking/angel-minters/toucan/': '/bread-tools-and-mechanisms/solidarity-fund/angel-minter-program/',
-    '/solidarity-primitives/crowdstaking/angel-minters/yieldnest/': '/bread-tools-and-mechanisms/solidarity-fund/angel-minter-program/',
+    '/solidarity-primitives/crowdstaking/angel-minters/': '/tools/solidarity-fund/angel-minter-program/',
+    '/solidarity-primitives/crowdstaking/angel-minters/1hive/': '/tools/solidarity-fund/angel-minter-program/',
+    '/solidarity-primitives/crowdstaking/angel-minters/commons-hub/': '/tools/solidarity-fund/angel-minter-program/',
+    '/solidarity-primitives/crowdstaking/angel-minters/gnosis-dao/': '/tools/solidarity-fund/angel-minter-program/',
+    '/solidarity-primitives/crowdstaking/angel-minters/layer/': '/tools/solidarity-fund/angel-minter-program/',
+    '/solidarity-primitives/crowdstaking/angel-minters/mask-network/': '/tools/solidarity-fund/angel-minter-program/',
+    '/solidarity-primitives/crowdstaking/angel-minters/othentic/': '/tools/solidarity-fund/angel-minter-program/',
+    '/solidarity-primitives/crowdstaking/angel-minters/token-engineering-commons/': '/tools/solidarity-fund/angel-minter-program/',
+    '/solidarity-primitives/crowdstaking/angel-minters/toucan/': '/tools/solidarity-fund/angel-minter-program/',
+    '/solidarity-primitives/crowdstaking/angel-minters/yieldnest/': '/tools/solidarity-fund/angel-minter-program/',
 
     // Old member project detail URLs → new /projects/ canonical URLs
     '/solidarity-primitives/crowdstaking/member-projects/bread-co-op/': '/projects/bread-co-op/',
@@ -215,30 +211,13 @@ export default defineConfig({
     '/solidarity-primitives/crowdstaking/member-projects/symbiota-coop/': '/projects/symbiota-coop/',
     '/solidarity-primitives/crowdstaking/member-projects/traditional-dream-factory/': '/projects/traditional-dream-factory/',
 
-    // Sourdough Systems removal → Bread Cooperative landing
-    '/bread-cooperative/sourdough-systems/': '/bread-cooperative/',
-    '/bread-cooperative/sourdough-systems/gas-killer/': '/bread-cooperative/',
-
-    // Contributor onboarding → absorbed into Contributors index
-    '/bread-cooperative/contributors/contributor-onboarding/': '/bread-cooperative/contributors/',
-
     // Old "Getting Started" section → replaced by $BREAD Community Currency
-    '/getting-started/': '/bread-community-currency/',
-    '/getting-started/bread-community-currency/': '/bread-community-currency/',
-    '/getting-started/bread-community-currency/friends-of-bread/': '/bread-community-currency/friends-of-bread/',
-    '/getting-started/bread-community-currency/bread-gardens-pool-setup/': '/bread-community-currency/bread-gardens-pool-setup/',
-    '/getting-started/index': '/bread-community-currency/',
-    '/getting-started/bread-community-currency/index': '/bread-community-currency/',
-
-    // Index path handling (for links explicitly including /index)
-    '/bread-community-currency/index': '/bread-community-currency/',
-    '/bread-tools-and-mechanisms/solidarity-fund/yield-governance/index': '/bread-tools-and-mechanisms/solidarity-fund/yield-governance/',
-    '/bread-tools-and-mechanisms/solidarity-fund/index': '/bread-tools-and-mechanisms/solidarity-fund/',
-    '/bread-tools-and-mechanisms/solidarity-fund/member-projects/index': '/bread-tools-and-mechanisms/solidarity-fund/member-projects/',
-    '/bread-tools-and-mechanisms/index': '/bread-tools-and-mechanisms/',
-    '/bread-cooperative/governance/index': '/bread-cooperative/governance',
-    '/bread-cooperative/contributors/index': '/bread-cooperative/contributors',
-    '/bread-cooperative/index': '/bread-cooperative',
+    '/getting-started/': '/token/',
+    '/getting-started/bread-community-currency/': '/token/',
+    '/getting-started/bread-community-currency/friends-of-bread/': '/token/friends-of-bread/',
+    '/getting-started/bread-community-currency/bread-gardens-pool-setup/': '/token/bread-gardens-pool-setup/',
+    '/getting-started/index': '/token/',
+    '/getting-started/bread-community-currency/index': '/token/',
   },
 
   adapter: netlify(),
