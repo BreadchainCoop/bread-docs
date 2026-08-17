@@ -10,8 +10,21 @@ const gallery = Astro.locals.starlightRoute.entry.data.gallery;
 
 <Default>
   <slot />
+  {gallery && <hr class="gallery-divider" />}
   {gallery === 'yield-recipients' && <YieldRecipientsList />}
   {gallery === 'friends-of-bread' && <FriendsOfBreadList />}
   {gallery === 'angel-minters' && <AngelMinterList />}
   {gallery === 'member-projects' && <MemberProjectsSection />}
 </Default>
+
+<style>
+  .gallery-divider {
+    margin: 2.5rem 0 2rem;
+    border: 0;
+    border-top: 1px solid var(--color-paper-2);
+  }
+
+  :global([data-theme='dark']) .gallery-divider {
+    border-top-color: var(--color-gray-700);
+  }
+</style>
