@@ -14,4 +14,4 @@ The LP Vaults solve this. By depositing your LP tokens into a vault, the governa
 
 Full guide: https://paragraph.com/@breadchain-cooperative/adding-liquidity-to-breadchain-a-complete-guide
 
-[Back to Yield Governance](/bread-tools-and-mechanisms/solidarity-fund/yield-governance/)
+[Back to Yield Governance](/tools/solidarity-fund/yield-governance/)

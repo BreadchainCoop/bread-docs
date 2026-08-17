@@ -30,16 +30,16 @@ export default config({
       }
     },
     navigation: {
-      'Documentation': ['gettingStarted', 'breadToolsAndMechanisms', 'breadCooperative'],
+      'Documentation': ['token', 'tools', 'organization'],
       'Data': ['projects'],
     },
   },
 
   collections: {
-    gettingStarted: collection({
-      label: 'Getting Started',
+    token: collection({
+      label: '$BREAD Community Currency',
       slugField: 'title',
-      path: 'src/content/docs/getting-started/**',
+      path: 'src/content/docs/token/**',
       format: { contentField: 'content' },
       columns: ['title', 'description'],
       entryLayout: 'content',
@@ -54,14 +54,25 @@ export default config({
           order: fields.number({ label: 'Sidebar order' }),
           hidden: fields.checkbox({ label: 'Hidden from sidebar', defaultValue: false }),
         }),
+        gallery: fields.select({
+          label: 'Gallery',
+          options: [
+            { label: 'None', value: '' },
+            { label: 'Yield Recipients', value: 'yield-recipients' },
+            { label: 'Friends of Bread', value: 'friends-of-bread' },
+            { label: 'Angel Minters', value: 'angel-minters' },
+            { label: 'Member Projects', value: 'member-projects' },
+          ],
+          defaultValue: '',
+        }),
         content: fields.markdoc({ label: 'Content', extension: 'md' }),
       },
     }),
 
-    breadToolsAndMechanisms: collection({
+    tools: collection({
       label: 'Bread Tools and Mechanisms',
       slugField: 'title',
-      path: 'src/content/docs/bread-tools-and-mechanisms/**',
+      path: 'src/content/docs/tools/**',
       format: { contentField: 'content' },
       columns: ['title', 'description'],
       entryLayout: 'content',
@@ -76,14 +87,25 @@ export default config({
           order: fields.number({ label: 'Sidebar order' }),
           hidden: fields.checkbox({ label: 'Hidden from sidebar', defaultValue: false }),
         }),
+        gallery: fields.select({
+          label: 'Gallery',
+          options: [
+            { label: 'None', value: '' },
+            { label: 'Yield Recipients', value: 'yield-recipients' },
+            { label: 'Friends of Bread', value: 'friends-of-bread' },
+            { label: 'Angel Minters', value: 'angel-minters' },
+            { label: 'Member Projects', value: 'member-projects' },
+          ],
+          defaultValue: '',
+        }),
         content: fields.markdoc({ label: 'Content', extension: 'md' }),
       },
     }),
 
-    breadCooperative: collection({
+    organization: collection({
       label: 'Bread Cooperative',
       slugField: 'title',
-      path: 'src/content/docs/bread-cooperative/**',
+      path: 'src/content/docs/organization/**',
       format: { contentField: 'content' },
       columns: ['title', 'description'],
       entryLayout: 'content',
@@ -97,6 +119,17 @@ export default config({
           label: fields.text({ label: 'Sidebar label' }),
           order: fields.number({ label: 'Sidebar order' }),
           hidden: fields.checkbox({ label: 'Hidden from sidebar', defaultValue: false }),
+        }),
+        gallery: fields.select({
+          label: 'Gallery',
+          options: [
+            { label: 'None', value: '' },
+            { label: 'Yield Recipients', value: 'yield-recipients' },
+            { label: 'Friends of Bread', value: 'friends-of-bread' },
+            { label: 'Angel Minters', value: 'angel-minters' },
+            { label: 'Member Projects', value: 'member-projects' },
+          ],
+          defaultValue: '',
         }),
         content: fields.markdoc({ label: 'Content', extension: 'md' }),
       },
@@ -105,7 +138,7 @@ export default config({
     projects: collection({
       label: 'Projects',
       slugField: 'title',
-      path: 'src/content/projects/**',
+      path: 'src/content/projects/*',
       format: { contentField: 'content' },
       columns: ['title', 'description', 'status'],
       entryLayout: 'content',

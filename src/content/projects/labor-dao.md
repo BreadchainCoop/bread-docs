@@ -5,13 +5,12 @@ url: https://www.thelabordao.com/
 status: archived
 isMemberProject: true
 ---
-import { Card } from '@astrojs/starlight/components';
 
+**Labor DAO**
 
-<Card title="Labor DAO">
-The UnionBase core team is launching a global community called LaborDAO that will be the first decentralized community to support workers who want to organize, strike and collectively bargain.  
+The UnionBase core team is launching a global community called LaborDAO that will be the first decentralized community to support workers who want to organize, strike and collectively bargain.
+
 [https://www.thelabordao.com/](https://www.thelabordao.com/)
-</Card>
 
 # BASICS
 

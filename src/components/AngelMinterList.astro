@@ -1,16 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
+import ProjectCards from './ProjectCards.astro';
 
 const angelMinters = (await getCollection('projects'))
 	.filter((p) => p.data.isAngelMinter)
 	.sort((a, b) => (a.data.title ?? '').localeCompare(b.data.title ?? ''));
 ---
 
-<ul>
-	{angelMinters.map((minter) => (
-		<li>
-			<a href={`/projects/${minter.id}/`}>{minter.data.title}</a>
-			{minter.data.amountContributed && <span> — {minter.data.amountContributed}</span>}
-		</li>
-	))}
-</ul>
+<ProjectCards projects={angelMinters} title="Current Angel Minters" showAmount />

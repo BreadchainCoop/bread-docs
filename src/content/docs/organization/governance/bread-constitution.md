@@ -40,4 +40,4 @@ Our core objectives help inform what the cooperative's priorities are. They are 
 
 ---
 
-See the [Operational Annex](/bread-cooperative/governance/operational-annex/) for how these principles are put into practice.
+See the [Operational Annex](/organization/governance/operational-annex/) for how these principles are put into practice.

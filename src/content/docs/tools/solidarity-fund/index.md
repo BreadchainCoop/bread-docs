@@ -33,12 +33,12 @@ Follow our step-by-step guide to baking $BREAD. It covers everything from gettin
 :::note[Who receives the yield?]
 Every month, $BREAD holders vote on how yield is distributed across Bread's member projects. See who's in the network and what they're building.
 
-[Member Projects →](/bread-tools-and-mechanisms/solidarity-fund/member-projects/)
+[Member Projects →](/tools/solidarity-fund/member-projects/)
 :::
 
 ---
 
 ## More information
 
-- [Yield Governance](/bread-tools-and-mechanisms/solidarity-fund/yield-governance/) — how the monthly vote works
-- [Angel Minter Program](/bread-tools-and-mechanisms/solidarity-fund/angel-minter-program/) — larger holders who help sustain the fund
+- [Yield Governance](/tools/solidarity-fund/yield-governance/) — how the monthly vote works
+- [Angel Minter Program](/tools/solidarity-fund/angel-minter-program/) — larger holders who help sustain the fund

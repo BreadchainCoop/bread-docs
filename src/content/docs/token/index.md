@@ -3,8 +3,8 @@ title: "$BREAD Community Currency"
 description: "What $BREAD is, how the Solidarity Fund works, and where to use your tokens."
 sidebar:
   order: 0
+gallery: yield-recipients
 ---
-import YieldRecipientsList from '../../../components/YieldRecipientsList.astro';
 
 $BREAD is the community currency of the Bread Cooperative, running on Gnosis Chain. It's stable, spendable, and every token in circulation is backed 1:1 by xDAI — a stablecoin pegged to USD.
 
@@ -20,11 +20,7 @@ Download the Citizen Wallet app to send and receive $BREAD peer-to-peer today.
 
 The Bread Solidarity Fund is a smart contract on Gnosis Chain. It accepts xDAI, converts it to sDAI, and mints $BREAD tokens at a 1:1 ratio with your deposit. The interest earned on the sDAI pool is distributed monthly to Bread's member projects, based on a vote from $BREAD holders. The more $BREAD you hold, the more voting power you have.
 
-Yield is currently distributed to:
-
-<YieldRecipientsList />
-
-To learn more about how voting and yield governance work, see the [Solidarity Fund section](/bread-tools-and-mechanisms/solidarity-fund/).
+To learn more about how voting and yield governance work, see the [Solidarity Fund section](/tools/solidarity-fund/).
 
 ## Useful info
 
@@ -42,4 +38,4 @@ View on explorer: [gnosisscan.io](https://gnosisscan.io/token/0xa555d5344f6fb6c6
 
 From events to donations to token-gated community spaces, there are a growing number of places where $BREAD is accepted.
 
-[Friends of Bread](/bread-community-currency/friends-of-bread/)
+[Friends of Bread](/token/friends-of-bread/)

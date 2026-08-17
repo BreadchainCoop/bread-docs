@@ -7,13 +7,12 @@ status: active
 image: "../../../images/member-projects/regen.png"
 isMemberProject: true
 ---
-import { Card } from '@astrojs/starlight/components';
 
+**Regen Coordination Hub**
 
-<Card title="Regen Coordination Hub">
-Collaboration across networks and communities driving the Regenerative Finance (ReFi) movement.  
+Collaboration across networks and communities driving the Regenerative Finance (ReFi) movement.
+
 [https://www.regencoordination.xyz/](https://www.regencoordination.xyz/)
-</Card>
 
 # BASICS
 
