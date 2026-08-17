@@ -30,16 +30,16 @@ export default config({
       }
     },
     navigation: {
-      'Documentation': ['gettingStarted', 'breadToolsAndMechanisms', 'breadCooperative'],
+      'Documentation': ['breadCommunityCurrency', 'breadToolsAndMechanisms', 'breadCooperative'],
       'Data': ['projects'],
     },
   },
 
   collections: {
-    gettingStarted: collection({
-      label: 'Getting Started',
+    breadCommunityCurrency: collection({
+      label: '$BREAD Community Currency',
       slugField: 'title',
-      path: 'src/content/docs/getting-started/**',
+      path: 'src/content/docs/bread-community-currency/**',
       format: { contentField: 'content' },
       columns: ['title', 'description'],
       entryLayout: 'content',
@@ -105,7 +105,7 @@ export default config({
     projects: collection({
       label: 'Projects',
       slugField: 'title',
-      path: 'src/content/projects/**',
+      path: 'src/content/projects/*',
       format: { contentField: 'content' },
       columns: ['title', 'description', 'status'],
       entryLayout: 'content',
