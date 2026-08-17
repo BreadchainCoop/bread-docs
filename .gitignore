@@ -19,6 +19,7 @@ temp/
 
 # opencode local config (each dev maintains their own)
 .opencode/
+opencode.json
 
 # environment variables
 .env
