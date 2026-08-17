@@ -1,54 +1,135 @@
 # bread-docs — Agent Instructions
 
-> **This file is the single source of truth for all AI agents working on this project.** It applies to OpenCode, Claude Code, Cursor, GitHub Copilot, and any other AI coding tool. OpenCode-specific setup is in the [AI Agent Setup](#ai-agent-setup-openagents-control) section at the bottom.
+> **This file is the single source of truth for all AI agents working on this project.** It applies to OpenCode, Claude Code, Cursor, GitHub Copilot, and any other AI coding tool.
 
 Documentation website for Bread Cooperative. Built with **Astro + Starlight**, deployed to `docs.bread.coop` via Netlify with static pre-rendering and on-demand SSR for CMS API routes.
 
 ---
 
-## Quick Start for AI Agents
+## Lifecycle: End-to-End Workflow
 
-> **Use this section as a reliable recipe.** Point any AI coding agent at this repo and start here.
+> **Follow this recipe from clone to post-merge cleanup.** Each step is explicit — don't skip ahead.
 
-**When a user asks you to edit content via Keystatic:**
+### 1. Clone & install
 
-1. **Verify prerequisites** — All four Keystatic secrets must exist in `.env` (gitignored):
-   ```
-   KEYSTATIC_GITHUB_CLIENT_ID, KEYSTATIC_GITHUB_CLIENT_SECRET,
-   KEYSTATIC_SECRET, PUBLIC_KEYSTATIC_GITHUB_APP_SLUG
-   ```
-   Also verify the "Bread Docs Editor" GitHub App is installed on `BreadchainCoop/bread-docs`.
+```bash
+git clone https://github.com/BreadchainCoop/bread-docs.git
+cd bread-docs
+npm install
+```
 
-2. **Create a branch** — Always create a branch before starting the dev server. The `keystatic/` prefix ensures Keystatic's branch dropdown shows it:
-   ```bash
-   git checkout -b keystatic/<username>/<description>
-   ```
+Requires Node 24.14.0+ (see `.nvmrc`).
 
-3. **Launch Keystatic** — Start the dev server on the new branch:
-   ```bash
-   npm run dev
-   ```
+### 2. Verify prerequisites
 
-4. **Direct the user** to `http://127.0.0.1:4321/keystatic` — they log in with their GitHub account. Their `keystatic/<username>/*` branch is selected in the branch dropdown.
+For content edits via Keystatic, all four secrets must exist in `.env` (gitignored — ask a maintainer for the values):
 
-5. **Manage the PR** — After the user saves (Keystatic commits to the branch):
-   ```bash
-   gh pr create --base main --head keystatic/<branch> \
-     --title "Content update: <description>" \
-     --body "Edited via Keystatic by @<username>"
-   ```
-   Optionally add reviewers: `gh pr create --reviewer <handle>`
+```
+KEYSTATIC_GITHUB_CLIENT_ID, KEYSTATIC_GITHUB_CLIENT_SECRET,
+KEYSTATIC_SECRET, PUBLIC_KEYSTATIC_GITHUB_APP_SLUG
+```
 
-6. **Clean up** — After the PR is merged:
-   ```bash
-   git checkout main && git pull && git branch -d keystatic/<branch>
-   ```
+Also verify the "Bread Docs Editor" GitHub App is installed on `BreadchainCoop/bread-docs`, and that the `gh` CLI is authenticated (`gh auth status`).
 
-**What the agent should NEVER do:**
-- Edit files directly in `src/content/docs/` — changes must go through Keystatic or a PR
+For code/config-only edits (no Keystatic), `.env` is not required.
+
+### 3. Create a branch
+
+Always branch before starting work. The `main` branch is protected — direct pushes are blocked.
+
+- **Content edits** (via Keystatic): use the `keystatic/` prefix so Keystatic's branch dropdown recognizes it:
+  ```bash
+  git checkout -b keystatic/<username>/<description>
+  ```
+- **Code/config edits**: use a conventional prefix:
+  ```bash
+  git checkout -b <type>/<description>   # e.g. fix/sidebar-order, feat/new-plugin
+  ```
+
+### 4. Start the dev server
+
+```bash
+npm run dev    # http://127.0.0.1:4321
+```
+
+Keystatic reads the current git branch, so be on the correct branch **before** starting the server.
+
+### 5. Edit
+
+- **Content via Keystatic:** Direct the user to `http://127.0.0.1:4321/keystatic`. They log in with GitHub; the current `keystatic/*` branch is selected in the dropdown. They edit and save — Keystatic commits to the branch.
+- **Content via direct file edit (agent):** Only when explicitly instructed by the user. Edit files in `src/content/docs/` and commit normally. Do **not** bypass the PR requirement.
+- **Code/config:** Edit source files directly.
+
+### 6. Run checks before requesting review
+
+```bash
+npm run build     # must pass with zero errors
+```
+
+Fix any build or type errors on the branch **before** opening a PR or requesting review. If the build is already failing on `main` for unrelated reasons, note it in the PR description.
+
+### 7. Open a pull request
+
+```bash
+gh pr create --base main --head <branch> \
+  --title "<type>: <description>" \
+  --body "Closes #<issue>. <Summary of changes>."
+```
+
+Optionally add reviewers: `gh pr create --reviewer <handle>`.
+
+### 8. Resolve conflicts if needed
+
+If `main` advances while the PR is open:
+
+```bash
+git fetch origin
+git merge origin/main          # or: git rebase origin/main
+# resolve conflicts, then:
+git push
+```
+
+Re-run `npm run build` after resolving to confirm the branch is still green.
+
+### 9. Stop the dev server
+
+When editing is done, stop the server with `Ctrl+C` in the terminal running `npm run dev`. Don't leave it running across sessions.
+
+### 10. Post-merge cleanup
+
+After the PR is merged:
+
+```bash
+git checkout main && git pull && git branch -d <branch>
+```
+
+---
+
+## What agents must NEVER do
+
+- Edit files directly in `src/content/docs/` without an explicit user instruction — changes must go through Keystatic or a PR
 - Push directly to `main` — it's protected
 - Commit `.env` or any secrets
 - Modify `node_modules/`, `dist/`, or `.astro/`
+- Leave the dev server running when work is complete
+
+---
+
+## PR Instructions
+
+- **Title format:** Conventional commits — `docs:`, `feat:`, `fix:`, `chore:` (Keystatic auto-generates its own messages like `Update src/content/docs/about/index`, which are fine as-is)
+- **Always run `npm run build` before opening a PR or requesting review.** Fix failures on the branch first.
+- **PR body:** Reference the issue (`Closes #N`), summarize changes, and note anything reviewers should pay attention to.
+- **Merge policy:** See [GOVERNANCE.md](./GOVERNANCE.md) for who can merge and what review is required.
+
+---
+
+## Security Considerations
+
+- **Never commit `.env`** — it contains OAuth client secrets and session keys. It is gitignored; verify with `git status` before committing if you're unsure.
+- **Never modify `node_modules/`, `dist/`, or `.astro/`** — these are generated directories.
+- **Branch protection on `main`** is enforced server-side. Don't attempt force-pushes or direct commits.
+- **Keystatic GitHub App** grants contents read & write to `BreadchainCoop/bread-docs`. Only users with `write` access to the repo can authenticate through it.
 
 ---
 
@@ -89,7 +170,6 @@ bread-docs/
 ├── public/
 │   ├── fonts/                    # Pogaca woff2 files (Bread Display, Bread Body)
 │   └── images/                   # Static images referenced in markdown
-
 ```
 
 ---
@@ -221,7 +301,7 @@ Custom plugin that reorders sidebar entries so files appear before folders. Ensu
 
 ### `starlight-auto-sidebar`
 
-Reads `_meta.yml` files in each directory to configure sidebar labels, ordering, and collapsed states. See [_meta.yml section](#sidebar-structure) above.
+Reads `_meta.yml` files in each directory to configure sidebar labels, ordering, and collapsed states. See [Sidebar Structure](#sidebar-structure) above.
 
 ---
 
@@ -235,11 +315,7 @@ A GitHub App named **"Bread Docs Editor"** must be installed on the `BreadchainC
 - **Contents:** Read & write
 - **Metadata:** Read-only
 
-Required environment variables (stored in `.env`, gitignored):
-- `KEYSTATIC_GITHUB_CLIENT_ID` — GitHub App client ID
-- `KEYSTATIC_GITHUB_CLIENT_SECRET` — GitHub App client secret
-- `KEYSTATIC_SECRET` — Random session secret
-- `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` — GitHub App slug
+Required environment variables (stored in `.env`, gitignored) are listed in [Lifecycle step 2](#2-verify-prerequisites) above.
 
 ### OAuth Callback URLs
 
@@ -275,34 +351,8 @@ The `main` branch is **protected** — direct pushes are blocked. All content ed
 
 1. **On `main`**: Saving is blocked by branch protection. Keystatic shows a dialog: *"Create a new branch to save changes."* Enter a branch name and click **Create branch and save**.
 2. **On a `keystatic/*` branch**: Saving commits directly to that branch.
-3. **After saving**: Create a pull request via `gh pr create` (see [Workflow (Local Agent Users)](#workflow-local-agent-users)) or use Keystatic's header menu to open a pre-filled PR form.
-4. **Review**: Request review, discuss, and merge. Netlify deploys on merge.
-
-### Workflow (Local Agent Users)
-
-For users running Keystatic locally with an AI agent:
-
-1. **Agent verifies prerequisites** — All four `.env` vars must be set (see [Prerequisites](#prerequisites)) and the "Bread Docs Editor" GitHub App must be installed on the repo. The agent must also have `gh` CLI authenticated.
-2. **Agent creates branch** — Always create a branch before starting the dev server. The `keystatic/` prefix ensures Keystatic's branch dropdown recognizes it:
-   ```bash
-   git checkout -b keystatic/<username>/<description>
-   ```
-3. **Agent launches server** — Start the dev server. Keystatic reads the current git branch, so the agent must already be on the `keystatic/*` branch:
-   ```bash
-   npm run dev
-   ```
-4. **User edits** at `http://127.0.0.1:4321/keystatic` — they log in with their GitHub account. Since the agent is on a `keystatic/*` branch, that branch appears as the current branch in Keystatic's dropdown.
-5. **Agent creates PR** — After the user saves in Keystatic (commits are pushed to the branch):
-   ```bash
-   gh pr create --base main --head keystatic/<branch> \
-     --title "Content update: <description>" \
-     --body "Edited via Keystatic by @<username>"
-   ```
-6. **Agent can add reviewers**: `gh pr create --reviewer <handle>`
-7. **After merge** — Agent cleans up the local branch:
-   ```bash
-   git checkout main && git pull && git branch -d keystatic/<branch>
-   ```
+3. **After saving**: Create a pull request (see [Lifecycle step 7](#7-open-a-pull-request)) or use Keystatic's header menu to open a pre-filled PR form.
+4. **Review**: Request review, discuss, and merge. Netlify deploys on merge. See [GOVERNANCE.md](./GOVERNANCE.md) for merge policy.
 
 CMS configuration is located in `keystatic.config.tsx`. It is integrated into Astro via `@keystatic/astro` (registered after Starlight in `astro.config.mjs`):
 
@@ -328,7 +378,7 @@ Remember to switch back to `github` before committing, as GitHub mode is the tea
 
 ```bash
 npm run dev       # dev server at 127.0.0.1:4321
-npm run build     # static build to ./dist/
+npm run build     # static build to ./dist/  ← run before opening a PR
 npm run preview   # preview production build
 ```
 
@@ -340,39 +390,3 @@ npm run preview   # preview production build
 - **Markdown** (not MDX) for all content — `.md` files only
 - Conventional commits: `docs:`, `feat:`, `fix:`, `chore:` — applies to manual commits; Keystatic auto-generates its own messages (e.g. `Update src/content/docs/about/index`) which are fine as-is
 - Do not modify `node_modules/`, `dist/`, or `.astro/`
-
----
-
-## AI Agent Setup (OpenAgents Control)
-
-This repo includes a self-contained [OpenAgents Control](https://github.com/darrenhinde/OpenAgentsControl) configuration so AI agents follow project standards automatically. No separate OAC install needed.
-
-### Prerequisites
-
-1. [OpenCode CLI](https://opencode.ai/docs) installed
-2. An [OpenRouter](https://openrouter.ai) API key set as `OPENROUTER_API_KEY`
-
-### Usage
-
-```bash
-cd bread-docs
-opencode              # starts with the build agent (full workflow)
-opencode --agent plan # starts with the plan agent (plan-first workflow)
-```
-
-### What's Included
-
-| Component | Location | Purpose |
-|-----------|----------|---------|
-| Project config | `opencode.json` | Model (OpenRouter deepseek-v4), MCP servers, provider setup |
-| Main agents | `.opencode/agents/core/` | `build.md` (docs specialist), `plan.md` (planning agent) |
-| Subagents | `.opencode/agents/subagents/core/` | ContextScout, ExternalScout, TaskManager |
-| Context files | `.opencode/context/` | Project standards, Astro patterns, content workflows |
-| Skills | `.opencode/skills/` | Task management CLI, Context7 doc fetching |
-
-### Key Behaviors
-
-- **Approval gates**: Agents propose changes before executing — review and approve each step
-- **Context-aware**: Agents load project standards from `.opencode/context/` before working
-- **Docs-focused workflow**: Optimized for content creation, not heavy software development
-- **Self-contained**: No global OAC config needed — everything lives in the repo
