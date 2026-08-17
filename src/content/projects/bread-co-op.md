@@ -10,8 +10,6 @@ image: "../../../images/member-projects/core.svg"
 isMemberProject: true
 isContributingProject: true
 ---
-import { Card } from '@astrojs/starlight/components';
-
 
 ## About Bread Core Team
 
@@ -28,17 +26,15 @@ The purpose of the core team is to ensure there is an organized dedicated group 
 - Building new Bread Tools and Mechanisms to be adopted into the core infrastructure
 - Facilitating the Bread Cooperative Discord to grow and share resources that can be used to further the goals of building post-capitalism in web3
 
-  
-
 ## Associated Projects and Initiatives
 
-<Card title="BREAD Crowdstaking Application">
-In this Bread Tool and Mechanism, users are able to bake BREAD with xDai on Gnosis Chain as well as take part in the on-chain governance for allocating funds across Bread member projects.
-</Card>
+**BREAD Crowdstaking Application**
 
-<Card title="Bread Cooperative Discord">
+In this Bread Tool and Mechanism, users are able to bake BREAD with xDai on Gnosis Chain as well as take part in the on-chain governance for allocating funds across Bread member projects.
+
+**Bread Cooperative Discord**
+
 The first online community bringing together those interested in understanding and discussing crypto through a critical political lens in order to build projects like ones in Bread Cooperative.
-</Card>
 
 # QUESTIONS!
 
@@ -46,26 +42,18 @@ The first online community bringing together those interested in understanding a
 
 ## How do you plan to incorporate BREAD in your org?
 
-<Card title="The BREAD token is fundamental in our organization as it is the only token we use to pay wages to core members. The vast majority if not all assets owned by the core team is held in BREAD as a way to continue growing the pot of solidarity whether the funds come from Gitcoin rounds or elsehow.">
-
-</Card>
+The BREAD token is fundamental in our organization as it is the only token we use to pay wages to core members. The vast majority if not all assets owned by the core team is held in BREAD as a way to continue growing the pot of solidarity whether the funds come from Gitcoin rounds or elsehow.
 
 ## What do you plan to do in the short term with the funds received from Bread Cooperative?
 
-<Card title="In the short term we will be using the funds to continue paying out wages to the core members so that they can feel secure in dedicating time towards working on the project. We will also use the funds for paying for miscellaneous costs for helping core members travel or attend important events and infrastructural costs around hosting and refunds if needed.">
-
-</Card>
+In the short term we will be using the funds to continue paying out wages to the core members so that they can feel secure in dedicating time towards working on the project. We will also use the funds for paying for miscellaneous costs for helping core members travel or attend important events and infrastructural costs around hosting and refunds if needed.
 
 ## What processes do you have to determine how funds from Bread Cooperative are allocated?
 
 e.g., proposals, directly to contributors, etc.
 
-<Card title="For wages we create monthly spending limits for specific members in the Safe wallet core members are all a part of so that they can withdraw their monthly wage when convenient for them. Wages are determined through social consensus within the group where we first map out the current state of the treasury and forecast our runway to determine what are appropriate amounts to pay each member. Other expenses are paid through requests made by core members which are majority vote approved.">
-
-</Card>
+For wages we create monthly spending limits for specific members in the Safe wallet core members are all a part of so that they can withdraw their monthly wage when convenient for them. Wages are determined through social consensus within the group where we first map out the current state of the treasury and forecast our runway to determine what are appropriate amounts to pay each member. Other expenses are paid through requests made by core members which are majority vote approved.
 
 ## What have you done so far with the funds you've received?
 
-<Card title="So far we have been paying wages to core members who have expressed the need for financial compensation for the past several months and are dedicated to making sure that this continues for the foreseeable future. Funds have also been used to pay for hosting costs necessary around hosting and subscription costs for necessary tooling to help the work of core members.">
-
-</Card>
+So far we have been paying wages to core members who have expressed the need for financial compensation for the past several months and are dedicated to making sure that this continues for the foreseeable future. Funds have also been used to pay for hosting costs necessary around hosting and subscription costs for necessary tooling to help the work of core members.

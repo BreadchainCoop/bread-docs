@@ -24,5 +24,5 @@ Get in touch: contact@bread.coop
 
 ## Inside Bread Cooperative
 
-- [Contributors](/bread-cooperative/contributors/) — how to get involved and what to expect
-- [Governance](/bread-cooperative/governance/) — how we make decisions and what we stand for
+- [Contributors](/organization/contributors/) — how to get involved and what to expect
+- [Governance](/organization/governance/) — how we make decisions and what we stand for

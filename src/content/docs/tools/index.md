@@ -6,4 +6,4 @@ title: Bread Tools and Mechanisms
 
 Give without giving. Bake $BREAD to generate yield, distributed monthly to member projects by community vote. Your principal stays intact — only the earnings get shared.
 
-[Learn more](/bread-tools-and-mechanisms/solidarity-fund/)
+[Learn more](/tools/solidarity-fund/)

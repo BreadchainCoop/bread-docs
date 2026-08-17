@@ -41,9 +41,9 @@ Content is organized into three sidebar sections:
 
 | Section | Directory |
 |---------|-----------|
-| About | `src/content/docs/about/` |
-| Solidarity Primitives | `src/content/docs/solidarity-primitives/` |
-| Bread Cooperative | `src/content/docs/bread-cooperative/` |
+| $BREAD Community Currency | `src/content/docs/token/` |
+| Bread Tools and Mechanisms | `src/content/docs/tools/` |
+| Bread Cooperative | `src/content/docs/organization/` |
 
 ## Customizations
 

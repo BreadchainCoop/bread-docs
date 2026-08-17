@@ -38,10 +38,10 @@ Some core team members receive a monthly wage. Pay is determined through open co
 
 Joining the core team requires having first contributed as a non-core contributor and being nominated by an existing core team member.
 
-For full details on responsibilities, removal processes, and financial governance, see the [Operational Annex](/bread-cooperative/governance/operational-annex/).
+For full details on responsibilities, removal processes, and financial governance, see the [Operational Annex](/organization/governance/operational-annex/).
 
 ---
 
 ## For developers: EigenLayer
 
-If you are contributing to AVS work, see the [EigenLayer resource page](/bread-cooperative/contributors/eigenlayer/) for background reading and recommended resources.
+If you are contributing to AVS work, see the [EigenLayer resource page](/organization/contributors/eigenlayer/) for background reading and recommended resources.

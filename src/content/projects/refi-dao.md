@@ -8,17 +8,12 @@ Treasury: "refidao.eth; Safe (Celo/Gnosis Chain): 0x68060388C7D97B4bF779a2Ead46c
 status: archived
 isMemberProject: true
 ---
-import { Card } from '@astrojs/starlight/components';
 
+**ReFi DAO | Twitter, Instagram | Linktree**
 
-<Card title="Useful links">
+A network society for the ReFi ecosystem.
 
-</Card>
-
-<Card title="ReFi DAO | Twitter, Instagram | Linktree">
-A network society for the ReFi ecosystem.  
 [https://linktr.ee/refidao](https://linktr.ee/refidao)
-</Card>
 
 # BASICS
 
@@ -38,18 +33,13 @@ We envision a new paradigm where local communities and global networks unite to 
 
 ## Associated Projects and Initiatives
 
-
 ### [Regen Coordination](https://www.regencoordination.xyz/Regen-Coordination-Hub-11a2e7251f2f8091bcc9fd0caf288e72)
 
 A cross-ecosystem initiative that fuels local and regional coordination, Regen Coordination has distributed **$236,000+** this year through community-driven funding rounds and partnerships (e.g., Gitcoin). These rounds—like **Regen Citizens Genesis**, **BioFi Pathfinders**, and **AgroforestDAO**—empower grassroots projects and local organization to pursue regenerative action, aligned with ReFi DAO's core values.
 
-  
-
 ### [ReFi Podcast](https://linktr.ee/refipodcast)
 
 A platform exploring regenerative finance and systems change, led by Maya Z. Dentzel and Tereza Bízková. **Season 4** highlights economic innovation, real-world impact, and technologies advancing a regenerative future.
-
-  
 
 ### ReFi Local Node Network
 
@@ -64,7 +54,6 @@ ReFi DAO 2.0's the current development cycle of ReFi DAO implementing its decent
 ---
 
 ## QUESTIONS!
-
 
 ### How do you plan to incorporate BREAD in your org?
 
@@ -82,7 +71,6 @@ Future initiatives include:
 ## What processes do you have to determine how funds from Bread Cooperative are allocated?
 
 ReFi DAO follows a **consent-based governance** model where proposals are openly shared for community feedback. As ReFi DAO 2.0 is implemented, the allocation of Bread Cooperative funds will be incorporated into the financial plan, the first of which, covering H1 '25, will be ratified by DAO members in January '25.
- 
 
 ## What have you done so far with the funds you've received?
 
