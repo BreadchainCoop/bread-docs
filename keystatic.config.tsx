@@ -30,16 +30,16 @@ export default config({
       }
     },
     navigation: {
-      'Documentation': ['token', 'tools', 'organization'],
+      'Documentation': ['about', 'tools', 'organization'],
       'Data': ['projects'],
     },
   },
 
   collections: {
-    token: collection({
-      label: '$BREAD Community Currency',
+    about: collection({
+      label: 'Getting Started',
       slugField: 'title',
-      path: 'src/content/docs/token/**',
+      path: 'src/content/docs/about/**',
       format: { contentField: 'content' },
       columns: ['title', 'description'],
       entryLayout: 'content',

@@ -17,7 +17,7 @@ Bread Cooperative is a worker-owned collective building financial tools for coop
 
 ## Bread Tools and Mechanisms
 
-- [Tools and Mechanisms](/tools/) — the Solidarity Fund, Bread Stacks, and more
+- [Bread Tools and Mechanisms](/tools/) — the Solidarity Fund, Bread Stacks, and more
 
 ---
 
