@@ -117,26 +117,16 @@ export default defineConfig({
           ],
           sidebar: [
               {
-                  label: '$BREAD Community Currency',
-                  items: [{ autogenerate: { directory: 'token' } }],
+                  label: 'Getting Started',
+                  items: [{ autogenerate: { directory: 'about' } }],
               },
               {
-                  label: 'Bread Tools and Mechanisms',
+                  label: 'Tools and Mechanisms',
                   items: [{ autogenerate: { directory: 'tools' } }],
               },
               {
                   label: 'Bread Cooperative',
                   items: [{ autogenerate: { directory: 'organization' } }],
-              },
-              // Elevated entries — stock Starlight sidebar items
-              {
-                  slug: 'manifesto',
-                  attrs: { style: 'font-weight: 400; font-size: var(--sl-text-sm); color: inherit' },
-              },
-              {
-                  label: 'Contact',
-                  link: '/contact/',
-                  attrs: { style: 'font-weight: 400; font-size: var(--sl-text-sm); color: inherit' },
               },
           ],
           markdown: {

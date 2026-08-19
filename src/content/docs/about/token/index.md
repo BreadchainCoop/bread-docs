@@ -38,4 +38,4 @@ View on explorer: [gnosisscan.io](https://gnosisscan.io/token/0xa555d5344f6fb6c6
 
 From events to donations to token-gated community spaces, there are a growing number of places where $BREAD is accepted.
 
-[Friends of Bread](/token/friends-of-bread/)
+[Friends of Bread](/about/token/friends-of-bread/)
