@@ -75,7 +75,7 @@ bread-docs/
 │   ├── content.config.ts         # Astro content collection (docsLoader + docsSchema)
 │   ├── content/docs/             # All markdown content — one file = one page
 │   │   ├── index.md              # Home page
-│   │   ├── token/
+│   │   ├── about/                # Getting Started (token, contacts, manifesto)
 │   │   ├── tools/
 │   │   └── organization/
 │   ├── content/member-projects/  # Member project profiles (MDX, separate collection)
@@ -138,9 +138,9 @@ Place images in `public/images/` and reference them with absolute paths:
 Use slug-based absolute paths. Custom slugs take precedence over directory paths:
 
 ```markdown
-[BREAD Token](/token/)
-[Crowdstaking](/solidarity-fund/)
-[Member Projects](/member-projects/)
+[$BREAD Community Currency](/about/token/)
+[Friends of Bread](/about/token/friends-of-bread/)
+[Member Projects](/tools/solidarity-fund/member-projects/)
 ```
 
 ---
@@ -151,8 +151,8 @@ Defined in `astro.config.mjs` via `autogenerate`. Adding a directory under one o
 
 | Sidebar Section | Directory |
 |----------------|-----------|
-| $BREAD Community Currency | `src/content/docs/token/` |
-| Bread Tools and Mechanisms | `src/content/docs/tools/` |
+| Getting Started | `src/content/docs/about/` |
+| Tools and Mechanisms | `src/content/docs/tools/` |
 | Bread Cooperative | `src/content/docs/organization/` |
 
 To add a new top-level section, add an entry to the `sidebar` array in `astro.config.mjs`.

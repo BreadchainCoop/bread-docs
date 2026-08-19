@@ -41,8 +41,8 @@ Content is organized into three sidebar sections:
 
 | Section | Directory |
 |---------|-----------|
-| $BREAD Community Currency | `src/content/docs/token/` |
-| Bread Tools and Mechanisms | `src/content/docs/tools/` |
+| Getting Started | `src/content/docs/about/` |
+| Tools and Mechanisms | `src/content/docs/tools/` |
 | Bread Cooperative | `src/content/docs/organization/` |
 
 ## Customizations
