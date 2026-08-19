@@ -27,7 +27,7 @@ Deposit xDAI into the Solidarity Fund and you receive $BREAD at a 1:1 ratio. You
 :::tip[Ready to get started?]
 Follow our step-by-step guide to baking $BREAD. It covers everything from getting xDAI to casting your first vote.
 
-[How to participate in the Bread Solidarity Fund →](https://paragraph.com/@breadcoop/how-to-participate-in-the-bread-solidarity-fund)
+[How to Bake $BREAD →](/tools/solidarity-fund/how-to-bake/)
 :::
 
 :::note[Who receives the yield?]
