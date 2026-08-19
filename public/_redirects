@@ -1,3 +1,40 @@
 # Wildcard redirects for legacy Quartz support
 /wiki/*          /:splat          301
 /attachments/*   /images/:splat   301
+
+# Root-level permalinks & short aliases
+/getting-started/manifesto        /manifesto                                      301
+/bread-token                      /token/                                        301
+/marketplace                      /token/friends-of-bread/                       301
+/solidarity-fund                  /tools/solidarity-fund/                        301
+/angel-minters                    /tools/solidarity-fund/angel-minter-program/   301
+/member-projects                  /tools/solidarity-fund/member-projects/        301
+/how-to-become-a-member-project   /tools/solidarity-fund/member-projects/        301
+/roadmap                          /organization/                                 301
+
+# Canonical member-project detail pages (slug-preserving)
+/solidarity-primitives/crowdstaking/member-projects/refi-dao/  /projects/regen-coordination/  301
+/solidarity-primitives/crowdstaking/member-projects/*          /projects/:splat               301
+
+# Angel Minter Program
+/solidarity-primitives/crowdstaking/angel-minters/*  /tools/solidarity-fund/angel-minter-program/  301
+
+# Old "become a member project" → member projects listing
+/solidarity-primitives/crowdstaking/how-to-become-a-member-project/  /tools/solidarity-fund/member-projects/  301
+
+# Marketplace → Friends of Bread
+/about/bread-token/marketplace/*  /token/friends-of-bread/  301
+
+# Getting-started leaves that map to distinct canonical pages
+/getting-started/bread-community-currency/friends-of-bread/         /token/friends-of-bread/          301
+/getting-started/bread-community-currency/bread-gardens-pool-setup/ /token/bread-gardens-pool-setup/  301
+
+# Legacy dead-URL families → section roots (catch-all; keep below all specific rules)
+/about/bread-token/*             /token/                   301
+/about/*                         /organization/            301
+/bread-cooperative/*             /organization/            301
+/solidarity-primitives/crowdstaking/*  /tools/solidarity-fund/  301
+/solidarity-primitives/*         /tools/                   301
+/bread-community-currency/*      /token/                   301
+/bread-tools-and-mechanisms/*    /tools/                   301
+/getting-started/*               /token/                   301
