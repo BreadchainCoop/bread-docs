@@ -109,8 +109,6 @@ Deployed to Netlify.
 | Publish directory | `dist` |
 | Node version | 24 |
 
-The site runs in static mode — Keystatic CMS is disabled in production.
-
 ## Editing Content
 
 Content is managed through [Keystatic CMS](https://keystatic.com), which provides a web-based editing interface.
