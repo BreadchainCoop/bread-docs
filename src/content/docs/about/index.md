@@ -8,7 +8,7 @@ sidebar:
   hidden: false
 gallery: ''
 ---
-New to Bread? Start here. Everything you need to understand the cooperative, its currency, and how to reach us
+New to Bread? Start here. Everything you need to understand the cooperative, its currency, and how to reach us.
 
 ---
 
