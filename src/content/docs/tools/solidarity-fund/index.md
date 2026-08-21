@@ -32,7 +32,7 @@ Follow our step-by-step guide to baking $BREAD. It covers everything from gettin
 [How to Bake $BREAD →](/tools/solidarity-fund/how-to-bake/)
 :::
 
-:::note[Who receives the yield?] Every month, $BREAD holders vote on how yield is distributed across Bread's member projects. See who's in the network and what they're building
+:::note[Who receives the yield?] Every month, $BREAD holders vote on how yield is distributed across Bread's member projects. See who's in the network and what they're building.
 
 [Member Projects →](/tools/solidarity-fund/member-projects/)
 :::
