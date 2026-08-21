@@ -1,9 +1,14 @@
 ---
 title: Getting Started
-description: An introduction to Bread Cooperative, the $BREAD community currency, and how to get involved.
+description: >-
+  An introduction to Bread Cooperative, the $BREAD community currency, and how
+  to get involved.
+draft: false
+sidebar:
+  hidden: false
+gallery: ''
 ---
-
-New to Bread? Start here. Everything you need to understand the cooperative, its currency, and how to reach us.
+New to Bread? Start here. Everything you need to understand the cooperative, its currency, and how to reach us
 
 ---
 
