@@ -19,7 +19,7 @@ You'll need a wallet connected to the [Solidarity Fund app](https://fund.bread.c
    - The action is labelled "mint"
 5. Sign the transaction.
 
-The Solidarity Fund is a smaller application, so your wallet may flag the interaction as unfamiliar or show an "Unknown Signature Type" warning. This is normal. If anything looks genuinely wrong, ask in the [Bread Cooperative Discord](https://discord.gg/BpHuCgmm) before signing.
+The Solidarity Fund is a smaller application, so your wallet may flag the interaction as unfamiliar or show an "Unknown Signature Type" warning. This is normal. If anything looks genuinely wrong, ask in the [Bread Cooperative Discord](https://discord.com/invite/zmNqsHRHDa) before signing.
 
 ---
 
@@ -29,4 +29,4 @@ Transactions on Gnosis Chain may carry a small network fee, shown before you sig
 
 ---
 
-Questions? Ask in the [Bread Cooperative Discord](https://discord.gg/BpHuCgmm) and tag a moderator.
+Questions? Ask in the [Bread Cooperative Discord](https://discord.com/invite/zmNqsHRHDa) and tag a moderator.

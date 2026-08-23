@@ -13,4 +13,4 @@ If your wallet isn't appearing in the list, check that the browser extension is 
 
 ---
 
-Questions? Ask in the [Bread Cooperative Discord](https://discord.gg/BpHuCgmm) and tag a moderator.
+Questions? Ask in the [Bread Cooperative Discord](https://discord.com/invite/zmNqsHRHDa) and tag a moderator.

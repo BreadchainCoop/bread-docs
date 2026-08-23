@@ -27,4 +27,4 @@ Transactions on Gnosis Chain may carry a small network fee, shown before you sig
 
 ---
 
-Questions? Ask in the [Bread Cooperative Discord](https://discord.gg/BpHuCgmm) and tag a moderator.
+Questions? Ask in the [Bread Cooperative Discord](https://discord.com/invite/zmNqsHRHDa) and tag a moderator.
