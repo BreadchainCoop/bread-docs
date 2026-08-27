@@ -2,91 +2,122 @@
 /wiki/*          /:splat          301
 /attachments/*   /images/:splat   301
 
-# --- Gen-3 → Gen-4 moves (PR #39: token/contact/manifesto now live under /about/) ---
-/token/                            /about/token/                          301
-/token/friends-of-bread/           /about/token/friends-of-bread/         301
-/token/bread-gardens-pool-setup/   /about/token/bread-gardens-pool-setup/ 301
-/token/*                           /about/token/                          301
-/contact/                          /about/contact/                        301
-/manifesto/                        /about/manifesto/                      301
+# --- Gen-4 → Gen-5 moves (nav restructure: /about/ and /organization/ retired) ---
+# Manifesto and contact are top-level pages again
+/about/manifesto/                  /manifesto/                                            301
+/about/contact/                    /contact/                                              301
+
+# $BREAD moved under Bread Cooperative → Community Currency
+/about/token/friends-of-bread/     /cooperative/friends-of-bread/where-to-spend-bread/    301
+/about/token/bread-gardens-pool-setup/  /cooperative/friends-of-bread/gardens-pools-setup/  301
+/about/token/                      /cooperative/currency/bread-token/                     301
+/about/token/*                     /cooperative/currency/bread-token/                     301
+
+# /organization/ → /cooperative/ and /get-involved/
+/organization/governance/bread-constitution/  /cooperative/governance/guiding-principles/ 301
+/organization/governance/operational-annex/   /get-involved/member-projects/responsibilities/  301
+/organization/governance/          /cooperative/governance/guiding-principles/            301
+/organization/contributors/eigenlayer/  /get-involved/contributors/eigenlayer/            301
+/organization/contributors/        /get-involved/contributors/what-we-need/               301
+/organization/roadmap/             /cooperative/                                          301
+/organization/                     /cooperative/                                          301
+/organization/*                    /cooperative/                                          301
+
+# Solidarity Fund pages that moved into Community Currency or merged
+/tools/solidarity-fund/how-to-bake/          /cooperative/currency/how-to-bake/           301
+/tools/solidarity-fund/how-to-burn/          /cooperative/currency/how-to-bake/#burning   301
+/tools/solidarity-fund/connecting-a-wallet/  /cooperative/currency/how-to-bake/#connecting-a-wallet  301
+/tools/solidarity-fund/angel-minter-program/ /cooperative/currency/angel-minter-program/  301
+/tools/solidarity-fund/yield-governance/lp-vaults/  /tools/solidarity-fund/liquidity-providing/  301
+/tools/solidarity-fund/yield-governance/     /tools/solidarity-fund/how-it-works/         301
+/tools/solidarity-fund/yield-governance/*    /tools/solidarity-fund/how-it-works/         301
+/voting-power/                     /tools/solidarity-fund/how-it-works/#understanding-voting-power  301
+/become-a-member-project/          /get-involved/member-projects/how-to-apply/            301
+/tools/solidarity-fund/            /tools/solidarity-fund/how-it-works/                   301
+
+# Stacks became a section
+/tools/stacks/                     /tools/stacks/what-is-a-savings-circle/                301
+
+# Remaining /about/* is dead
+/about/                            /cooperative/                                          301
+/about/*                           /cooperative/                                          301
 
 # --- Root-level short aliases ---
-/bread-token                       /about/token/                          301
-/marketplace                       /about/token/friends-of-bread/         301
-/solidarity-fund                   /tools/solidarity-fund/                301
-/angel-minters                     /tools/solidarity-fund/angel-minter-program/  301
-/member-projects                   /tools/solidarity-fund/member-projects/       301
-/how-to-become-a-member-project    /tools/solidarity-fund/member-projects/       301
-/roadmap                           /organization/                         301
+/bread-token                       /cooperative/currency/bread-token/                     301
+/marketplace                       /cooperative/friends-of-bread/where-to-spend-bread/    301
+/solidarity-fund                   /tools/solidarity-fund/how-it-works/                   301
+/angel-minters                     /cooperative/currency/angel-minter-program/            301
+/member-projects                   /tools/solidarity-fund/member-projects/                301
+/how-to-become-a-member-project    /get-involved/member-projects/how-to-apply/            301
+/roadmap                           /cooperative/                                          301
 
-# --- Gen-1 /about/* (explicit dead paths only; /about/ is now the Getting Started section) ---
-/about/index                       /organization/                         301
-/about/bread-token/                /about/token/                          301
-/about/bread-token/gardens-setup/  /about/token/bread-gardens-pool-setup/ 301
-/about/bread-token/marketplace/*   /about/token/friends-of-bread/         301
-/about/roadmap/                    /organization/                         301
+# --- Gen-3 /token/* ---
+/token/friends-of-bread/           /cooperative/friends-of-bread/where-to-spend-bread/    301
+/token/bread-gardens-pool-setup/   /cooperative/friends-of-bread/gardens-pools-setup/     301
+/token/                            /cooperative/currency/bread-token/                     301
+/token/*                           /cooperative/currency/bread-token/                     301
 
 # --- Gen-1 & Gen-2 /bread-cooperative/* ---
-/bread-cooperative/                /organization/                         301
-/bread-cooperative/index           /organization/                         301
-/bread-cooperative/contact/        /about/contact/                        301
-/bread-cooperative/manifesto/      /about/manifesto/                      301
-/bread-cooperative/contributors/                        /organization/contributors/                  301
-/bread-cooperative/contributors/contributor-onboarding/ /organization/contributors/                  301
-/bread-cooperative/contributors/how-to-eigenlayer/      /organization/contributors/eigenlayer/        301
-/bread-cooperative/contributors/eigenlayer/             /organization/contributors/eigenlayer/        301
-/bread-cooperative/governance/                          /organization/governance/                    301
-/bread-cooperative/governance/bread-constitution/       /organization/governance/bread-constitution/ 301
-/bread-cooperative/governance/operational-annex/        /organization/governance/operational-annex/  301
-/bread-cooperative/roadmap/       /organization/                         301
-/bread-cooperative/sourdough-systems/                   /organization/                         301
-/bread-cooperative/sourdough-systems/gas-killer/        /organization/                         301
-/bread-cooperative/*              /organization/                         301
+/bread-cooperative/contact/                             /contact/                                    301
+/bread-cooperative/manifesto/                           /manifesto/                                  301
+/bread-cooperative/contributors/contributor-onboarding/ /get-involved/contributors/how-to-get-started/  301
+/bread-cooperative/contributors/how-to-eigenlayer/      /get-involved/contributors/eigenlayer/       301
+/bread-cooperative/contributors/eigenlayer/             /get-involved/contributors/eigenlayer/       301
+/bread-cooperative/contributors/                        /get-involved/contributors/what-we-need/     301
+/bread-cooperative/governance/bread-constitution/       /cooperative/governance/guiding-principles/  301
+/bread-cooperative/governance/operational-annex/        /get-involved/member-projects/responsibilities/  301
+/bread-cooperative/governance/                          /cooperative/governance/guiding-principles/  301
+/bread-cooperative/roadmap/                             /cooperative/                                301
+/bread-cooperative/sourdough-systems/gas-killer/        /cooperative/                                301
+/bread-cooperative/sourdough-systems/                   /cooperative/                                301
+/bread-cooperative/index                                /cooperative/                                301
+/bread-cooperative/                                     /cooperative/                                301
+/bread-cooperative/*                                    /cooperative/                                301
 
 # --- Gen-1 /solidarity-primitives/* ---
-/solidarity-primitives/           /tools/                                301
-/solidarity-primitives/stacks     /tools/stacks/                         301
-/solidarity-primitives/crowdstaking/                      /tools/solidarity-fund/                    301
-/solidarity-primitives/crowdstaking/member-projects/      /tools/solidarity-fund/member-projects/      301
-/solidarity-primitives/crowdstaking/member-projects/refi-dao/  /projects/regen-coordination/         301
-/solidarity-primitives/crowdstaking/member-projects/*     /projects/:splat                          301
-/solidarity-primitives/crowdstaking/yield-governance/     /tools/solidarity-fund/yield-governance/    301
-/solidarity-primitives/crowdstaking/yield-governance/lp-vaults/    /tools/solidarity-fund/yield-governance/lp-vaults/  301
-/solidarity-primitives/crowdstaking/yield-governance/voting-power/ /voting-power/                     301
-/solidarity-primitives/crowdstaking/angel-minters/        /tools/solidarity-fund/angel-minter-program/  301
-/solidarity-primitives/crowdstaking/angel-minters/*       /tools/solidarity-fund/angel-minter-program/  301
-/solidarity-primitives/crowdstaking/how-to-become-a-member-project/  /tools/solidarity-fund/member-projects/  301
-/solidarity-primitives/crowdstaking/*                     /tools/solidarity-fund/                    301
-/solidarity-primitives/*           /tools/                               301
+/solidarity-primitives/stacks                                      /tools/stacks/what-is-a-savings-circle/  301
+/solidarity-primitives/crowdstaking/member-projects/refi-dao/      /projects/regen-coordination/            301
+/solidarity-primitives/crowdstaking/member-projects/               /tools/solidarity-fund/member-projects/  301
+/solidarity-primitives/crowdstaking/member-projects/*              /projects/:splat                         301
+/solidarity-primitives/crowdstaking/yield-governance/lp-vaults/    /tools/solidarity-fund/liquidity-providing/  301
+/solidarity-primitives/crowdstaking/yield-governance/voting-power/ /tools/solidarity-fund/how-it-works/#understanding-voting-power  301
+/solidarity-primitives/crowdstaking/yield-governance/              /tools/solidarity-fund/how-it-works/     301
+/solidarity-primitives/crowdstaking/angel-minters/                 /cooperative/currency/angel-minter-program/  301
+/solidarity-primitives/crowdstaking/angel-minters/*                /cooperative/currency/angel-minter-program/  301
+/solidarity-primitives/crowdstaking/how-to-become-a-member-project/  /get-involved/member-projects/how-to-apply/  301
+/solidarity-primitives/crowdstaking/                               /tools/solidarity-fund/how-it-works/     301
+/solidarity-primitives/crowdstaking/*                              /tools/solidarity-fund/how-it-works/     301
+/solidarity-primitives/                                            /tools/                                  301
+/solidarity-primitives/*                                           /tools/                                  301
 
 # --- Gen-2 /bread-community-currency/* ---
-/bread-community-currency/         /about/token/                          301
-/bread-community-currency/friends-of-bread/             /about/token/friends-of-bread/         301
-/bread-community-currency/bread-gardens-pool-setup/     /about/token/bread-gardens-pool-setup/ 301
-/bread-community-currency/*        /about/token/                          301
+/bread-community-currency/friends-of-bread/         /cooperative/friends-of-bread/where-to-spend-bread/  301
+/bread-community-currency/bread-gardens-pool-setup/ /cooperative/friends-of-bread/gardens-pools-setup/   301
+/bread-community-currency/                          /cooperative/currency/bread-token/                   301
+/bread-community-currency/*                         /cooperative/currency/bread-token/                   301
 
 # --- Gen-2 /bread-tools-and-mechanisms/* ---
-/bread-tools-and-mechanisms/       /tools/                                301
-/bread-tools-and-mechanisms/solidarity-fund/                             /tools/solidarity-fund/                        301
-/bread-tools-and-mechanisms/solidarity-fund/angel-minter-program/        /tools/solidarity-fund/angel-minter-program/    301
-/bread-tools-and-mechanisms/solidarity-fund/how-to-become-a-member-project/  /tools/solidarity-fund/member-projects/        301
-/bread-tools-and-mechanisms/solidarity-fund/member-projects/             /tools/solidarity-fund/member-projects/        301
-/bread-tools-and-mechanisms/solidarity-fund/yield-governance/            /tools/solidarity-fund/yield-governance/       301
-/bread-tools-and-mechanisms/solidarity-fund/yield-governance/lp-vaults/  /tools/solidarity-fund/yield-governance/lp-vaults/  301
-/bread-tools-and-mechanisms/solidarity-fund/yield-governance/voting-power/  /voting-power/                                 301
-/bread-tools-and-mechanisms/stacks/   /tools/stacks/                     301
-/bread-tools-and-mechanisms/solidarity-fund/*   /tools/solidarity-fund/  301
-/bread-tools-and-mechanisms/*     /tools/                                301
+/bread-tools-and-mechanisms/solidarity-fund/angel-minter-program/           /cooperative/currency/angel-minter-program/  301
+/bread-tools-and-mechanisms/solidarity-fund/how-to-become-a-member-project/ /get-involved/member-projects/how-to-apply/  301
+/bread-tools-and-mechanisms/solidarity-fund/member-projects/                /tools/solidarity-fund/member-projects/      301
+/bread-tools-and-mechanisms/solidarity-fund/yield-governance/lp-vaults/     /tools/solidarity-fund/liquidity-providing/  301
+/bread-tools-and-mechanisms/solidarity-fund/yield-governance/voting-power/  /tools/solidarity-fund/how-it-works/#understanding-voting-power  301
+/bread-tools-and-mechanisms/solidarity-fund/yield-governance/               /tools/solidarity-fund/how-it-works/         301
+/bread-tools-and-mechanisms/solidarity-fund/                                /tools/solidarity-fund/how-it-works/         301
+/bread-tools-and-mechanisms/solidarity-fund/*                               /tools/solidarity-fund/how-it-works/         301
+/bread-tools-and-mechanisms/stacks/                                         /tools/stacks/what-is-a-savings-circle/      301
+/bread-tools-and-mechanisms/                                                /tools/                                      301
+/bread-tools-and-mechanisms/*                                               /tools/                                      301
 
 # --- Gen-2 /getting-started/* ---
-/getting-started/                 /about/token/                          301
-/getting-started/index            /about/token/                          301
-/getting-started/manifesto        /about/manifesto/                      301
-/getting-started/contact/         /about/contact/                        301
-/getting-started/roadmap/         /organization/                         301
-/getting-started/bread-token/gardens-setup/                     /about/token/bread-gardens-pool-setup/  301
-/getting-started/bread-community-currency/friends-of-bread/     /about/token/friends-of-bread/          301
-/getting-started/bread-community-currency/bread-gardens-pool-setup/  /about/token/bread-gardens-pool-setup/ 301
-/getting-started/bread-token/marketplace/*                   /about/token/friends-of-bread/          301
-/getting-started/bread-community-currency/marketplace/*      /about/token/friends-of-bread/          301
-/getting-started/*                /about/token/                          301
+/getting-started/manifesto                                           /manifesto/                                          301
+/getting-started/contact/                                            /contact/                                            301
+/getting-started/roadmap/                                            /cooperative/                                        301
+/getting-started/bread-token/gardens-setup/                          /cooperative/friends-of-bread/gardens-pools-setup/   301
+/getting-started/bread-community-currency/friends-of-bread/          /cooperative/friends-of-bread/where-to-spend-bread/  301
+/getting-started/bread-community-currency/bread-gardens-pool-setup/  /cooperative/friends-of-bread/gardens-pools-setup/   301
+/getting-started/bread-token/marketplace/*                           /cooperative/friends-of-bread/where-to-spend-bread/  301
+/getting-started/bread-community-currency/marketplace/*              /cooperative/friends-of-bread/where-to-spend-bread/  301
+/getting-started/index                                               /cooperative/currency/bread-token/                   301
+/getting-started/                                                    /cooperative/currency/bread-token/                   301
+/getting-started/*                                                   /cooperative/currency/bread-token/                   301
