@@ -31,7 +31,7 @@ Before you start, read [Eligibility](/get-involved/member-projects/eligibility/)
 
 ## Application form
 
-Get in touch at [contact@bread.coop](mailto:contact@bread.coop) or ask in the [Bread Cooperative Discord](https://discord.com/invite/zmNqsHRHDa) for the current application form and to find a member who can nominate you.
+[Get in touch](/contact/) or ask in the [Bread Cooperative Discord](https://discord.com/invite/zmNqsHRHDa) for the current application form and to find a member who can nominate you.
 
 ---
 

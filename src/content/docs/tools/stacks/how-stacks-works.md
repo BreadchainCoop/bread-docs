@@ -25,7 +25,7 @@ Yes. Stacks are designed to be flexible, and we are continuing to add ways to ad
 
 Companies and individuals can also provide matching funds on completed Stacks, amplifying the impact of each circle. If your organisation is interested in offering savings circles to your community, or in sponsoring them through matched contributions, get in touch.
 
-[contact@bread.coop](mailto:contact@bread.coop)
+[Get in touch](/contact/)
 
 ---
 

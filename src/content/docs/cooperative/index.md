@@ -23,7 +23,7 @@ $BREAD, our community currency, is the thread running through all of it. It is s
 
 We can be hired as a development studio for blockchain projects. Our expertise includes smart contract development, EigenLayer AVS architecture, democratic treasury systems, and community currency infrastructure. If you're exploring what blockchain could do for your organisation, we're happy to talk.
 
-Get in touch: contact@bread.coop
+[Get in touch](/contact/)
 
 ---
 

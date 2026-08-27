@@ -34,7 +34,7 @@ Not sure how to get started? Follow the [step-by-step guide](/cooperative/curren
 
 If 10,000 $BREAD feels out of reach right now, get in touch anyway. Every $BREAD minted counts, and there are other ways to contribute — including skills, connections, and community participation. We'd love to hear from you.
 
-[contact@bread.coop](mailto:contact@bread.coop)
+[Get in touch](/contact/)
 
 ## How to get assets to Gnosis Chain
 
