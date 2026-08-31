@@ -116,18 +116,20 @@ export default defineConfig({
               { icon: 'discord', label: 'Discord', href: 'https://discord.com/invite/zmNqsHRHDa' },
           ],
           sidebar: [
+              { label: 'Our Manifesto', link: '/manifesto/' },
               {
-                  label: 'Getting Started',
-                  items: [{ autogenerate: { directory: 'about' } }],
+                  label: 'Bread Cooperative',
+                  items: [{ autogenerate: { directory: 'cooperative' } }],
+              },
+              {
+                  label: 'Get Involved',
+                  items: [{ autogenerate: { directory: 'get-involved' } }],
               },
               {
                   label: 'Tools and Mechanisms',
                   items: [{ autogenerate: { directory: 'tools' } }],
               },
-              {
-                  label: 'Bread Cooperative',
-                  items: [{ autogenerate: { directory: 'organization' } }],
-              },
+              { label: 'Contact & Links', link: '/contact/' },
           ],
           markdown: {
               processedDirs: ['./src/content/projects/'],
