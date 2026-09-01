@@ -13,7 +13,7 @@ isContributingProject: true
 
 ## About Bread Core Team
 
-The Bread Core Team are the developers, designers, and community stewards behind Bread Cooperative's tools. They build and maintain the on-chain infrastructure for $BREAD, run the monthly voting cycles, and create the applications that member projects and $BREAD holders use every day.
+The Bread Core Team are the developers, designers, and community stewards behind Bread Cooperative's tools. They build and maintain the on-chain infrastructure for BREAD, run the monthly voting cycles, and create the applications that member projects and BREAD holders use every day.
 
 The core team is funded by the tools they build and the projects they take on. No venture capital, no investors.
 
@@ -23,7 +23,7 @@ The purpose of the core team is to ensure there is an organized dedicated group 
 
 - All on-chain infrastructure for the BREAD token, monthly voting cycles, and BREAD distribution to Bread member projects
 - Designing and deployment of user interfaces for BREAD holders to interact with Bread Cooperative applications
-- Building new Bread Tools and Mechanisms to be adopted into the core infrastructure
+- Building new Solidarity Tools to be adopted into the core infrastructure
 - Facilitating the Bread Cooperative Discord to grow and share resources that can be used to further the goals of building post-capitalism in web3
 
 ## Associated Projects and Initiatives

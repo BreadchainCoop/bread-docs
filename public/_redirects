@@ -4,17 +4,17 @@
 
 # --- Gen-3 → Gen-4 moves (PR #39: token/contact/manifesto now live under /about/) ---
 /token/                            /about/token/                          301
-/token/friends-of-bread/           /about/token/friends-of-bread/         301
-/token/bread-gardens-pool-setup/   /about/token/bread-gardens-pool-setup/ 301
+/token/friends-of-bread/           /about/token/         301
+/token/bread-gardens-pool-setup/   /organization/governance/bread-garden/ 301
 /token/*                           /about/token/                          301
 /contact/                          /about/contact/                        301
 /manifesto/                        /about/manifesto/                      301
 
 # --- Root-level short aliases ---
 /bread-token                       /about/token/                          301
-/marketplace                       /about/token/friends-of-bread/         301
+/marketplace                       /about/token/         301
 /solidarity-fund                   /tools/solidarity-fund/                301
-/angel-minters                     /tools/solidarity-fund/angel-minter-program/  301
+/angel-minters                     /tools/solidarity-fund/  301
 /member-projects                   /tools/solidarity-fund/member-projects/       301
 /how-to-become-a-member-project    /tools/solidarity-fund/member-projects/       301
 /roadmap                           /organization/                         301
@@ -22,8 +22,8 @@
 # --- Gen-1 /about/* (explicit dead paths only; /about/ is now the Getting Started section) ---
 /about/index                       /organization/                         301
 /about/bread-token/                /about/token/                          301
-/about/bread-token/gardens-setup/  /about/token/bread-gardens-pool-setup/ 301
-/about/bread-token/marketplace/*   /about/token/friends-of-bread/         301
+/about/bread-token/gardens-setup/  /organization/governance/bread-garden/ 301
+/about/bread-token/marketplace/*   /about/token/         301
 /about/roadmap/                    /organization/                         301
 
 # --- Gen-1 & Gen-2 /bread-cooperative/* ---
@@ -33,8 +33,8 @@
 /bread-cooperative/manifesto/      /about/manifesto/                      301
 /bread-cooperative/contributors/                        /organization/contributors/                  301
 /bread-cooperative/contributors/contributor-onboarding/ /organization/contributors/                  301
-/bread-cooperative/contributors/how-to-eigenlayer/      /organization/contributors/eigenlayer/        301
-/bread-cooperative/contributors/eigenlayer/             /organization/contributors/eigenlayer/        301
+/bread-cooperative/contributors/how-to-eigenlayer/      /organization/contributors/        301
+/bread-cooperative/contributors/eigenlayer/             /organization/contributors/        301
 /bread-cooperative/governance/                          /organization/governance/                    301
 /bread-cooperative/governance/bread-constitution/       /organization/governance/bread-constitution/ 301
 /bread-cooperative/governance/operational-annex/        /organization/governance/operational-annex/  301
@@ -53,22 +53,22 @@
 /solidarity-primitives/crowdstaking/yield-governance/     /tools/solidarity-fund/yield-governance/    301
 /solidarity-primitives/crowdstaking/yield-governance/lp-vaults/    /tools/solidarity-fund/yield-governance/lp-vaults/  301
 /solidarity-primitives/crowdstaking/yield-governance/voting-power/ /voting-power/                     301
-/solidarity-primitives/crowdstaking/angel-minters/        /tools/solidarity-fund/angel-minter-program/  301
-/solidarity-primitives/crowdstaking/angel-minters/*       /tools/solidarity-fund/angel-minter-program/  301
+/solidarity-primitives/crowdstaking/angel-minters/        /tools/solidarity-fund/  301
+/solidarity-primitives/crowdstaking/angel-minters/*       /tools/solidarity-fund/  301
 /solidarity-primitives/crowdstaking/how-to-become-a-member-project/  /tools/solidarity-fund/member-projects/  301
 /solidarity-primitives/crowdstaking/*                     /tools/solidarity-fund/                    301
 /solidarity-primitives/*           /tools/                               301
 
 # --- Gen-2 /bread-community-currency/* ---
 /bread-community-currency/         /about/token/                          301
-/bread-community-currency/friends-of-bread/             /about/token/friends-of-bread/         301
-/bread-community-currency/bread-gardens-pool-setup/     /about/token/bread-gardens-pool-setup/ 301
+/bread-community-currency/friends-of-bread/             /about/token/         301
+/bread-community-currency/bread-gardens-pool-setup/     /organization/governance/bread-garden/ 301
 /bread-community-currency/*        /about/token/                          301
 
 # --- Gen-2 /bread-tools-and-mechanisms/* ---
 /bread-tools-and-mechanisms/       /tools/                                301
 /bread-tools-and-mechanisms/solidarity-fund/                             /tools/solidarity-fund/                        301
-/bread-tools-and-mechanisms/solidarity-fund/angel-minter-program/        /tools/solidarity-fund/angel-minter-program/    301
+/bread-tools-and-mechanisms/solidarity-fund/angel-minter-program/        /tools/solidarity-fund/    301
 /bread-tools-and-mechanisms/solidarity-fund/how-to-become-a-member-project/  /tools/solidarity-fund/member-projects/        301
 /bread-tools-and-mechanisms/solidarity-fund/member-projects/             /tools/solidarity-fund/member-projects/        301
 /bread-tools-and-mechanisms/solidarity-fund/yield-governance/            /tools/solidarity-fund/yield-governance/       301
@@ -84,9 +84,18 @@
 /getting-started/manifesto        /about/manifesto/                      301
 /getting-started/contact/         /about/contact/                        301
 /getting-started/roadmap/         /organization/                         301
-/getting-started/bread-token/gardens-setup/                     /about/token/bread-gardens-pool-setup/  301
-/getting-started/bread-community-currency/friends-of-bread/     /about/token/friends-of-bread/          301
-/getting-started/bread-community-currency/bread-gardens-pool-setup/  /about/token/bread-gardens-pool-setup/ 301
-/getting-started/bread-token/marketplace/*                   /about/token/friends-of-bread/          301
-/getting-started/bread-community-currency/marketplace/*      /about/token/friends-of-bread/          301
+/getting-started/bread-token/gardens-setup/                     /organization/governance/bread-garden/  301
+/getting-started/bread-community-currency/friends-of-bread/     /about/token/          301
+/getting-started/bread-community-currency/bread-gardens-pool-setup/  /organization/governance/bread-garden/ 301
+/getting-started/bread-token/marketplace/*                   /about/token/          301
+/getting-started/bread-community-currency/marketplace/*      /about/token/          301
 /getting-started/*                /about/token/                          301
+
+/tools/solidarity-fund/how-to-bake/   /tools/solidarity-fund/how-to-bake-and-burn/   301
+/tools/solidarity-fund/how-to-burn/   /tools/solidarity-fund/how-to-bake-and-burn/   301
+
+# --- Sep 2026 restructure: deleted/moved pages (current paths) ---
+/tools/solidarity-fund/angel-minter-program/  /tools/solidarity-fund/                 301
+/about/token/friends-of-bread/                /about/token/                           301
+/organization/contributors/eigenlayer/        /organization/contributors/             301
+/about/token/bread-gardens-pool-setup/        /organization/governance/bread-garden/  301

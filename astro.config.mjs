@@ -121,7 +121,7 @@ export default defineConfig({
                   items: [{ autogenerate: { directory: 'about' } }],
               },
               {
-                  label: 'Tools and Mechanisms',
+                  label: 'Solidarity Tools',
                   items: [{ autogenerate: { directory: 'tools' } }],
               },
               {

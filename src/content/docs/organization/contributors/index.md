@@ -19,7 +19,7 @@ If you're a developer, our stack includes wagmi, ethers, Next.js, TypeScript, Ta
 ## How to get started
 
 1. Join our Discord and Guild, and follow us on social media
-2. Get familiar with Bread Cooperative — visit the website, bake some $BREAD, read the docs
+2. Get familiar with Bread Cooperative — visit the website, bake some BREAD, read the docs
 3. Join a weekly community call (every Wednesday in Discord)
 4. Fill out the contributor interest form
 5. Someone from the core team will reach out to discuss where you can best contribute
@@ -40,8 +40,3 @@ Joining the core team requires having first contributed as a non-core contributo
 
 For full details on responsibilities, removal processes, and financial governance, see the [Operational Annex](/organization/governance/operational-annex/).
 
----
-
-## For developers: EigenLayer
-
-If you are contributing to AVS work, see the [EigenLayer resource page](/organization/contributors/eigenlayer/) for background reading and recommended resources.

@@ -18,7 +18,7 @@ isFriendOfBread: true
 
 ## About Crypto Commons Association
 
-The Crypto Commons Association (CCA) is a non-profit that promotes the development of shared digital infrastructure through research, events, and community building. They host gatherings ranging from large commons-focused conferences to Solarpunk events, and accept $BREAD as payment for participation.
+The Crypto Commons Association (CCA) is a non-profit that promotes the development of shared digital infrastructure through research, events, and community building. They host gatherings ranging from large commons-focused conferences to Solarpunk events, and accept BREAD as payment for participation.
 
 [Member Spotlight](https://paragraph.com/@breadcoop/member-spotlight-crypto-commons-association)
 

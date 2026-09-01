@@ -11,6 +11,7 @@ This document covers the operational details of how Bread Cooperative runs — m
 Member projects are the organisations that make up the Bread Cooperative network.
 
 Current member projects:
+
 - Bread Core Team
 - Symbiota
 - Regen Coordination
@@ -36,6 +37,7 @@ All new team members will learn the necessary skills for using our technological
 A member project may leave at any time with written resignation. After resignation, Bread Cooperative and the project have 30 days to complete the necessary offboarding steps. Member projects may also be removed by democratic process for not meeting membership requirements, becoming inactive for three or more months, or conducting activities that conflict with the guiding principles.
 
 The removal process:
+
 1. The initiator speaks to at least two others in the group to gauge support for a resolution session
 2. If two others support scheduling a session, one is arranged
 3. The first session focuses on understanding the issue and identifying actions the project can take to address it

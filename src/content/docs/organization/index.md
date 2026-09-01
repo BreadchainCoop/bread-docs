@@ -8,7 +8,7 @@ Bread Cooperative is a worker-owned collective building financial tools for coop
 
 ## What we do
 
-We build and maintain the Bread Solidarity Fund and Bread Stacks — tools designed to move money in ways that serve communities rather than extract from them. We also take on development work for aligned organisations through our development studio.
+We build and maintain the Bread Solidarity Fund and Stacks — tools designed to move money in ways that serve communities rather than extract from them. We also take on development work for aligned organisations through our development studio.
 
 ---
 
