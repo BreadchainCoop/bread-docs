@@ -1,7 +1,7 @@
 ---
 title: Contributors
 sidebar:
-  order: 0
+  order: 1
 ---
 
 Bread Cooperative is built by the people who use it. We are a small team and we rely on contributors with a range of skills — technical and non-technical — to keep things moving.
