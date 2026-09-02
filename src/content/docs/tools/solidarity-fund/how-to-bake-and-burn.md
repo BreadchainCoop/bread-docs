@@ -1,5 +1,7 @@
 ---
 title: How to Bake and Burn BREAD
+sidebar:
+  order: 2
 ---
 
 Baking and burning are the two ways to move between xDAI and BREAD in the Solidarity Fund, always at a 1:1 rate.

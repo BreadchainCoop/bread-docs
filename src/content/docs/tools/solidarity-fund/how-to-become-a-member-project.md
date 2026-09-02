@@ -5,6 +5,8 @@ description: >-
   accepted.
 slug: become-a-member-project
 draft: true
+sidebar:
+  order: 7
 ---
 We're honored and excited that you're interested in potentially joining as a member project! Here you can find more information about what we expect from projects and what you can expect in the application process. Note that this is the current process and we expect it to change over time as we grow.
 

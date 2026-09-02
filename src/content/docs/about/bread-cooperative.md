@@ -1,5 +1,7 @@
 ---
-title: Bread Cooperative
+title: About Bread Cooperative
+sidebar:
+  order: 0
 ---
 
 Bread Cooperative is a worker-owned collective building financial tools for cooperatives, NGOs, and solidarity-focused communities. Everything we build is open source. Every decision is made collectively.

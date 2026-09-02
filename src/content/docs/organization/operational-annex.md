@@ -1,5 +1,7 @@
 ---
 title: Operational Annex
+sidebar:
+  order: 3
 ---
 
 This document covers the operational details of how Bread Cooperative runs — membership, responsibilities, and financial governance.

@@ -125,7 +125,7 @@ export default defineConfig({
                   items: [{ autogenerate: { directory: 'tools' } }],
               },
               {
-                  label: 'Bread Cooperative',
+                  label: 'How We Work',
                   items: [{ autogenerate: { directory: 'organization' } }],
               },
           ],

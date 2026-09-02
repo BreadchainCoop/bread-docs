@@ -1,6 +1,8 @@
 ---
-title: Understanding Bread Voting Power
+title: Voting Power
 slug: voting-power
+sidebar:
+  order: 4
 ---
 
 Your voting power is based on the average amount of BREAD you held over the previous month. It is not a snapshot of what you hold on voting day — it reflects your sustained participation over time.

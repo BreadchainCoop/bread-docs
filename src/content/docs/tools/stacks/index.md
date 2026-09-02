@@ -1,5 +1,5 @@
 ---
-title: Stacks
+title: Overview
 ---
 
 Savings circles for those closest to you.
