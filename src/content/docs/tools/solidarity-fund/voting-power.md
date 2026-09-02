@@ -1,5 +1,5 @@
 ---
-title: Understanding Bread Voting Power
+title: Voting Power
 slug: voting-power
 ---
 

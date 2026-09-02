@@ -1,5 +1,7 @@
 ---
 title: Bread Constitution
+sidebar:
+  order: 2
 ---
 
 ## Our shared purpose
@@ -40,4 +42,4 @@ Our core objectives help inform what the cooperative's priorities are. They are 
 
 ---
 
-See the [Operational Annex](/organization/governance/operational-annex/) for how these principles are put into practice.
+See the [Operational Annex](/organization/operational-annex/) for how these principles are put into practice.

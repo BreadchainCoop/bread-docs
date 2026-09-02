@@ -1,5 +1,5 @@
 ---
-title: Liquidity Provider Voting Vaults
+title: Liquidity Provider Vaults
 ---
 
 When you provide liquidity for BREAD on a DeFi market, you receive LP tokens in return. By default, the Bread governance system can't see those LP tokens — it only tracks BREAD held directly in your wallet. This means liquidity providers would lose their voting power by moving BREAD out of their wallet.

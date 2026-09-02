@@ -1,5 +1,5 @@
 ---
-title: BREAD Solidarity Fund
+title: Overview
 sidebar:
   order: 0
 ---

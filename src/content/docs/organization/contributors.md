@@ -1,5 +1,7 @@
 ---
 title: Contributors
+sidebar:
+  order: 0
 ---
 
 Bread Cooperative is built by the people who use it. We are a small team and we rely on contributors with a range of skills — technical and non-technical — to keep things moving.
@@ -38,5 +40,5 @@ Some core team members receive a monthly wage. Pay is determined through open co
 
 Joining the core team requires having first contributed as a non-core contributor and being nominated by an existing core team member.
 
-For full details on responsibilities, removal processes, and financial governance, see the [Operational Annex](/organization/governance/operational-annex/).
+For full details on responsibilities, removal processes, and financial governance, see the [Operational Annex](/organization/operational-annex/).
 
