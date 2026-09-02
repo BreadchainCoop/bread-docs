@@ -24,7 +24,7 @@ isMemberProject: true
 
 Citizen Wallet gives communities the tools to launch, use, and manage their own digital currencies. Their mobile app removes the usual barriers — no gas fees, no complex setup — and supports NFC tap-to-pay for in-person transactions.
 
-People can already use Citizen Wallet to send and receive $BREAD today.
+People can already use Citizen Wallet to send and receive BREAD today.
 
 ## Purpose
 
@@ -62,9 +62,9 @@ Citizen Wallet will accept BREAD as a payment option for any services and subscr
 
 ## What do you plan to do in the short term with the funds received from Bread Cooperative?
 
-With the support of Bread Cooperative funding, we plan to allocate development time to features which are specifically useful for $BREAD.
+With the support of Bread Cooperative funding, we plan to allocate development time to features which are specifically useful for BREAD.
 
-- Integrating the $BREAD governance and voting functionality into the Citizen Wallet app
+- Integrating the BREAD governance and voting functionality into the Citizen Wallet app
 - Further development of the marketplace plugin
 - Integrating into the Safe ecosystem and maybe supporting integration with Gnosis pay cards
 - Building templates to allow other communities to also set up yield-bearing tokens with a participatory budget mechanism (starting with Brussels PAY)

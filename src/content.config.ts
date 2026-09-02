@@ -32,7 +32,7 @@ export const collections = {
 			isAngelMinter: z.boolean().default(false),
 			isFriendOfBread: z.boolean().default(false),
 			isContributingProject: z.boolean().default(false),
-			// Angel minter contribution description (e.g. "~200,000 $BREAD minted")
+			// Angel minter contribution description (e.g. "~200,000 BREAD minted")
 			amountContributed: z.string().optional(),
 			// Shared metadata
 			url: z.string().optional(),

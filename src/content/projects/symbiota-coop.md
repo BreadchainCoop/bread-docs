@@ -19,7 +19,7 @@ isMemberProject: true
 
 Symbiota is a worker co-operative and collective of event-focused organisations devoted to exploring new forms of culture, community, and consciousness. Their initiatives include Dandelion, the Psychedelic Society, True Nature, and Adventures in Awareness.
 
-Dandelion — Symbiota's regenerative events platform — is Bread's official events partner. All Bread Cooperative events are hosted on Dandelion and can be paid for in $BREAD.
+Dandelion — Symbiota's regenerative events platform — is Bread's official events partner. All Bread Cooperative events are hosted on Dandelion and can be paid for in BREAD.
 
 ### Purpose
 
