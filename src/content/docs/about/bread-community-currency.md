@@ -1,5 +1,6 @@
 ---
 title: "BREAD Community Currency"
+slug: about/token
 description: "What BREAD is, how the Solidarity Fund works, and where to use your tokens."
 sidebar:
   order: 0
