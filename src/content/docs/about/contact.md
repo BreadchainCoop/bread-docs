@@ -1,5 +1,7 @@
 ---
 title: Contacts and Links
+sidebar:
+  order: 2
 ---
 
 ## Get in touch
