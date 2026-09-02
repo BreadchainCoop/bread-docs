@@ -1,5 +1,7 @@
 ---
 title: Connecting a Wallet
+sidebar:
+  order: 1
 ---
 
 1. Go to the [Solidarity Fund app](https://fund.bread.coop/).

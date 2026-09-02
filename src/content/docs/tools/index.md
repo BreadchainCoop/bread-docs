@@ -1,5 +1,7 @@
 ---
 title: Overview
+sidebar:
+  order: 0
 ---
 
 ## BREAD Solidarity Fund

@@ -2,7 +2,7 @@
 title: "Member Projects"
 description: "Projects in the Bread Cooperative Network receiving yield distributions."
 sidebar:
-  order: 2
+  order: 6
 gallery: member-projects
 ---
 
