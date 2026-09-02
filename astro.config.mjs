@@ -114,6 +114,7 @@ export default defineConfig({
           social: [
               { icon: 'github', label: 'GitHub', href: 'https://github.com/BreadchainCoop' },
               { icon: 'discord', label: 'Discord', href: 'https://discord.com/invite/zmNqsHRHDa' },
+              { icon: 'x.com', label: 'X', href: 'https://x.com/breadcoop' },
           ],
           sidebar: [
               {
