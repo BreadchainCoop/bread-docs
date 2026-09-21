@@ -1,0 +1,40 @@
+name: Docs change or request
+description: Propose a change to the Bread Cooperative docs, or request one.
+title: "[Docs]: "
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve the docs. Describe what you need in plain terms — you don't need to know the repo or the website internals. A maintainer will turn this into a fully-specified, ready-to-implement issue.
+  - type: textarea
+    id: summary
+    attributes:
+      label: What needs to change, and why?
+      description: The change you want, and the problem it solves for readers.
+      placeholder: 'e.g. The Solidarity Fund page still calls baking "crowdstaking" — confusing for new readers.'
+    validations:
+      required: true
+  - type: textarea
+    id: pages
+    attributes:
+      label: Affected pages / URLs
+      description: Link the live pages or name the sections, if you know them. Leave blank if unsure.
+      placeholder: https://docs.bread.coop/tools/solidarity-fund/
+    validations:
+      required: false
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: What does "done" look like?
+      description: How we'll know the change is complete and correct.
+    validations:
+      required: false
+  - type: checkboxes
+    id: downstream
+    attributes:
+      label: Downstream considerations (a maintainer will confirm these)
+      options:
+        - label: May affect Keystatic content entries
+        - label: May need URL redirects (moved or renamed pages)
+        - label: May affect the sidebar / category structure
