@@ -148,4 +148,6 @@ Content is managed through [Keystatic CMS](https://keystatic.com), which provide
 
 Content edits go through Keystatic (see [Editing Content](#editing-content) above). Code and configuration changes follow the standard fork-and-PR workflow.
 
+See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for how to request or make a change, and [GOVERNANCE.md](.github/GOVERNANCE.md) for the review and merge policy.
+
 For detailed technical reference — project layout, design system conventions, frontmatter schema, plugin documentation, and agent instructions — see [AGENTS.md](./AGENTS.md).
