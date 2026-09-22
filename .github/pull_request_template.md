@@ -31,3 +31,16 @@ Closes #
 - [ ] Redirects added for any moved or renamed pages
 - [ ] Sidebar / category changes reviewed for downstream impact
 - [ ] Netlify deploy preview looks correct
+
+---
+
+## Reviewer checklist — Approver only
+
+<!-- The assistant (Helper) may comment but does not approve or merge. See .github/GOVERNANCE.md → Review process. -->
+
+- [ ] Content accurate; clear, conventional prose
+- [ ] Keystatic / schema valid (build passes)
+- [ ] Moved / renamed URLs have `301`s in `public/_redirects`; no broken internal links
+- [ ] Branch is current with `main` and mergeable (not behind)
+- [ ] Netlify deploy-preview green
+- [ ] Linked issue present (or "independent")
