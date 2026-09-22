@@ -1,12 +1,13 @@
 # Code owners for bread-docs.
 #
-# Auto-requests the MOCHA **Approver**'s review on every PR. Pairs with the
-# "Require review from Code Owners" branch-protection rule so a PR cannot be
-# merged without the Approver's approval (see GOVERNANCE.md → Review process).
+# Auto-requests the Information Pathways team's review on every PR. Pairs with
+# the "Require review from Code Owners" branch-protection rule so a PR cannot
+# be merged without the team's approval (see GOVERNANCE.md → Review process).
 #
-# Roles, not souls: this maps to whoever currently holds the Approver role.
-# When the role changes hands, update the owner below — or, better, replace it
-# with a GitHub team (e.g. @BreadchainCoop/docs-approvers) whose membership is
-# the role-holder, so this file never needs editing again.
+# Roles, not souls: the code owner is the Information Pathways TEAM, so review
+# ownership follows team membership — whoever holds the Approver role is a
+# member. This file needs no per-person edits when the role changes hands.
+#
+# NOTE: the team must have write access to this repo for CODEOWNERS to apply.
 
-*   @rathermercurial
+*   @BreadchainCoop/information-pathways
