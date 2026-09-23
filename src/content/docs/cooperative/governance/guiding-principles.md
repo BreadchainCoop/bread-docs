@@ -1,7 +1,8 @@
 ---
-title: Bread Constitution
+title: Guiding Principles
+description: "The shared purpose, principles, and core objectives that Bread Cooperative and its member projects operate by."
 sidebar:
-  order: 2
+  order: 1
 ---
 
 ## Our shared purpose
@@ -42,4 +43,4 @@ Our core objectives help inform what the cooperative's priorities are. They are 
 
 ---
 
-See the [Operational Annex](/organization/operational-annex/) for how these principles are put into practice.
+How these principles are put into practice: [Core Team](/cooperative/governance/core-team/), [Finances](/cooperative/governance/finances/), and the [Member Projects](/get-involved/member-projects/eligibility/) requirements.

@@ -1,5 +1,6 @@
 ---
 title: Bread Garden
+description: "How to stake BREAD in the Bread Cooperative Community Initiatives Pool on Gardens and vote with conviction."
 sidebar:
   order: 4
 ---

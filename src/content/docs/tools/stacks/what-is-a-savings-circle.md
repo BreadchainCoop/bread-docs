@@ -1,12 +1,9 @@
 ---
-title: Overview
+title: What is a savings circle?
+description: "The centuries-old practice of pooling money in rotating groups — how it works, why it works, and why it breaks."
+sidebar:
+  order: 0
 ---
-
-Savings circles for those closest to you.
-
----
-
-## What is a savings circle?
 
 A savings circle is a group of people who pool money together at regular intervals. Each round, one member receives the full pot. The rotation continues until everyone has had their turn. No bank, no lender, no interest. Just mutual commitment.
 
@@ -30,28 +27,4 @@ The circle's original strength was that no one person held the pot. Most digital
 
 ---
 
-## How does Stacks work?
-
-Stacks puts savings circles on-chain. The rules are set by the group, encoded in a smart contract, and visible to everyone. Funds are held in tamper-proof escrow. Distributions happen automatically. No single person holds the pot.
-
-Members pool BREAD at regular intervals. Each round, one member receives the full pool. The rotation continues until everyone has had their turn. The same format that has worked for centuries, running on infrastructure that doesn't depend on geography, a company, or a bank.
-
-Because Stacks runs on crypto rails, cross-border transfers cost a fraction of what traditional remittance services charge. Members don't need to know or care that they're using a blockchain application. Wallets, gas fees, and token management happen in the background. What members see is a savings circle.
-
----
-
-## Can Stacks be customized for my organisation?
-
-Yes. Stacks are designed to be flexible, and we are continuing to add ways to adapt them to the needs of different groups. Whether you are running circles for employees, members, or a wider community, the structure can be configured to fit how your group actually works.
-
-Companies and individuals can also provide matching funds on completed Stacks, amplifying the impact of each circle. If your organisation is interested in offering savings circles to your community, or in sponsoring them through matched contributions, get in touch.
-
-contact@bread.coop
-
----
-
-## For developers
-
-Stacks contracts are open source under MIT License.
-
-[GitHub](https://github.com/BreadchainCoop/saving-circles)
+That's the problem Stacks is built to solve. See [How Stacks works](/tools/stacks/how-stacks-works/).

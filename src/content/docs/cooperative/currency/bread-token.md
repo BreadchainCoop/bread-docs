@@ -1,9 +1,8 @@
 ---
-title: "BREAD Community Currency"
-slug: about/token
-description: "What BREAD is, how the Solidarity Fund works, and where to use your tokens."
+title: "BREAD Token"
+description: "What BREAD is, how it is backed, and where to use your tokens."
 sidebar:
-  order: 1
+  order: 0
 gallery: yield-recipients
 ---
 
@@ -21,13 +20,13 @@ Download the Citizen Wallet app to send and receive BREAD peer-to-peer today.
 
 The Bread Solidarity Fund is a smart contract on Gnosis Chain. It accepts xDAI, converts it to sDAI, and mints BREAD tokens at a 1:1 ratio with your deposit. The interest earned on the sDAI pool is distributed monthly to Bread's member projects, based on a vote from BREAD holders. The more BREAD you hold, the more voting power you have.
 
-To learn more about how voting and yield governance work, see the [Solidarity Fund section](/tools/solidarity-fund/).
+To learn more about how voting and yield governance work, see [How it Works](/tools/solidarity-fund/how-it-works/) in the Solidarity Fund section.
 
 ## Useful info
 
 **How to participate in the Bread Solidarity Fund**
 
-Step-by-step guide: [paragraph.com/@breadcoop/how-to-participate-in-the-bread-solidarity-fund](https://paragraph.com/@breadcoop/how-to-participate-in-the-bread-solidarity-fund)
+Step-by-step guide: [How to Bake BREAD](/cooperative/currency/how-to-bake/)
 
 **Contract address (Gnosis Chain)**
 
@@ -38,4 +37,3 @@ View on explorer: [gnosisscan.io](https://gnosisscan.io/token/0xa555d5344f6fb6c6
 ## Where to use your BREAD
 
 From events to donations to token-gated community spaces, there are a growing number of places where BREAD is accepted.
-
