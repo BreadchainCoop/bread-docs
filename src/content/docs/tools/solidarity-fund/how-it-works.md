@@ -75,4 +75,3 @@ Your vote only affects 50% of the yield distribution. The other 50% is split eve
 ## More information
 
 - [Liquidity Providing](/tools/solidarity-fund/liquidity-providing/) — how to keep your voting power while providing liquidity for BREAD
-- [Angel Minter Program](/cooperative/currency/angel-minter-program/) — larger holders who help sustain the fund

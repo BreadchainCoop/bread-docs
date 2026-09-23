@@ -17,8 +17,6 @@ We welcome contributions across development, writing, design, marketing, communi
 
 If you're a developer, our stack includes wagmi, ethers, Next.js, TypeScript, Tailwind CSS, and Solidity. Our GitHub is at [github.com/BreadchainCoop](https://github.com/BreadchainCoop).
 
-If you are contributing to AVS work, see the [EigenLayer resource page](/get-involved/contributors/eigenlayer/) for background reading and recommended resources.
-
 ---
 
 ## What contributing leads to

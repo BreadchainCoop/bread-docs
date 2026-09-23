@@ -29,7 +29,6 @@ We can be hired as a development studio for blockchain projects. Our expertise i
 
 ## Inside Bread Cooperative
 
-- [Community Currency](/cooperative/currency/bread-token/) — what BREAD is, how to bake it, and how to become an Angel Minter
-- [Governance](/cooperative/governance/) — the principles we operate by, who the core team is, and where the money sits
-- [Friends of Bread](/cooperative/friends-of-bread/where-to-spend-bread/) — where BREAD is accepted and how to plug into the network
+- [Community Currency](/cooperative/currency/bread-token/) — what BREAD is and how to bake it
+- [Governance](/cooperative/governance/) — the principles we operate by, who the core team is, where the money sits, and the Bread Garden
 - [Get Involved](/get-involved/) — contributing as an individual or joining as a member project

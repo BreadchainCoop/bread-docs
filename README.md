@@ -88,9 +88,9 @@ collapsed: true       # Collapse by default (subdirs only)
 | Old URL | Redirects To |
 |---------|--------------|
 | `/bread-token` | `/cooperative/currency/bread-token/` |
-| `/marketplace` | `/cooperative/friends-of-bread/where-to-spend-bread/` |
+| `/marketplace` | `/cooperative/currency/bread-token/` |
 | `/solidarity-fund` | `/tools/solidarity-fund/how-it-works/` |
-| `/angel-minters` | `/cooperative/currency/angel-minter-program/` |
+| `/angel-minters` | `/tools/solidarity-fund/how-it-works/` |
 | `/member-projects` | `/tools/solidarity-fund/member-projects/` |
 
 Rules are ordered most-specific-first (Netlify takes the first match). When you move a page, add a rule for its old path **and** retarget any existing rule that pointed there — otherwise old links land on a redirect that itself 404s.

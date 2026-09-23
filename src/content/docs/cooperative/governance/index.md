@@ -18,6 +18,7 @@ These pages set out how this works in practice:
 - [Guiding Principles](/cooperative/governance/guiding-principles/): our shared purpose, principles, and core objectives
 - [Core Team](/cooperative/governance/core-team/): who governs, how members join, and how they are paid
 - [Finances](/cooperative/governance/finances/): where the money sits and who controls it
+- [Bread Garden](/cooperative/governance/bread-garden/): community-funded proposals through conviction voting
 
 ---
 

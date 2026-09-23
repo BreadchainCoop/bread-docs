@@ -1,8 +1,8 @@
 ---
-title: Gardens Pools Setup
+title: Bread Garden
 description: "How to stake BREAD in the Bread Cooperative Community Initiatives Pool on Gardens and vote with conviction."
 sidebar:
-  order: 1
+  order: 4
 ---
 
 The Bread Cooperative Community Initiatives Pool is a Gardens funding pool that lets community members fund proposals through conviction-based voting. The longer you support a proposal, the stronger your voting power becomes — growing 50% every 7 days. Sustained backing carries more weight than quick decisions.

@@ -3,8 +3,6 @@ import { config, fields, collection } from '@keystatic/core'
 const GALLERY_OPTIONS = [
   { label: 'None', value: '' },
   { label: 'Yield Recipients', value: 'yield-recipients' },
-  { label: 'Friends of Bread', value: 'friends-of-bread' },
-  { label: 'Angel Minters', value: 'angel-minters' },
   { label: 'Member Projects', value: 'member-projects' },
 ]
 

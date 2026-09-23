@@ -76,7 +76,7 @@ bread-docs/
 │   ├── content/docs/             # All markdown content — one file = one page
 │   │   ├── manifesto.md          # Top-level page: Our Manifesto
 │   │   ├── contact.md            # Top-level page: Contact & Links
-│   │   ├── cooperative/          # Bread Cooperative (currency, governance, friends)
+│   │   ├── cooperative/          # Bread Cooperative (currency, governance)
 │   │   ├── get-involved/         # Contributors and member projects
 │   │   └── tools/                # Solidarity Fund and Stacks
 │   ├── content/member-projects/  # Member project profiles (MDX, separate collection)
@@ -140,7 +140,7 @@ Use slug-based absolute paths. Custom slugs take precedence over directory paths
 
 ```markdown
 [BREAD Token](/cooperative/currency/bread-token/)
-[Where to spend BREAD](/cooperative/friends-of-bread/where-to-spend-bread/)
+[Governance](/cooperative/governance/)
 [Current Member Projects](/tools/solidarity-fund/member-projects/)
 ```
 

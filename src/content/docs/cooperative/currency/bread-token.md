@@ -37,5 +37,3 @@ View on explorer: [gnosisscan.io](https://gnosisscan.io/token/0xa555d5344f6fb6c6
 ## Where to use your BREAD
 
 From events to donations to token-gated community spaces, there are a growing number of places where BREAD is accepted.
-
-[Where to spend BREAD](/cooperative/friends-of-bread/where-to-spend-bread/)
