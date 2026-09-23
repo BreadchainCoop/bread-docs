@@ -2,6 +2,21 @@
 /wiki/*          /:splat          301
 /attachments/*   /images/:splat   301
 
+# --- Sep 2026 main restructure (#45/#46) → Gen-5 ---
+/about/bread-cooperative/                     /cooperative/                                   301
+/about/bread-token/gardens-setup/             /cooperative/governance/bread-garden/           301
+/about/bread-token/marketplace/*              /cooperative/currency/bread-token/              301
+/about/bread-token/                           /cooperative/currency/bread-token/              301
+/organization/bread-constitution/             /cooperative/governance/guiding-principles/     301
+/organization/operational-annex/              /get-involved/member-projects/responsibilities/ 301
+/organization/governance/bread-garden/        /cooperative/governance/bread-garden/           301
+/organization/bread-garden/                   /cooperative/governance/bread-garden/           301
+/tools/solidarity-fund/how-to-bake-and-burn/  /cooperative/currency/how-to-bake/              301
+/tools/solidarity-fund/lp-vaults/             /tools/solidarity-fund/liquidity-providing/     301
+/tools/solidarity-fund/voting-power/          /tools/solidarity-fund/how-it-works/#understanding-voting-power  301
+/projects/labor-dao/                          /tools/solidarity-fund/member-projects/         301
+/projects/refi-dao/                           /tools/solidarity-fund/member-projects/         301
+
 # --- Gen-4 → Gen-5 moves (nav restructure: /about/ and /organization/ retired) ---
 # Manifesto and contact are top-level pages again
 /about/manifesto/                  /manifesto/                                            301
