@@ -38,7 +38,7 @@ These lists are meant to help potential members work out how — and whether —
 - Read through the [Bread Cooperative blog](https://paragraph.com/@breadcoop)
 - Joined the [Bread Cooperative Guild](https://guild.xyz/breadcoop)
 - Joined the [Bread Cooperative Discord](https://discord.com/invite/zmNqsHRHDa)
-- [Baked at least 10 $BREAD](/cooperative/currency/how-to-bake/), preferably much more
+- [Baked at least 10 BREAD](/cooperative/currency/how-to-bake/), preferably much more
 - Read our [Guiding Principles](/cooperative/governance/guiding-principles/)
 - Applied through the project form — see [How to Apply](/get-involved/member-projects/how-to-apply/)
 :::

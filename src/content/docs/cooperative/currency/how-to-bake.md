@@ -1,11 +1,11 @@
 ---
-title: How to Bake $BREAD
-description: "Connect a wallet, bake xDAI into $BREAD, and burn it back whenever you need your funds."
+title: How to Bake BREAD
+description: "Connect a wallet, bake xDAI into BREAD, and burn it back whenever you need your funds."
 sidebar:
   order: 1
 ---
 
-Baking deposits xDAI into the Solidarity Fund and mints an equal amount of $BREAD in return. The rate is always 1:1. Your deposit generates yield for the network, but the deposit itself stays yours.
+Baking deposits xDAI into the Solidarity Fund and mints an equal amount of BREAD in return. The rate is always 1:1. Your deposit generates yield for the network, but the deposit itself stays yours.
 
 You'll need a wallet with some xDAI in it on Gnosis Chain. If you need to get assets onto Gnosis Chain first, see [Getting assets to Gnosis Chain](#getting-assets-to-gnosis-chain) below.
 
@@ -27,11 +27,11 @@ If your wallet isn't appearing in the list, check that the browser extension is 
 ## Baking
 
 1. Open the **Bake** tab.
-2. Enter the amount of xDAI you want to bake. The $BREAD field updates automatically to match.
+2. Enter the amount of xDAI you want to bake. The BREAD field updates automatically to match.
 3. Click **Bake**. Your wallet will open a transaction window.
 4. Review the transaction before signing:
    - The xDAI amount going in matches what you entered
-   - The $BREAD amount coming out matches, 1 for 1
+   - The BREAD amount coming out matches, 1 for 1
    - The action is labelled "mint"
 5. Sign the transaction.
 
@@ -41,13 +41,13 @@ The Solidarity Fund is a smaller application, so your wallet may flag the intera
 
 ## Burning
 
-Burning redeems your $BREAD back to xDAI at a 1:1 ratio. There is no penalty, no waiting period, and no minimum amount.
+Burning redeems your BREAD back to xDAI at a 1:1 ratio. There is no penalty, no waiting period, and no minimum amount.
 
 1. Open the **Burn** tab.
-2. Enter the amount of $BREAD you want to burn.
-3. Click **Burn**. You'll be asked if you'd rather wrap your $BREAD into Wrapped xDAI instead. This keeps your funds circulating in the network rather than withdrawing them. If you want to withdraw, continue with Burn.
+2. Enter the amount of BREAD you want to burn.
+3. Click **Burn**. You'll be asked if you'd rather wrap your BREAD into Wrapped xDAI instead. This keeps your funds circulating in the network rather than withdrawing them. If you want to withdraw, continue with Burn.
 4. Review the transaction before signing:
-   - The $BREAD amount going in matches what you entered
+   - The BREAD amount going in matches what you entered
    - The xDAI amount coming out matches, 1 for 1
    - The action is labelled "burn"
 5. Sign the transaction. It should confirm within a few seconds.

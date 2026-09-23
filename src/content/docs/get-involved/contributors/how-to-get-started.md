@@ -12,7 +12,7 @@ There's no application gate to clear before you can help. The path below is how 
 ## Steps
 
 1. Join our [Discord](https://discord.com/invite/zmNqsHRHDa) and [Guild](https://guild.xyz/breadcoop), and follow us on social media
-2. Get familiar with Bread Cooperative — visit the [website](https://bread.coop/), [bake some $BREAD](/cooperative/currency/how-to-bake/), read the docs
+2. Get familiar with Bread Cooperative — visit the [website](https://bread.coop/), [bake some BREAD](/cooperative/currency/how-to-bake/), read the docs
 3. Join a weekly community call (every Wednesday in Discord)
 4. Fill out the contributor interest form
 5. Someone from the core team will reach out to discuss where you can best contribute

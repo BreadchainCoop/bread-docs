@@ -2,7 +2,7 @@
 title: Guiding Principles
 description: "The shared purpose, principles, and core objectives that Bread Cooperative and its member projects operate by."
 sidebar:
-  order: 0
+  order: 1
 ---
 
 ## Our shared purpose

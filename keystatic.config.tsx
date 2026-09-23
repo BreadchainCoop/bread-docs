@@ -77,7 +77,7 @@ export default config({
     pages: docsCollection('Top-level Pages', 'src/content/docs/*'),
     cooperative: docsCollection('Bread Cooperative', 'src/content/docs/cooperative/**'),
     getInvolved: docsCollection('Get Involved', 'src/content/docs/get-involved/**'),
-    tools: docsCollection('Tools and Mechanisms', 'src/content/docs/tools/**'),
+    tools: docsCollection('Solidarity Tools', 'src/content/docs/tools/**'),
 
     projects: collection({
       label: 'Projects',

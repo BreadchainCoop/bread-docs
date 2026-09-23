@@ -24,11 +24,11 @@ The nominated representative:
 
 ## Ongoing expectations
 
-- **Hold a minimum of 3,000 $BREAD** in your treasury
+- **Hold a minimum of 3,000 BREAD** in your treasury
 - **Add a link and logo** for Bread Cooperative to your website
 - **Share with your community** that you have joined Bread Cooperative
-- **Actively recruit your community** to bake $BREAD
-- **Prioritise the use of $BREAD** within your community, however that looks in your context
+- **Actively recruit your community** to bake BREAD
+- **Prioritise the use of BREAD** within your community, however that looks in your context
 - **Support other member projects** to increase network effects
 
 ---

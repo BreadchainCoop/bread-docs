@@ -14,7 +14,7 @@ Before you start, read [Eligibility](/get-involved/member-projects/eligibility/)
 ## Steps
 
 1. Learn about Bread and what we stand for
-2. Use our applications to [bake $BREAD](/cooperative/currency/how-to-bake/) and vote in a voting cycle
+2. Use our applications to [bake BREAD](/cooperative/currency/how-to-bake/) and vote in a voting cycle
 3. Get internal support from your community or team to apply as a member project
 4. Fill out the application form
 5. Contact someone from Bread Cooperative to let them know you have applied
@@ -24,7 +24,7 @@ Before you start, read [Eligibility](/get-involved/member-projects/eligibility/)
 9. We will review again to add your organisation. **Full consensus is required by the project leads at the moment**
 10. If accepted, we will ask for some assets to add your project as an option on the governance page
 11. Fill out your member project's card with the information asked for
-12. Make sure you hold 3,000 $BREAD in your treasury
+12. Make sure you hold 3,000 BREAD in your treasury
 13. New members can only be added at the start of a new voting cycle, so you'll be added at the start of the next one once all other steps are complete
 
 ---

@@ -2,7 +2,7 @@
 title: Finances
 description: "Where Bread Cooperative's money sits — the Bread Coop Core treasury, the Solidarity Fund, and the Shared Treasury — and who controls each."
 sidebar:
-  order: 2
+  order: 3
 ---
 
 Bread Cooperative's funds are held on-chain and are publicly viewable. There is no single pot: money is split across wallets with different purposes, different signers, and different rules for spending it.
@@ -24,7 +24,7 @@ The core team treasury funds the day-to-day work of the cooperative — developm
 
 Core team members are signers on this Safe. Spending is decided by the team: wages are set democratically and paid through monthly spending limits, and other expenses are proposed by core members and approved by majority vote. Wages are revisited every three to six months against available runway.
 
-The vast majority of assets held by the core team are held in $BREAD, so that the funds themselves continue to generate yield for the network.
+The vast majority of assets held by the core team are held in BREAD, so that the funds themselves continue to generate yield for the network.
 
 See [Core Team](/cooperative/governance/core-team/) for how wages are set and who is eligible to be a signer.
 
@@ -32,11 +32,11 @@ See [Core Team](/cooperative/governance/core-team/) for how wages are set and wh
 
 ## Solidarity Fund Treasury
 
-Two distinct things sit under this heading: the fund contract that backs $BREAD, and the Shared Treasury that the network spends from.
+Two distinct things sit under this heading: the fund contract that backs BREAD, and the Shared Treasury that the network spends from.
 
 ### The Solidarity Fund contract
 
-Every $BREAD in circulation is backed 1:1 by xDAI deposited into the Solidarity Fund. Those deposits are converted to sDAI, and the yield they generate is what gets distributed to member projects each month. The principal is not spent by anyone — it belongs to the people who baked it, and can be burned back to xDAI at any time.
+Every BREAD in circulation is backed 1:1 by xDAI deposited into the Solidarity Fund. Those deposits are converted to sDAI, and the yield they generate is what gets distributed to member projects each month. The principal is not spent by anyone — it belongs to the people who baked it, and can be burned back to xDAI at any time.
 
 **Contract (Gnosis Chain)**
 `0xa555d5344f6fb6c65da19e403cb4c1ec4a1a5ee3`

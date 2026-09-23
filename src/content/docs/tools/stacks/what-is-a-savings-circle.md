@@ -27,4 +27,4 @@ The circle's original strength was that no one person held the pot. Most digital
 
 ---
 
-That's the problem Bread Stacks is built to solve. See [How Stacks works](/tools/stacks/how-stacks-works/).
+That's the problem Stacks is built to solve. See [How Stacks works](/tools/stacks/how-stacks-works/).

@@ -16,7 +16,7 @@
 # /organization/ → /cooperative/ and /get-involved/
 /organization/governance/bread-constitution/  /cooperative/governance/guiding-principles/ 301
 /organization/governance/operational-annex/   /get-involved/member-projects/responsibilities/  301
-/organization/governance/          /cooperative/governance/guiding-principles/            301
+/organization/governance/          /cooperative/governance/                               301
 /organization/contributors/eigenlayer/  /get-involved/contributors/eigenlayer/            301
 /organization/contributors/        /get-involved/contributors/what-we-need/               301
 /organization/roadmap/             /cooperative/                                          301
@@ -66,7 +66,7 @@
 /bread-cooperative/contributors/                        /get-involved/contributors/what-we-need/     301
 /bread-cooperative/governance/bread-constitution/       /cooperative/governance/guiding-principles/  301
 /bread-cooperative/governance/operational-annex/        /get-involved/member-projects/responsibilities/  301
-/bread-cooperative/governance/                          /cooperative/governance/guiding-principles/  301
+/bread-cooperative/governance/                          /cooperative/governance/                     301
 /bread-cooperative/roadmap/                             /cooperative/                                301
 /bread-cooperative/sourdough-systems/gas-killer/        /cooperative/                                301
 /bread-cooperative/sourdough-systems/                   /cooperative/                                301

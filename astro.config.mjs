@@ -127,7 +127,7 @@ export default defineConfig({
                   items: [{ autogenerate: { directory: 'get-involved' } }],
               },
               {
-                  label: 'Tools and Mechanisms',
+                  label: 'Solidarity Tools',
                   items: [{ autogenerate: { directory: 'tools' } }],
               },
               { label: 'Contact & Links', link: '/contact/' },

@@ -44,7 +44,7 @@ Content is organized into two standalone pages and three sidebar sections:
 | Our Manifesto (page) | `src/content/docs/manifesto.md` |
 | Bread Cooperative | `src/content/docs/cooperative/` |
 | Get Involved | `src/content/docs/get-involved/` |
-| Tools and Mechanisms | `src/content/docs/tools/` |
+| Solidarity Tools | `src/content/docs/tools/` |
 | Contact & Links (page) | `src/content/docs/contact.md` |
 
 ## Customizations
@@ -63,7 +63,7 @@ collapsed: true       # Collapse by default (subdirs only)
 ```
 
 **Key behaviors:**
-- Top-level sections (Bread Cooperative, Get Involved, Tools and Mechanisms) are **expanded** by default
+- Top-level sections (Bread Cooperative, Get Involved, Solidarity Tools) are **expanded** by default
 - Sub-sections set `collapsed: false` so their pages stay visible
 - Files appear **before** folders in the sidebar (via custom plugin)
 

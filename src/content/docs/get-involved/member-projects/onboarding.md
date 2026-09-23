@@ -18,7 +18,7 @@ All new team members will learn the necessary skills for using our technological
 - how to bridge assets between chains
 - how to use the [Bread Solidarity Fund](/tools/solidarity-fund/how-it-works/)
 
-If any of this is new to your team, [How to Bake $BREAD](/cooperative/currency/how-to-bake/) is the place to start.
+If any of this is new to your team, [How to Bake BREAD](/cooperative/currency/how-to-bake/) is the place to start.
 
 ---
 
@@ -27,7 +27,7 @@ If any of this is new to your team, [How to Bake $BREAD](/cooperative/currency/h
 - **Nominate your representative** — they'll be added as a signer on the [Shared Treasury](/cooperative/governance/finances/) Safe and will attend monthly governance calls
 - **Send us your assets** — a logo and project details so your project can appear as an option on the governance page
 - **Fill out your project card** — the description, links, and treasury address shown on [Current Member Projects](/tools/solidarity-fund/member-projects/)
-- **Fund your treasury** — hold at least 3,000 $BREAD
+- **Fund your treasury** — hold at least 3,000 BREAD
 - **Announce it** — add a Bread Cooperative link and logo to your website, and share the news with your community
 
 ---

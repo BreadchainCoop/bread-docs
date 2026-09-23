@@ -49,7 +49,7 @@ Every tool gets better when more people use it. We're building abundance, not sc
 
 ## Why This Matters Now
 
-The world today is the result of choices made. Many of these outside our control. We want to empower working people to make their own choices, especially in communities where few have previously existed.
+The world today is the result of choices made. Many of these are outside our control. We want to empower working people to make their own choices, especially in communities where few have previously existed.
 
 We use technology to put these choices in place. Tools need to serve the needs of real people, and our mission is to make them accessible and effective.
 
