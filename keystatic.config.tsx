@@ -1,5 +1,43 @@
 import { config, fields, collection } from '@keystatic/core'
 
+const GALLERY_OPTIONS = [
+  { label: 'None', value: '' },
+  { label: 'Yield Recipients', value: 'yield-recipients' },
+  { label: 'Friends of Bread', value: 'friends-of-bread' },
+  { label: 'Angel Minters', value: 'angel-minters' },
+  { label: 'Member Projects', value: 'member-projects' },
+]
+
+// Every docs section shares the same Starlight frontmatter schema; only the
+// label and the directory they are stored in differ.
+const docsCollection = (label: string, path: `${string}/*` | `${string}/**`) =>
+  collection({
+    label,
+    slugField: 'title',
+    path,
+    format: { contentField: 'content' },
+    columns: ['title', 'description'],
+    entryLayout: 'content',
+    schema: {
+      title: fields.slug({ name: { label: 'Title' } }),
+      description: fields.text({ label: 'Description' }),
+      slug: fields.text({ label: 'Slug override' }),
+      url: fields.url({ label: 'External URL' }),
+      draft: fields.checkbox({ label: 'Draft', defaultValue: false }),
+      sidebar: fields.object({
+        label: fields.text({ label: 'Sidebar label' }),
+        order: fields.number({ label: 'Sidebar order' }),
+        hidden: fields.checkbox({ label: 'Hidden from sidebar', defaultValue: false }),
+      }),
+      gallery: fields.select({
+        label: 'Gallery',
+        options: GALLERY_OPTIONS,
+        defaultValue: '',
+      }),
+      content: fields.markdoc({ label: 'Content', extension: 'md' }),
+    },
+  })
+
 export default config({
   storage: {
     kind: 'github',
@@ -30,110 +68,16 @@ export default config({
       }
     },
     navigation: {
-      'Documentation': ['about', 'tools', 'organization'],
+      'Documentation': ['pages', 'cooperative', 'getInvolved', 'tools'],
       'Data': ['projects'],
     },
   },
 
   collections: {
-    about: collection({
-      label: 'Getting Started',
-      slugField: 'title',
-      path: 'src/content/docs/about/**',
-      format: { contentField: 'content' },
-      columns: ['title', 'description'],
-      entryLayout: 'content',
-      schema: {
-        title: fields.slug({ name: { label: 'Title' } }),
-        description: fields.text({ label: 'Description' }),
-        slug: fields.text({ label: 'Slug override' }),
-        url: fields.url({ label: 'External URL' }),
-        draft: fields.checkbox({ label: 'Draft', defaultValue: false }),
-        sidebar: fields.object({
-          label: fields.text({ label: 'Sidebar label' }),
-          order: fields.number({ label: 'Sidebar order' }),
-          hidden: fields.checkbox({ label: 'Hidden from sidebar', defaultValue: false }),
-        }),
-        gallery: fields.select({
-          label: 'Gallery',
-          options: [
-            { label: 'None', value: '' },
-            { label: 'Yield Recipients', value: 'yield-recipients' },
-            { label: 'Friends of Bread', value: 'friends-of-bread' },
-            { label: 'Angel Minters', value: 'angel-minters' },
-            { label: 'Member Projects', value: 'member-projects' },
-          ],
-          defaultValue: '',
-        }),
-        content: fields.markdoc({ label: 'Content', extension: 'md' }),
-      },
-    }),
-
-    tools: collection({
-      label: 'Bread Tools and Mechanisms',
-      slugField: 'title',
-      path: 'src/content/docs/tools/**',
-      format: { contentField: 'content' },
-      columns: ['title', 'description'],
-      entryLayout: 'content',
-      schema: {
-        title: fields.slug({ name: { label: 'Title' } }),
-        description: fields.text({ label: 'Description' }),
-        slug: fields.text({ label: 'Slug override' }),
-        url: fields.url({ label: 'External URL' }),
-        draft: fields.checkbox({ label: 'Draft', defaultValue: false }),
-        sidebar: fields.object({
-          label: fields.text({ label: 'Sidebar label' }),
-          order: fields.number({ label: 'Sidebar order' }),
-          hidden: fields.checkbox({ label: 'Hidden from sidebar', defaultValue: false }),
-        }),
-        gallery: fields.select({
-          label: 'Gallery',
-          options: [
-            { label: 'None', value: '' },
-            { label: 'Yield Recipients', value: 'yield-recipients' },
-            { label: 'Friends of Bread', value: 'friends-of-bread' },
-            { label: 'Angel Minters', value: 'angel-minters' },
-            { label: 'Member Projects', value: 'member-projects' },
-          ],
-          defaultValue: '',
-        }),
-        content: fields.markdoc({ label: 'Content', extension: 'md' }),
-      },
-    }),
-
-    organization: collection({
-      label: 'Bread Cooperative',
-      slugField: 'title',
-      path: 'src/content/docs/organization/**',
-      format: { contentField: 'content' },
-      columns: ['title', 'description'],
-      entryLayout: 'content',
-      schema: {
-        title: fields.slug({ name: { label: 'Title' } }),
-        description: fields.text({ label: 'Description' }),
-        slug: fields.text({ label: 'Slug override' }),
-        url: fields.url({ label: 'External URL' }),
-        draft: fields.checkbox({ label: 'Draft', defaultValue: false }),
-        sidebar: fields.object({
-          label: fields.text({ label: 'Sidebar label' }),
-          order: fields.number({ label: 'Sidebar order' }),
-          hidden: fields.checkbox({ label: 'Hidden from sidebar', defaultValue: false }),
-        }),
-        gallery: fields.select({
-          label: 'Gallery',
-          options: [
-            { label: 'None', value: '' },
-            { label: 'Yield Recipients', value: 'yield-recipients' },
-            { label: 'Friends of Bread', value: 'friends-of-bread' },
-            { label: 'Angel Minters', value: 'angel-minters' },
-            { label: 'Member Projects', value: 'member-projects' },
-          ],
-          defaultValue: '',
-        }),
-        content: fields.markdoc({ label: 'Content', extension: 'md' }),
-      },
-    }),
+    pages: docsCollection('Top-level Pages', 'src/content/docs/*'),
+    cooperative: docsCollection('Bread Cooperative', 'src/content/docs/cooperative/**'),
+    getInvolved: docsCollection('Get Involved', 'src/content/docs/get-involved/**'),
+    tools: docsCollection('Tools and Mechanisms', 'src/content/docs/tools/**'),
 
     projects: collection({
       label: 'Projects',

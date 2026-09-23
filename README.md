@@ -37,13 +37,15 @@ astro.config.mjs            # Starlight config: sidebar, plugins, overrides
 keystatic.config.tsx        # CMS collections, schema, storage
 ```
 
-Content is organized into three sidebar sections:
+Content is organized into two standalone pages and three sidebar sections:
 
-| Section | Directory |
-|---------|-----------|
-| Getting Started | `src/content/docs/about/` |
+| Sidebar Entry | Source |
+|---------|--------|
+| Our Manifesto (page) | `src/content/docs/manifesto.md` |
+| Bread Cooperative | `src/content/docs/cooperative/` |
+| Get Involved | `src/content/docs/get-involved/` |
 | Tools and Mechanisms | `src/content/docs/tools/` |
-| Bread Cooperative | `src/content/docs/organization/` |
+| Contact & Links (page) | `src/content/docs/contact.md` |
 
 ## Customizations
 
@@ -54,15 +56,15 @@ This project uses several custom plugins and configurations beyond standard Star
 Sidebar labels, ordering, and collapsed states are controlled via `_meta.yml` files in each directory (powered by [`starlight-auto-sidebar`](https://github.com/HiDeoo/starlight-auto-sidebar)):
 
 ```yaml
-# src/content/docs/about/_meta.yml
-label: About          # Sidebar label
+# src/content/docs/cooperative/currency/_meta.yml
+label: Community Currency  # Sidebar label
 order: 0              # Position in parent
 collapsed: true       # Collapse by default (subdirs only)
 ```
 
 **Key behaviors:**
-- Top-level sections (About, Solidarity Primitives, Bread Cooperative) are **expanded** by default
-- All nested subdirectories are **collapsed** by default
+- Top-level sections (Bread Cooperative, Get Involved, Tools and Mechanisms) are **expanded** by default
+- Sub-sections set `collapsed: false` so their pages stay visible
 - Files appear **before** folders in the sidebar (via custom plugin)
 
 ### Custom Plugins
@@ -81,17 +83,17 @@ collapsed: true       # Collapse by default (subdirs only)
 
 ### URL Redirects
 
-Astro redirects maintain backward compatibility with old short URLs:
+`public/_redirects` maintains backward compatibility with every previous generation of the site's URLs, plus a set of root-level short aliases:
 
 | Old URL | Redirects To |
 |---------|--------------|
-| `/token` | `/about/bread-token` |
-| `/marketplace` | `/about/bread-token/marketplace` |
-| `/solidarity-fund` | `/solidarity-primitives/crowdstaking` |
-| `/angel-minters` | `/solidarity-primitives/crowdstaking/angel-minters` |
-| `/member-projects` | `/solidarity-primitives/crowdstaking/member-projects` |
+| `/bread-token` | `/cooperative/currency/bread-token/` |
+| `/marketplace` | `/cooperative/friends-of-bread/where-to-spend-bread/` |
+| `/solidarity-fund` | `/tools/solidarity-fund/how-it-works/` |
+| `/angel-minters` | `/cooperative/currency/angel-minter-program/` |
+| `/member-projects` | `/tools/solidarity-fund/member-projects/` |
 
-Custom `slug:` frontmatter has been removed from index files; URLs now follow the directory structure.
+Rules are ordered most-specific-first (Netlify takes the first match). When you move a page, add a rule for its old path **and** retarget any existing rule that pointed there — otherwise old links land on a redirect that itself 404s.
 
 ### Design System
 

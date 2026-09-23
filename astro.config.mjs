@@ -117,18 +117,20 @@ export default defineConfig({
               { icon: 'x.com', label: 'X', href: 'https://x.com/breadcoop' },
           ],
           sidebar: [
+              { label: 'Our Manifesto', link: '/manifesto/' },
               {
-                  label: 'Getting Started',
-                  items: [{ autogenerate: { directory: 'about' } }],
+                  label: 'Bread Cooperative',
+                  items: [{ autogenerate: { directory: 'cooperative' } }],
               },
               {
-                  label: 'Solidarity Tools',
+                  label: 'Get Involved',
+                  items: [{ autogenerate: { directory: 'get-involved' } }],
+              },
+              {
+                  label: 'Tools and Mechanisms',
                   items: [{ autogenerate: { directory: 'tools' } }],
               },
-              {
-                  label: 'How We Work',
-                  items: [{ autogenerate: { directory: 'organization' } }],
-              },
+              { label: 'Contact & Links', link: '/contact/' },
           ],
           markdown: {
               processedDirs: ['./src/content/projects/'],
