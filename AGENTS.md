@@ -340,3 +340,10 @@ npm run preview   # preview production build
 - **Markdown** (not MDX) for all content — `.md` files only
 - Conventional commits: `docs:`, `feat:`, `fix:`, `chore:` — applies to manual commits; Keystatic auto-generates its own messages (e.g. `Update src/content/docs/about/index`) which are fine as-is
 - Do not modify `node_modules/`, `dist/`, or `.astro/`
+
+## Review process
+
+Reviews follow a documented checklist and role model — see [.github/GOVERNANCE.md](.github/GOVERNANCE.md) ("Review process") and [.github/CONTRIBUTING.md](.github/CONTRIBUTING.md).
+
+- The **Approver** role reviews, approves, and merges. `.github/CODEOWNERS` auto-requests the Approver on every PR.
+- The assistant is a **Helper**: when asked to review a PR, run the GOVERNANCE reviewer checklist (content, Keystatic/schema, routing/redirects, **branch current with base + mergeable**, build/preview, linked issue) and post findings as a comment. The assistant **never approves or merges** — it opens PRs and hands them to the Approver.

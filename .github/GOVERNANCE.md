@@ -20,6 +20,19 @@ bread-docs is owned by the **Information Pathways** working group. Responsibilit
 
 These rules are enforced by branch protection on `main`, so they hold regardless of who has write access.
 
+## Review process
+
+Every PR is reviewed against this checklist before the Approver merges. The **Approver** role reviews and approves; the assistant (**Helper**) may add review comments but never approves or merges. Reviewers check:
+
+- **Content & prose** — accurate, and clear/conventional; no jargon theater or filler.
+- **Keystatic / schema** — frontmatter matches `src/content.config.ts` (the build validates it).
+- **Routing & redirects** — any moved or renamed URL has a `301` in `public/_redirects`, and there are no broken internal links.
+- **Branch state** — the branch is **current with `main`** (not behind) and **mergeable** (no conflicts).
+- **Build** — `npm run build` passes and the Netlify deploy-preview is green.
+- **Linked issue** — present for requested changes (independent contributions may note "independent").
+
+Enforcement lives in GitHub, not just here: `.github/CODEOWNERS` auto-requests the Approver, and branch protection requires that approval. The docs describe the standard; those settings make it stick.
+
 ## How decisions get made
 
 - **Requests for a change** — you want something changed but aren't implementing it yourself — start as a **GitHub issue** using the issue template. The request is clarified and specified on the issue *before* any code; the issue is where the work is coordinated.
