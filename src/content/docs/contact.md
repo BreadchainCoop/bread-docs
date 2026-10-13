@@ -1,7 +1,6 @@
 ---
-title: Contacts and Links
-sidebar:
-  order: 2
+title: "Contact & Links"
+description: "How to reach Bread Cooperative, and where to find us across the web."
 ---
 
 ## Get in touch

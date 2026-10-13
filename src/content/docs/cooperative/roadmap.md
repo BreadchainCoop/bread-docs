@@ -2,6 +2,8 @@
 title: Roadmap
 description: The evolving roadmap of the Bread Cooperative project
 draft: true
+sidebar:
+  hidden: true
 ---
 
 This is our current high level **roadmap** for continuing to build Bread Cooperative.

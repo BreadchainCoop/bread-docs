@@ -1,14 +1,8 @@
 ---
-title: The Bread Cooperative Manifesto
-description: >-
-  The Bread Cooperative Manifesto embodies our identity as working people
-  building practical financial tools through cooperative action
-draft: false
-sidebar:
-  order: 3
-  hidden: false
-gallery: ''
+title: Our Manifesto
+description: The Bread Cooperative Manifesto embodies our identity as working people building practical financial tools through cooperative action
 ---
+
 ## Our Declaration
 
 We exist to build tools that empower working people. When applied to benefit the collective, technology becomes a catalyst that enables communities to flourish.
