@@ -2,6 +2,9 @@
 /wiki/*          /:splat          301
 /attachments/*   /images/:splat   301
 
+# --- Oct 2026: the Citizen Wallet member page became La Caisse (#57) ---
+/projects/citizen-wallet/                     /projects/la-caisse/                            301
+
 # --- Sep 2026 main restructure (#45/#46) → Gen-5 ---
 /about/bread-cooperative/                     /cooperative/                                   301
 /about/bread-token/gardens-setup/             /cooperative/governance/bread-garden/           301
