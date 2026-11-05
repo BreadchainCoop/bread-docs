@@ -1,6 +1,6 @@
 ---
 title: La Caisse
-description: The digital cashbox for solidarity funds. Open source, behind La CLASS (food social security in Schaerbeek) and Pay for Brussels (the don suspendu fund of Brussels Pay ASBL, which holds this Solidarity Fund membership).
+description: The digital cashbox for solidarity funds. Open source, behind La CLASS (food social security in Schaerbeek) and Pay for Brussels (the don suspendu fund, which holds this Solidarity Fund membership).
 url: https://lacaisse.eu/
 Project Lead: Kevin Sundar Raj
 Email: kevin@citizenpay.eu
@@ -20,7 +20,7 @@ isMemberProject: true
 - [Karma GAP](https://www.karmahq.org/project/la-caisse-by-citizen-pay) — La Caisse by Citizen Pay
 
 :::note[Formerly listed as Citizen Wallet]
-This membership joined the Solidarity Fund in early 2025 as Citizen Wallet. It is now held by Brussels Pay ASBL, the non-profit behind Pay for Brussels. The yield lands with Brussels Pay ASBL and goes straight to the spending pool that people in need spend from through partner organisations in Brussels. La Caisse is the software both funds run on.
+This membership joined the Solidarity Fund in early 2025 as Citizen Wallet. It is now held by Pay for Brussels. The yield lands with Pay for Brussels and goes straight to the spending pool that people in need spend from through partner organisations in Brussels. La Caisse is the software both funds run on.
 :::
 
 ## BASICS
@@ -43,7 +43,7 @@ La Caisse is a digital public good. The software is licensed under AGPL-3.0, co-
 
 Three organisations stand behind La Caisse. The funds govern; Citizen Pay runs the plumbing.
 
-- **Brussels Pay ASBL** — the non-profit that runs Pay for Brussels, the don suspendu fund, and holds the Solidarity Fund membership. Donations increase the $BREAD it holds; the yield goes straight to the spending pool.
+- **Pay for Brussels** — the don suspendu fund, a Brussels non-profit, which holds the Solidarity Fund membership. Donations increase the $BREAD it holds; the yield goes straight to the spending pool.
 - **La CLASS ASBL** — runs the food social security fund in Schaerbeek and co-finances the software.
 - **Citizen Pay** (BV/SRL, Brussels, run by Kevin Sundar Raj) — builds the terminals, NFC cards and acquiring integrations, and operates La Caisse day to day. It is a company rather than a co-op because terminals and acquiring sit next to regulated money and need an entity that can carry licences and liability.
 
@@ -63,7 +63,7 @@ Three organisations stand behind La Caisse. The funds govern; Citizen Pay runs t
 
 **Pay for Brussels**
 
-[https://pay.brussels/](https://pay.brussels/) — The don suspendu scheme of Brussels Pay ASBL. Donors fund coffees and meals at partner shops; cards go to people who need them through partner organisations that already have their trust.
+[https://pay.brussels/](https://pay.brussels/) — The don suspendu fund of Brussels. Donors fund coffees and meals at partner shops; cards go to people who need them through partner organisations that already have their trust.
 
 **Zinne**
 
@@ -106,7 +106,7 @@ Three things were simplified to make it work: the token is the books, one ledger
 
 ### Pay for Brussels: don suspendu
 
-Brussels Pay ASBL raised €5,015 from 32 donors on Growfunding over three months, roughly 1,600 coffees or 500 warm meals. Rather than spread cards across the city, the first year was a deliberate one-shop, one-partner pilot. The shop is Mazette, a cooperative brewpub. The partner is Le Pilier, a low-threshold reception service run by Modus Vivendi, the Brussels harm-reduction organisation. Le Pilier handed out 10 cards. Over the period, 48 transactions were paid from the fund, €253.20 in total, about 84 coffees.
+Pay for Brussels raised €5,015 from 32 donors on Growfunding over three months, roughly 1,600 coffees or 500 warm meals. Rather than spread cards across the city, the first year was a deliberate one-shop, one-partner pilot. The shop is Mazette, a cooperative brewpub. The partner is Le Pilier, a low-threshold reception service run by Modus Vivendi, the Brussels harm-reduction organisation. Le Pilier handed out 10 cards. Over the period, 48 transactions were paid from the fund, €253.20 in total, about 84 coffees.
 
 A few hundred euros is not a big number, but every one of those 48 taps was someone sitting down in a bar like any other customer, with no form to fill in and no explanation to give at the counter.
 
@@ -148,7 +148,7 @@ What it paid for: building the platform itself, migrating all of La CLASS's oper
 - **La CLASS:** grow steadily, one side at a time. New merchants and new members are added in alternation so that supply and demand stay balanced.
 - **Pay for Brussels:** host an event at Mazette to raise donations and introduce the next merchants. More partner organisations like Le Pilier to get cards to the people who will use them.
 - **La Caisse:** Zinne's instance, and three to four new funds in the south of Belgium.
-- **Bread:** the Solidarity Fund yield goes straight to the Pay for Brussels spending pool. Incoming donations go to increasing the $BREAD held by Brussels Pay ASBL, so the yield grows over time instead of the donation pool shrinking.
+- **Bread:** the Solidarity Fund yield goes straight to the Pay for Brussels spending pool. Incoming donations go to increasing the $BREAD held by Pay for Brussels, so the yield grows over time instead of the donation pool shrinking.
 
 ## QUESTIONS!
 
@@ -156,7 +156,7 @@ What it paid for: building the platform itself, migrating all of La CLASS's oper
 
 ### How do you plan to incorporate BREAD in your org?
 
-Brussels Pay ASBL holds the Solidarity Fund membership. Donations to Pay for Brussels go to increasing the $BREAD it holds, and the yield goes straight to the spending pool that people in need spend from through our partners in Brussels. The fund earns yield instead of drawing down its donation pool.
+Pay for Brussels holds the Solidarity Fund membership. Donations go to increasing the $BREAD it holds, and the yield goes straight to the spending pool that people in need spend from through our partners in Brussels. The fund earns yield instead of drawing down its donation pool.
 
 $BREAD acceptance has also been built for Citizen Pay terminals, with Monerium integration for the euro leg. It is not yet switched on for merchants; that is the next step.
 
@@ -164,11 +164,11 @@ In kind, we helped run the Bread stand at DappCon: we baked a Breadtzel and ran 
 
 ### What do you plan to do in the short term with the funds received from Bread Cooperative?
 
-The yield goes straight into the Pay for Brussels spending pool and helps people in need take part in the life of the city again: coffees and meals at partner shops, with cards handed out through organisations like Le Pilier. Incoming donations go to increasing the $BREAD held by Brussels Pay ASBL, so the yield grows.
+The yield goes straight into the Pay for Brussels spending pool and helps people in need take part in the life of the city again: coffees and meals at partner shops, with cards handed out through organisations like Le Pilier. Incoming donations go to increasing the $BREAD held by Pay for Brussels, so the yield grows.
 
 ### What processes do you have to determine how funds from Bread Cooperative are allocated?
 
-The funds govern; Citizen Pay runs the plumbing. Brussels Pay ASBL holds the membership: the yield goes straight to the spending pool, and partner organisations in Brussels that already have the trust of the people concerned decide who receives a card. La CLASS members decide which shops qualify and who receives the allowance; the fund's own finances are the members' business.
+The funds govern; Citizen Pay runs the plumbing. Pay for Brussels holds the membership and the yield goes straight to its spending pool. Who spends from it is not our decision: the partner organisations of Pay for Brussels, such as Le Pilier, distribute the cards and decide who receives one. La CLASS members decide which shops qualify and who receives the allowance; the fund's own finances are the members' business.
 
 ### What have you done so far with the funds you've received?
 
