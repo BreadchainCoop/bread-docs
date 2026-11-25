@@ -328,14 +328,15 @@ site-search button[data-open-modal]:hover {
 }
 
 /* Mobile menu toggle + "On this page" toggle — square like everything else */
-starlight-menu-button button {
+/* Starlight 0.42+ popover toggle: <button class="sl-menu-button"> */
+.sl-menu-button {
   border-radius: 0;
   background-color: transparent;
   color: var(--bread-heading);
   box-shadow: none;
 }
 
-starlight-menu-button button:hover {
+.sl-menu-button:hover {
   background-color: var(--bread-bg-sunken);
 }
 
