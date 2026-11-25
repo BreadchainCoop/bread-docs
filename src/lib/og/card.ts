@@ -29,6 +29,13 @@ export const homeCard = (): CardContent => ({
 	meta: CARD_VARIANT === 'meta' ? { trail: [] } : undefined,
 });
 
+/** The Updates index (src/pages/updates/index.astro sets the same og.description). */
+export const updatesCard = (): CardContent => ({
+	title: 'Updates',
+	tagline: 'News from Bread Cooperative.',
+	meta: CARD_VARIANT === 'meta' ? { trail: [] } : undefined,
+});
+
 const humanise = (s: string) => s.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 
 export function cardFromPage(page: CardPage, labels: SectionLabels): CardContent {

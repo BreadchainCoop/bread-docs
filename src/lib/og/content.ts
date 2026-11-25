@@ -4,7 +4,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { cardFromPage, type SectionLabels } from './card';
 
-export { CARD_VARIANT, cardPath, customCardPaths, homeCard } from './card';
+export { CARD_VARIANT, cardPath, customCardPaths, homeCard, updatesCard } from './card';
 
 let labelsPromise: Promise<SectionLabels> | undefined;
 

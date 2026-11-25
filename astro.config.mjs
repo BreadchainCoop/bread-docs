@@ -135,6 +135,8 @@ export default defineConfig({
                   label: 'Solidarity Tools',
                   items: [{ autogenerate: { directory: 'tools' } }],
               },
+              // Posts imported from Paragraph (src/pages/updates/)
+              { label: 'Updates', link: '/updates/' },
               { label: 'Contact & Links', link: '/contact/' },
           ],
           markdown: {
@@ -159,6 +161,12 @@ export default defineConfig({
       // warning fire on every build and obscure genuinely new regressions.
       chunkSizeWarningLimit: 3000,
     },
+  },
+
+  // Remote images allowed through the image service. The Netlify adapter turns
+  // these into the Netlify Image CDN allowlist. Paragraph stores post images here.
+  image: {
+    remotePatterns: [{ protocol: 'https', hostname: 'storage.googleapis.com', pathname: '/papyrus_images/**' }],
   },
 
   adapter: netlify(),

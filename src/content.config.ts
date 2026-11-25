@@ -5,6 +5,7 @@ import { docsSchema } from '@astrojs/starlight/schema';
 import { autoSidebarLoader } from 'starlight-auto-sidebar/loader';
 import { autoSidebarSchema } from 'starlight-auto-sidebar/schema';
 import { glob } from 'astro/loaders';
+import { paragraphLoader } from './lib/updates/loader';
 
 export const collections = {
 	docs: defineCollection({
@@ -30,6 +31,10 @@ export const collections = {
 					.optional(),
 			}),
 		}),
+	}),
+	// Updates section: posts imported from Paragraph at build time (src/lib/updates/)
+	updates: defineCollection({
+		loader: paragraphLoader({ publication: 'breadcoop', basePath: '/updates/' }),
 	}),
 	autoSidebar: defineCollection({
 		loader: autoSidebarLoader(),

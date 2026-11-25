@@ -1,0 +1,125 @@
+---
+/**
+ * One update (a Paragraph post), in the docs layout. The canonical URL is the
+ * post on Paragraph, so search engines index the original rather than this copy.
+ */
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { coverImage, withOptimisedImages } from '../../lib/updates/images';
+import { formatDate, sortUpdates } from '../../lib/updates/format';
+
+export async function getStaticPaths() {
+	const updates = sortUpdates(await getCollection('updates'));
+	return updates.map((entry, i) => ({
+		params: { slug: entry.id },
+		// Newest first: the next item in the list is the older post
+		props: { entry, newer: updates[i - 1], older: updates[i + 1] },
+	}));
+}
+
+type Props = {
+	entry: CollectionEntry<'updates'>;
+	newer?: CollectionEntry<'updates'>;
+	older?: CollectionEntry<'updates'>;
+};
+const { entry, newer, older } = Astro.props;
+const { data } = entry;
+
+const html = await withOptimisedImages(entry.rendered?.html ?? '', data.images);
+const headings = (entry.rendered?.metadata?.headings ?? []) as { depth: number; slug: string; text: string }[];
+const cover = data.cover ? await coverImage(data.cover, 1440, 720, { widths: [480, 960, 1440] }) : undefined;
+// Social card: the post's own cover, cropped to 1200×630
+const ogImage = data.cover ? (await coverImage(data.cover, 1200, 630, { format: 'jpg' })).src : undefined;
+const link = (e?: CollectionEntry<'updates'>) => (e ? { link: `/updates/${e.id}/`, label: e.data.title } : false);
+---
+
+<StarlightPage
+	frontmatter={{
+		title: data.title,
+		description: data.description,
+		pageActions: false,
+		prev: link(older),
+		next: link(newer),
+		og: ogImage ? { image: ogImage, alt: `Cover image for “${data.title}”` } : undefined,
+		head: [
+			{ tag: 'link', attrs: { rel: 'canonical', href: data.url } },
+			{ tag: 'meta', attrs: { property: 'og:type', content: 'article' } },
+			{ tag: 'meta', attrs: { property: 'article:published_time', content: data.date.toISOString() } },
+		],
+	}}
+	headings={headings}
+>
+	<p class="update-meta not-content">
+		<time datetime={data.date.toISOString()}>{formatDate(data.date)}</time>
+		<span aria-hidden="true">·</span>
+		<a href={data.url}>Read on Paragraph</a>
+	</p>
+	{
+		cover && (
+			<img
+				class="update-cover"
+				src={cover.src}
+				srcset={cover.srcSet.attribute || undefined}
+				sizes="(min-width: 50rem) 45rem, 100vw"
+				width={cover.attributes.width}
+				height={cover.attributes.height}
+				alt=""
+				fetchpriority="high"
+				decoding="async"
+			/>
+		)
+	}
+	<Fragment set:html={html} />
+	<aside class="update-footer not-content">
+		<p>
+			This update was first published on Paragraph. <a href={`${data.url.replace(/\/[^/]+$/, '')}/subscribe`}>Subscribe</a> to get
+			the next one by email, or browse <a href="/updates/">all updates</a>.
+		</p>
+	</aside>
+</StarlightPage>
+
+<style>
+	.update-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin: 0 0 1.5rem;
+		font-size: var(--sl-text-sm);
+		color: var(--bread-text-muted);
+	}
+	.update-meta a {
+		color: var(--bread-link);
+	}
+	.update-cover {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 2 / 1;
+		object-fit: cover;
+		border: 1px solid var(--bread-border);
+	}
+	:global(.sl-markdown-content) :global(figure) {
+		margin-inline: 0;
+	}
+	:global(.sl-markdown-content) :global(figure img),
+	:global(.sl-markdown-content) :global(p > img) {
+		height: auto;
+	}
+	:global(.sl-markdown-content) :global(figcaption) {
+		font-size: var(--sl-text-sm);
+		color: var(--bread-text-muted);
+	}
+	.update-footer {
+		margin-top: 3rem;
+		padding: 1rem 1.25rem;
+		border: 1px solid var(--bread-border-strong);
+		background: var(--bread-bg-sunken);
+		font-size: var(--sl-text-sm);
+	}
+	.update-footer p {
+		margin: 0;
+	}
+	.update-footer a {
+		color: var(--bread-link);
+	}
+</style>

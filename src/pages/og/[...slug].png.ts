@@ -6,7 +6,7 @@
  */
 import type { APIRoute, GetStaticPaths, InferGetStaticPropsType } from 'astro';
 import { getCollection } from 'astro:content';
-import { cardFor, homeCard } from '../../lib/og/content';
+import { cardFor, homeCard, updatesCard } from '../../lib/og/content';
 import { renderCard } from '../../lib/og/render';
 
 export const getStaticPaths = (async () => {
@@ -18,6 +18,8 @@ export const getStaticPaths = (async () => {
 		);
 	return [
 		{ params: { slug: 'index' }, props: { card: homeCard() } },
+		// Updates index (src/pages/updates/). Each update uses its Paragraph cover instead.
+		{ params: { slug: 'updates' }, props: { card: updatesCard() } },
 		...(await Promise.all(docs.map(async (entry) => ({ params: { slug: entry.id }, props: { card: await cardFor(entry) } })))),
 	];
 }) satisfies GetStaticPaths;

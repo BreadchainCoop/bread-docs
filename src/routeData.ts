@@ -16,9 +16,12 @@ export const onRequest = defineRouteMiddleware(async (context) => {
 	const image = new URL(og?.image || cardPath(route.id), context.site);
 	const alt = og?.alt || (await cardAlt(route.id ? await cardFor(route.entry as CollectionEntry<'docs'>) : homeCard()));
 
+	// Generated and custom cards are PNG; Updates use a JPEG crop from the image CDN (fm=jpg)
+	const type = image.pathname.endsWith('.png') ? 'image/png' : image.searchParams.get('fm') === 'jpg' ? 'image/jpeg' : undefined;
+
 	route.head.push(
 		{ tag: 'meta', attrs: { property: 'og:image', content: image.href } },
-		{ tag: 'meta', attrs: { property: 'og:image:type', content: 'image/png' } },
+		...(type ? [{ tag: 'meta' as const, attrs: { property: 'og:image:type', content: type } }] : []),
 		{ tag: 'meta', attrs: { property: 'og:image:width', content: '1200' } },
 		{ tag: 'meta', attrs: { property: 'og:image:height', content: '630' } },
 		{ tag: 'meta', attrs: { property: 'og:image:alt', content: alt } },
