@@ -97,7 +97,7 @@ Rules are ordered most-specific-first (Netlify takes the first match). When you 
 
 ### Design System
 
-- **Fonts**: Pogaca (Bread Display & Bread Body) — custom WOFF2 files in `public/fonts/`
+- **Fonts**: Pogaca (Bread Display & Bread Body) — custom WOFF2 files in `src/assets/fonts/`, loaded with the Astro Fonts API (`fonts` in `astro.config.mjs`)
 - **Colors**: Defined in `src/styles/global.css` with CSS custom properties
 - **Dark mode**: Fully supported via `[data-theme='dark']` selectors
 

@@ -10,6 +10,7 @@
  * All facts here are taken from the docs pages they link to.
  */
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import AnchorHeading from '@astrojs/starlight/components/AnchorHeading.astro';
 
 const BREAD_CONTRACT = '0xa555d5344f6fb6c65da19e403cb4c1ec4a1a5ee3';
 
@@ -107,7 +108,7 @@ const headings = [
 
 		<!-- 1. Start here ------------------------------------------------- -->
 		<section aria-labelledby="start-here">
-			<h2 id="start-here" class="section-title">Start here</h2>
+			<AnchorHeading level="2" id="start-here" class="section-title">Start here</AnchorHeading>
 			<ul class="paths">
 				{
 					paths.map((p) => (
@@ -140,7 +141,7 @@ const headings = [
 
 		<!-- 2. How Bread works -------------------------------------------- -->
 		<section aria-labelledby="how-bread-works">
-			<h2 id="how-bread-works" class="section-title">How Bread works</h2>
+			<AnchorHeading level="2" id="how-bread-works" class="section-title">How Bread works</AnchorHeading>
 			<p class="section-intro">
 				BREAD is a community currency on Gnosis Chain, backed 1:1 by xDAI. Holding it neither earns
 				nor loses you money. Instead, the yield on everyone’s deposits funds the cooperative’s
@@ -171,7 +172,7 @@ const headings = [
 
 		<!-- 3. Quick reference -------------------------------------------- -->
 		<section aria-labelledby="quick-reference">
-			<h2 id="quick-reference" class="section-title">Quick reference</h2>
+			<AnchorHeading level="2" id="quick-reference" class="section-title">Quick reference</AnchorHeading>
 			<dl class="facts">
 				<div class="fact fact-wide">
 					<dt>BREAD contract (Gnosis Chain)</dt>
@@ -213,7 +214,7 @@ const headings = [
 		<!-- 4. Get in touch ------------------------------------------------ -->
 		<section aria-labelledby="get-in-touch" class="contact">
 			<div>
-				<h2 id="get-in-touch" class="section-title">Get in touch</h2>
+				<AnchorHeading level="2" id="get-in-touch" class="section-title">Get in touch</AnchorHeading>
 				<p class="contact-text">
 					Ask in Discord, or email <a href="mailto:contact@bread.coop">contact@bread.coop</a>.
 				</p>
@@ -273,14 +274,27 @@ const headings = [
 		margin: 0;
 	}
 
-	.section-title {
+	/* <AnchorHeading> wraps the h2 in .sl-heading-wrapper; space the wrapper */
+	.home :global(.sl-heading-wrapper) {
+		/* match the heading so the wrapper (and its anchor icon) don't add height */
+		font-size: clamp(1.625rem, 1.3rem + 1vw, 2.125rem);
+		line-height: 1.05;
+		margin-bottom: 1.25rem;
+	}
+
+	.contact :global(.sl-heading-wrapper) {
+		font-size: 1.5rem;
+		margin-bottom: 0.375rem;
+	}
+
+	.home :global(.section-title) {
 		font-family: var(--font-breadDisplay);
 		font-weight: 900;
 		font-size: clamp(1.625rem, 1.3rem + 1vw, 2.125rem);
 		line-height: 1.05;
 		letter-spacing: -0.02em;
 		color: var(--bread-heading);
-		margin: 0 0 1.25rem;
+		margin: 0;
 		scroll-margin-top: calc(var(--sl-nav-height) + 1.5rem);
 	}
 
@@ -630,9 +644,8 @@ const headings = [
 		border: 1px solid var(--bread-border-strong);
 	}
 
-	.contact .section-title {
+	.contact :global(.section-title) {
 		font-size: 1.5rem;
-		margin-bottom: 0.375rem;
 	}
 
 	.contact-text {

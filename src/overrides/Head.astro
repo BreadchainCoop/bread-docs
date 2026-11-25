@@ -1,0 +1,17 @@
+---
+/**
+ * Head override: Starlight's default <head> plus the Astro Fonts API output
+ * for the Bread typefaces configured in astro.config.mjs (`fonts`).
+ *
+ * Only the two faces visible above the fold on every page are preloaded:
+ * Bread Display Black (page titles) and Bread Body Regular (body text).
+ * https://starlight.astro.build/guides/overriding-components/
+ * https://docs.astro.build/en/guides/fonts/#preload-fonts
+ */
+import Default from '@astrojs/starlight/components/Head.astro';
+import { Font } from 'astro:assets';
+---
+
+<Default />
+<Font cssVariable="--font-breadDisplay" preload={[{ weight: 900, style: 'normal' }]} />
+<Font cssVariable="--font-breadBody" preload={[{ weight: 400, style: 'normal' }]} />

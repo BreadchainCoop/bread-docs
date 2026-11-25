@@ -1,4 +1,5 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { docsLoader } from '@astrojs/starlight/loaders';
 import { docsSchema } from '@astrojs/starlight/schema';
 import { autoSidebarLoader } from 'starlight-auto-sidebar/loader';
@@ -11,8 +12,6 @@ export const collections = {
 		schema: docsSchema({
 			extend: z.object({
 				gallery: z.string().optional(),
-				// starlight-page-actions: set false to hide Copy/Open/Share on a page
-				pageActions: z.boolean().optional(),
 			}),
 		}),
 	}),

@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightPageActions from 'starlight-page-actions';
 import starlightMarkdownBlocks, { Draft } from 'starlight-markdown-blocks';
@@ -19,6 +19,38 @@ export default defineConfig({
   site: 'https://docs.bread.coop',
   output: 'static',
   trailingSlash: 'ignore',
+
+  // Bread typefaces (Pogaca) via the Astro Fonts API: generates @font-face
+  // rules, metric-matched fallbacks and preload links. Rendered by
+  // src/overrides/Head.astro. https://docs.astro.build/en/guides/fonts/
+  fonts: [
+      {
+          provider: fontProviders.local(),
+          name: 'Bread Display',
+          cssVariable: '--font-breadDisplay',
+          fallbacks: ['sans-serif'],
+          options: {
+              variants: [
+                  { weight: 400, style: 'normal', src: ['./src/assets/fonts/PogacaDisplayRegular.woff2'] },
+                  { weight: 700, style: 'normal', src: ['./src/assets/fonts/PogacaDisplayBold.woff2'] },
+                  { weight: 900, style: 'normal', src: ['./src/assets/fonts/PogacaDisplayBlack.woff2'] },
+              ],
+          },
+      },
+      {
+          provider: fontProviders.local(),
+          name: 'Bread Body',
+          cssVariable: '--font-breadBody',
+          fallbacks: ['sans-serif'],
+          options: {
+              variants: [
+                  { weight: 300, style: 'normal', src: ['./src/assets/fonts/PogacaBodyLight.woff2'] },
+                  { weight: 400, style: 'normal', src: ['./src/assets/fonts/PogacaBodyRegular.woff2'] },
+                  { weight: 700, style: 'normal', src: ['./src/assets/fonts/PogacaBodyBold.woff2'] },
+              ],
+          },
+      },
+  ],
 
   integrations: [
       react(),
@@ -61,22 +93,12 @@ export default defineConfig({
               // Override SiteTitle with Bread logo
               SiteTitle: './src/overrides/SiteTitle.astro',
               MarkdownContent: './src/overrides/MarkdownContent.astro',
+              // Adds the Astro Fonts API <Font /> tags (preload + @font-face)
+              Head: './src/overrides/Head.astro',
           },
           // PNG favicon fallback for browsers/rss readers that don't render SVG.
           // SVG favicon is added automatically by Starlight at /favicon.svg.
           head: [
-              // Preload the two faces visible above the fold so uppercase
-              // titles don't flash in the fallback font.
-              ...['PogacaDisplayBlack', 'PogacaBodyRegular'].map((f) => ({
-                  tag: 'link',
-                  attrs: {
-                      rel: 'preload',
-                      href: `/fonts/${f}.woff2`,
-                      as: 'font',
-                      type: 'font/woff2',
-                      crossorigin: '',
-                  },
-              })),
               {
                   tag: 'link',
                   attrs: {

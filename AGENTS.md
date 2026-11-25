@@ -80,15 +80,22 @@ bread-docs/
 │   │   ├── get-involved/         # Contributors and member projects
 │   │   └── tools/                # Solidarity Fund and Stacks
 │   ├── content/member-projects/  # Member project profiles (MDX, separate collection)
+│   ├── assets/fonts/             # Pogaca woff2 files (Bread Display, Bread Body), loaded via the Astro Fonts API
+│   ├── lib/docsIndex.ts          # Builds the Markdown site index (/index.md, /llms.txt)
 │   ├── overrides/
-│   │   └── SiteTitle.astro       # Replaces Starlight header title with Bread logo
+│   │   ├── Head.astro            # Adds Astro Fonts API <Font /> tags (preload + @font-face)
+│   │   ├── MarkdownContent.astro # Appends project galleries to pages that set `gallery`
+│   │   └── SiteTitle.astro       # Bread logomark + BREAD COOPERATIVE wordmark
+│   ├── pages/
+│   │   ├── index.astro           # Home page
+│   │   ├── [...slug].md.ts       # Markdown copy of every docs page (<page>.md)
+│   │   ├── index.md.ts, llms.txt.ts  # Markdown site index
 │   ├── plugins/
 │   │   ├── starlightFilesBeforeFolders.ts  # Sidebar ordering plugin
 │   │   └── filesBeforeFolders.ts           # Shared utility
 │   └── styles/
-│       └── global.css            # Full design system: fonts, tokens, Starlight overrides
+│       └── global.css            # Theme: tokens, Starlight mapping and overrides
 ├── public/
-│   ├── fonts/                    # Pogaca woff2 files (Bread Display, Bread Body)
 │   └── images/                   # Static images referenced in markdown
 
 ```
@@ -192,10 +199,10 @@ To override additional Starlight components, create a `.astro` file in `src/over
 
 ### Fonts
 
-- **Bread Display** (`PogacaDisplay*.woff2`) — headings, h1–h3, site title
-- **Bread Body** (`PogacaBody*.woff2`) — body text, navigation, h4–h6
+- **Bread Display** (`PogacaDisplay*.woff2`) — page titles and h2
+- **Bread Body** (`PogacaBody*.woff2`) — body text, navigation, h3–h6
 
-CSS variables: `--font-breadDisplay`, `--font-breadBody`
+Fonts are registered with the [Astro Fonts API](https://docs.astro.build/en/guides/fonts/) (`fonts` in `astro.config.mjs`), which generates the `@font-face` rules, size-matched fallbacks and preload links. `src/overrides/Head.astro` renders them and preloads only Bread Display Black and Bread Body Regular. Don't add `@font-face` rules to `global.css`. CSS variables: `--font-breadDisplay`, `--font-breadBody`.
 
 ### Color Tokens
 
@@ -227,11 +234,11 @@ Starlight's `--sl-color-*` variables are mapped from these tokens in one place.
 
 ### Dark Mode
 
-Starlight's dark mode is driven by `[data-theme='dark']` on `<html>`. The dark theme is a single ink ramp derived from `#1B201A` (the colour bread.coop uses for its dark sections) with paper-tinted text. To change dark mode, edit the `--bread-*` tokens under `:root[data-theme='dark']` — don't add per-component dark overrides.
+Starlight sets `data-theme` (`dark` or `light`) on `<html>`. Following Starlight's convention, `global.css` defines dark values on `:root` and light values on `:root[data-theme='light']`. The dark theme is a single ink ramp derived from `#1B201A` (the colour bread.coop uses for its dark sections) with paper-tinted text. To change either theme, edit the `--bread-*` tokens; don't add per-component dark overrides.
 
 ### CSS Layers
 
-`global.css` declares explicit layer order: `base → starlight → theme → components → utilities`. Custom component styles go in `@layer components {}`.
+`global.css` follows the [Starlight Tailwind setup](https://starlight.astro.build/guides/css-and-tailwind/#tailwind-css): layer order `base, starlight, theme, components, utilities`, then `@astrojs/starlight-tailwind`, Tailwind's theme and utilities. It deliberately does **not** `@import "tailwindcss"`, which would add Tailwind's Preflight reset on top of Starlight's. Theme rules outside a layer override Starlight's layered defaults; reusable utility classes go in `@layer components {}`.
 
 ---
 
