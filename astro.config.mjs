@@ -5,6 +5,7 @@ import starlightPageActions from 'starlight-page-actions';
 import starlightMarkdownBlocks, { Draft } from 'starlight-markdown-blocks';
 import starlightAutoSidebar from 'starlight-auto-sidebar';
 import starlightFilesBeforeFolders from './src/plugins/starlightFilesBeforeFolders.ts';
+import onlyRoutedMarkdown from './src/integrations/onlyRoutedMarkdown.ts';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import markdoc from '@astrojs/markdoc';
@@ -183,6 +184,8 @@ export default defineConfig({
       }),
       keystatic(),
       mdx(),
+      // Runs last: deletes raw .md copies (e.g. drafts) that no route wrote
+      onlyRoutedMarkdown(),
   	],
 
   vite: {

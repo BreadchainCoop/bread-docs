@@ -6,11 +6,10 @@ import { getCollection, type CollectionEntry } from 'astro:content';
  * starlight-page-actions "Copy Markdown" / "View in Markdown" actions and by
  * AI tools (see /index.md for the site index).
  *
- * The plugin also copies raw .md files, but with the Netlify adapter they land
- * in the server bundle (.netlify/build) rather than the published `dist/`, so
- * they 404 in production. This static file endpoint builds them into `dist/`
- * and leaves out draft pages and `:::draft` blocks, which the raw copy would
- * publish.
+ * The plugin also copies the raw .md files into `dist/`, drafts included. This
+ * static file endpoint overwrites them, leaving out draft pages and `:::draft`
+ * blocks, and src/integrations/onlyRoutedMarkdown.ts deletes any raw copy it
+ * didn't write.
  * https://docs.astro.build/en/guides/endpoints/#static-file-endpoints
  */
 export const getStaticPaths = (async () => {

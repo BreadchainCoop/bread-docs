@@ -29,6 +29,7 @@ npm run preview   # preview production build
 src/
 ├── content/docs/           # Markdown documentation (one file = one page)
 ├── content/member-projects/ # Member project profiles (MDX)
+├── integrations/           # Astro integrations (post-build Markdown cleanup)
 ├── overrides/              # Custom Starlight component overrides
 ├── plugins/                # Custom Starlight plugins
 ├── styles/global.css       # Bread design system + Starlight theme overrides

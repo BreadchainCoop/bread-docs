@@ -82,6 +82,7 @@ bread-docs/
 │   ├── content/member-projects/  # Member project profiles (MDX, separate collection)
 │   ├── assets/fonts/             # Pogaca woff2 files (Bread Display, Bread Body), loaded via the Astro Fonts API
 │   ├── lib/docsIndex.ts          # Builds the Markdown site index (/index.md)
+│   ├── integrations/onlyRoutedMarkdown.ts  # Deletes raw .md copies in dist/ that no route wrote
 │   ├── overrides/
 │   │   ├── Head.astro            # Adds Astro Fonts API <Font /> tags (preload + @font-face)
 │   │   ├── MarkdownContent.astro # Appends project galleries to pages that set `gallery`
@@ -158,7 +159,7 @@ Moving or renaming a page changes its URL. Add a rule to `public/_redirects` whe
 ## Home page and Markdown routes
 
 - **`src/pages/index.astro`** is the home page (an Astro page, not a content file). It routes visitors by intent ("Start here"), explains the BREAD bake → earn → vote → distribute loop, and lists quick-reference facts (contract address, apps, community call). Facts on it must match the docs pages they link to. Update it when those pages change.
-- **`/<page>.md`** (`src/pages/[...slug].md.ts`): a Markdown copy of every published docs page, used by the page actions' "Copy Markdown" / "View in Markdown" and by AI tools. Draft pages and `:::draft` blocks are left out. This replaces the plugin's own copy, which lands in `.netlify/build` instead of `dist/` and so isn't served.
+- **`/<page>.md`** (`src/pages/[...slug].md.ts`): a Markdown copy of every published docs page, used by the page actions' "Copy Markdown" / "View in Markdown" and by AI tools. Draft pages and `:::draft` blocks are left out. The plugin also copies every raw `.md` file into `dist/`, drafts included, and can't be told not to. This route overwrites those copies, and `src/integrations/onlyRoutedMarkdown.ts` deletes any it didn't write after the build, so drafts never publish.
 - **`/index.md`** (`src/lib/docsIndex.ts`): a Markdown index of every page with its description, grouped like the sidebar. The home page's Markdown actions point here.
 - **`/llms.txt`** is written by `starlight-page-actions` in its `astro:build:done` hook (a plain list of sidebar URLs). It overwrites anything at that path, so don't add an `llms.txt` route.
 
