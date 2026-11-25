@@ -3,6 +3,8 @@ title: Overview
 description: "The two ways to join Bread Cooperative — contributing as an individual, or joining the network as a member project."
 sidebar:
   order: 0
+og:
+  description: "Join as a contributor or a member project."
 ---
 
 There are two ways in, and they work differently. Pick the one that matches who's asking.

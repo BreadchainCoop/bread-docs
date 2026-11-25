@@ -5,6 +5,7 @@ import starlightPageActions from 'starlight-page-actions';
 import starlightMarkdownBlocks, { Draft } from 'starlight-markdown-blocks';
 import starlightAutoSidebar from 'starlight-auto-sidebar';
 import starlightFilesBeforeFolders from './src/plugins/starlightFilesBeforeFolders.ts';
+import ogMaker from './src/integrations/ogMaker.ts';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import markdoc from '@astrojs/markdoc';
@@ -82,6 +83,8 @@ export default defineConfig({
               }),
           ],
           title: 'Bread Docs',
+          // Per-page Open Graph images (src/routeData.ts → src/pages/og/)
+          routeMiddleware: './src/routeData.ts',
           // Square code frames to match the design system (0px radius everywhere)
           expressiveCode: {
               styleOverrides: {
@@ -112,49 +115,6 @@ export default defineConfig({
                       sizes: '200x200',
                   },
               },
-              // Default social/OG image — used when a page doesn't set its own.
-              {
-                  tag: 'meta',
-                  attrs: {
-                      property: 'og:image',
-                      content: 'https://docs.bread.coop/og-image.png',
-                  },
-              },
-              {
-                  tag: 'meta',
-                  attrs: {
-                      property: 'og:image:url',
-                      content: 'https://docs.bread.coop/og-image.png',
-                  },
-              },
-              {
-                  tag: 'meta',
-                  attrs: {
-                      name: 'twitter:image',
-                      content: 'https://docs.bread.coop/og-image.png',
-                  },
-              },
-              {
-                  tag: 'meta',
-                  attrs: {
-                      property: 'og:image:type',
-                      content: 'image/png',
-                  },
-              },
-              {
-                  tag: 'meta',
-                  attrs: {
-                      property: 'og:image:width',
-                      content: '3840',
-                  },
-              },
-              {
-                  tag: 'meta',
-                  attrs: {
-                      property: 'og:image:height',
-                      content: '2160',
-                  },
-              },
           ],
           social: [
               { icon: 'github', label: 'GitHub', href: 'https://github.com/BreadchainCoop' },
@@ -182,6 +142,8 @@ export default defineConfig({
           },
       }),
       keystatic(),
+      // Card Maker at /og/maker/ — dev server only, never built
+      ogMaker(),
       mdx(),
   	],
 

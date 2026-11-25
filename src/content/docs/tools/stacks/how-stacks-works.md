@@ -3,6 +3,8 @@ title: How Stacks works
 description: "Stacks puts savings circles on-chain — group-set rules, tamper-proof escrow, and automatic distributions."
 sidebar:
   order: 1
+og:
+  description: "Stacks runs savings circles on-chain."
 ---
 
 Savings circles for those closest to you, running on infrastructure that doesn't depend on geography, a company, or a bank.

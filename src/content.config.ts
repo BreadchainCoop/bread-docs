@@ -12,6 +12,22 @@ export const collections = {
 		schema: docsSchema({
 			extend: z.object({
 				gallery: z.string().optional(),
+				// starlight-page-actions hides its action bar when this is false
+				// (read from entry data in its PageTitle override).
+				pageActions: z.boolean().optional(),
+				// Social card (Open Graph image) fields. See src/lib/og/.
+				og: z
+					.object({
+						// Card headline when the page title doesn't suit the card.
+						title: z.string().optional(),
+						// One short sentence printed on the card. Separate from `description`,
+						// which is the page lede / meta description and is usually too long.
+						description: z.string().optional(),
+						// Hand-made card in public/og/custom/ replacing the generated one.
+						image: z.string().optional(),
+						alt: z.string().optional(),
+					})
+					.optional(),
 			}),
 		}),
 	}),

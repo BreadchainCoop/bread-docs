@@ -4,6 +4,8 @@ description: "What BREAD is, how it is backed, and where to use your tokens."
 sidebar:
   order: 0
 gallery: yield-recipients
+og:
+  description: "A stable currency backed 1:1 by xDAI."
 ---
 
 BREAD is the community currency of the Bread Cooperative, running on Gnosis Chain. It's stable, spendable, and every token in circulation is backed 1:1 by xDAI — a stablecoin pegged to USD.

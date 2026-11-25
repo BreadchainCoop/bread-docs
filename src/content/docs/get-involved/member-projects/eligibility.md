@@ -3,6 +3,8 @@ title: Eligibility
 description: "What Bread Cooperative looks for in a member project, and how to tell whether your organisation is a good fit."
 sidebar:
   order: 0
+og:
+  description: "What we look for in a member project."
 ---
 
 Member projects are the organisations that make up the Bread Cooperative network. Each one holds a seat in the [Shared Treasury](/cooperative/governance/finances/) and receives a share of the monthly yield distribution.

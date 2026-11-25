@@ -32,6 +32,21 @@ const docsCollection = (label: string, path: `${string}/*` | `${string}/**`) =>
         options: GALLERY_OPTIONS,
         defaultValue: '',
       }),
+      og: fields.object(
+        {
+          title: fields.text({
+            label: 'Card title',
+            description: 'Only if the page title does not work on the card.',
+          }),
+          description: fields.text({
+            label: 'Card line',
+            description: 'One short sentence for the social card, about 40 characters. Not a copy of the description.',
+          }),
+          image: fields.text({ label: 'Custom image', description: '1200×630 PNG in public/og/custom/, e.g. /og/custom/voting-power.png' }),
+          alt: fields.text({ label: 'Custom image alt text' }),
+        },
+        { label: 'Social card' }
+      ),
       content: fields.markdoc({ label: 'Content', extension: 'md' }),
     },
   })

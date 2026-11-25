@@ -3,6 +3,8 @@ title: How to Bake BREAD
 description: "Connect a wallet, bake xDAI into BREAD, and burn it back whenever you need your funds."
 sidebar:
   order: 1
+og:
+  description: "Bake xDAI into BREAD, or burn it back."
 ---
 
 Baking deposits xDAI into the Solidarity Fund and mints an equal amount of BREAD in return. The rate is always 1:1. Your deposit generates yield for the network, but the deposit itself stays yours.

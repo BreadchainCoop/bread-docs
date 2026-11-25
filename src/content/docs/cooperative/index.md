@@ -3,6 +3,8 @@ title: Overview
 description: Bread Cooperative is a worker-owned collective building financial tools for cooperatives, NGOs, and solidarity-focused communities.
 sidebar:
   order: 0
+og:
+  description: "We build financial tools for cooperatives."
 ---
 
 Bread Cooperative is a worker-owned collective building financial tools for cooperatives, NGOs, and solidarity-focused communities. Everything we build is open source. Every decision is made collectively.

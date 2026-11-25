@@ -1,6 +1,8 @@
 ---
 title: Our Manifesto
 description: The Bread Cooperative Manifesto embodies our identity as working people building practical financial tools through cooperative action
+og:
+  description: "What drives our Cooperative."
 ---
 
 ## Our Declaration

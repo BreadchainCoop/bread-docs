@@ -1,6 +1,8 @@
 ---
 title: "Contact & Links"
 description: "How to reach Bread Cooperative, and where to find us across the web."
+og:
+  description: "Where to reach Bread Cooperative."
 ---
 
 ## Get in touch

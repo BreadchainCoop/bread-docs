@@ -8,6 +8,8 @@ sidebar:
   order: 2
   hidden: false
 gallery: ''
+og:
+  description: "How to apply as a member project."
 ---
 We're honoured and excited that you're interested in joining as a member project. Below is the current process — we expect it to change over time as we grow.
 

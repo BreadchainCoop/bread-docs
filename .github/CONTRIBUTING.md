@@ -23,6 +23,8 @@ If you're fixing a typo, updating a page, or adding new documentation, use the K
 4. **Log in with GitHub**, pick your branch from the dropdown, edit, and save. Keystatic commits each save to your branch.
 5. **Open a pull request** from your branch to `main`. You can do this from Keystatic's header menu or via the GitHub UI.
 
+Every page gets a social card (the image shown when a link is shared) built from its title and its *Social card → Card line*. To give a page a custom card with a picture, open the Card Maker at `http://127.0.0.1:4321/og/maker/` while the dev server is running, and follow the steps it lists. The words on the card come from the page, so change them in Keystatic. The Card Maker only exists on your machine and isn't part of the published site.
+
 ### 2. Code or config edits (via standard PR)
 
 If you're changing the Astro config, plugins, styles, or anything in the codebase:

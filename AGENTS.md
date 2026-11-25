@@ -82,6 +82,8 @@ bread-docs/
 │   ├── content/member-projects/  # Member project profiles (MDX, separate collection)
 │   ├── assets/fonts/             # Pogaca woff2 files (Bread Display, Bread Body), loaded via the Astro Fonts API
 │   ├── lib/docsIndex.ts          # Builds the Markdown site index (/index.md)
+│   ├── integrations/ogMaker.ts   # Adds the Card Maker route in `astro dev` only
+│   ├── lib/og/                   # Social cards: template, card rules, picture normalising, renderers, WOFF fonts
 │   ├── overrides/
 │   │   ├── Head.astro            # Adds Astro Fonts API <Font /> tags (preload + @font-face)
 │   │   ├── MarkdownContent.astro # Appends project galleries to pages that set `gallery`
@@ -90,9 +92,12 @@ bread-docs/
 │   │   ├── index.astro           # Home page
 │   │   ├── [...slug].md.ts       # Markdown copy of every docs page (<page>.md)
 │   │   ├── index.md.ts           # Markdown site index
+│   │   └── og/[...slug].png.ts   # Social card for every page (/og/<page>.png)
 │   ├── plugins/
 │   │   ├── starlightFilesBeforeFolders.ts  # Sidebar ordering plugin
 │   │   └── filesBeforeFolders.ts           # Shared utility
+│   ├── routeData.ts              # Starlight route middleware: per-page og:image tags
+│   ├── tools/og-maker.astro      # Card Maker page (dev only, injected by integrations/ogMaker.ts)
 │   └── styles/
 │       └── global.css            # Theme: tokens, Starlight mapping and overrides
 ├── public/
@@ -111,6 +116,9 @@ bread-docs/
 ```yaml
 ---
 title: Page Title           # required
+description: One or two sentences  # page lede, meta description, link-preview text
+og:                         # optional: social card
+  description: "One short sentence."  # line printed on the card (see Social cards)
 slug: "custom-slug"         # optional: overrides path-based slug
 sidebar:
   order: 0                  # optional: controls ordering within section
@@ -161,6 +169,45 @@ Moving or renaming a page changes its URL. Add a rule to `public/_redirects` whe
 - **`/<page>.md`** (`src/pages/[...slug].md.ts`): a Markdown copy of every published docs page, used by the page actions' "Copy Markdown" / "View in Markdown" and by AI tools. Draft pages and `:::draft` blocks are left out. This replaces the plugin's own copy, which lands in `.netlify/build` instead of `dist/` and so isn't served.
 - **`/index.md`** (`src/lib/docsIndex.ts`): a Markdown index of every page with its description, grouped like the sidebar. The home page's Markdown actions point here.
 - **`/llms.txt`** is written by `starlight-page-actions` in its `astro:build:done` hook (a plain list of sidebar URLs). It overwrites anything at that path, so don't add an `llms.txt` route.
+
+---
+
+## Social cards (Open Graph images)
+
+Every page gets its own 1200×630 card at `/og/<page-id>.png` (home: `/og/index.png`), rendered at build time. `src/pages/og/[...slug].png.ts` runs the template in `src/lib/og/template.ts` through Satori and sharp, and `src/routeData.ts` (Starlight route middleware) points each page's `og:image`, `twitter:image` and their alt text at it. The deployed site serves static PNGs.
+
+- **Headline:** the page title in orange. A leading "Bread" prints in black on its own line. Overview pages use their section's sidebar label. Titles prefer two lines and shrink to fit; a third line is used only when two would need very small type.
+- **Card line:** `og.description` (Keystatic: *Social card → Card line*). It is one short, plainly worded sentence of about 40 characters that fits on one line, and it is not a copy of `description`. Without it, the card uses `description` only if that fits on one line; otherwise the card has no line. The build lists pages that have no card line.
+- **Metadata:** an eyebrow shows the sections above the page (e.g. "Solidarity Tools — Stacks"). Top-level pages and top-level overviews have none, and an overview leaves out its own section, which is already its headline. The lockup reads "BREAD COOPERATIVE | DOCS". `CARD_VARIANT` in `src/lib/og/card.ts` switches the metadata off.
+- **Overrides:** `og.title` replaces the headline. `og.image` replaces the generated card with a custom 1200×630 PNG in `public/og/custom/`, and `og.alt` gives its alt text.
+- **Fonts:** Satori can't read WOFF2, so `src/lib/og/fonts/` holds WOFF copies of Pogaca Display Black, Body Bold and Body Regular, converted from `src/assets/fonts/`. Regenerate them if those fonts change.
+- **Colours:** design-system tokens only: paper `#F6F3EB`, ink `#1B201A`, orange `#EA6023`. The loaf outline is orange at 50% over paper, or 25% for the underlay behind custom-card art.
+- **Code layout:** `card.ts` turns frontmatter into card content (pure, shared by everything below). `template.ts` lays out the card. `render.ts` renders it at build time (Satori → sharp); `browser.ts` renders it in the Card Maker (Satori → canvas). `art.ts` normalises pictures for both the Card Maker and the script.
+
+### Custom cards
+
+A custom card is a page's own card with a picture added. The words always come from the page's frontmatter (`title` / `og.title` and `og.description`). Neither tool takes text, so a custom card can only say what the page has approved. To change the words, edit the page.
+
+Both tools prepare the picture the same way (`src/lib/og/art.ts`):
+1. Decode any raster format: PNG, JPEG, WebP, AVIF or GIF (the script also takes TIFF). SVG is refused. EXIF rotation is applied, and metadata is dropped.
+2. Scale large pictures down to a 1040×1760 working size.
+3. Remove a plain background if the picture is opaque and its edges are one even colour.
+4. Turn the picture greyscale and trim its empty edges.
+5. Fit it to the 260×440 slot, anchored bottom-right.
+
+The output is `public/og/custom/<page-id with / → ->.png`.
+
+**Agent-made (no browser).** Given a page and a picture:
+
+```bash
+npm run og:custom -- --page tools/solidarity-fund/how-it-works --image path/to/picture.png
+```
+
+The script writes the PNG and prints the `image` and `alt` lines to add under the page's existing `og:` key. Keep `og.description`. Replace the alt placeholder with a short description of the picture. Look at the PNG before committing it, then open a PR with the image and the frontmatter change. Add `--keep-background` if the background removal ate into the subject. The home page has no custom card.
+
+**Human-made (Card Maker).** The Card Maker is a page at `/og/maker/` that exists only in the dev server. `src/integrations/ogMaker.ts` injects it when `command === 'dev'`, so it is never built or deployed. It has a page picker, a picture input with a "Remove a plain background" switch, a live preview, a PNG download and the publishing steps. The picture is processed in the browser and never uploaded.
+- An agent on the user's machine can start `npm run dev` and give the user `http://localhost:4321/og/maker/` to finish in their browser. Then add the downloaded file and frontmatter for them, or let them do it through Keystatic.
+- An agent in a cloud session can't hand out a localhost link, so it uses the script instead.
 
 ---
 

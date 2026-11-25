@@ -3,6 +3,8 @@ title: How to Get Started
 description: "The step-by-step path from joining the Discord to becoming a Bread Cooperative contributor."
 sidebar:
   order: 1
+og:
+  description: "From joining Discord to contributing."
 ---
 
 There's no application gate to clear before you can help. The path below is how most contributors have found their footing.

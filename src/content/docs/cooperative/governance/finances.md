@@ -3,6 +3,8 @@ title: Finances
 description: "Where Bread Cooperative's money sits — the Bread Coop Core treasury, the Solidarity Fund, and the Shared Treasury — and who controls each."
 sidebar:
   order: 3
+og:
+  description: "Where our money is and who controls it."
 ---
 
 Bread Cooperative's funds are held on-chain and are publicly viewable. There is no single pot: money is split across wallets with different purposes, different signers, and different rules for spending it.
