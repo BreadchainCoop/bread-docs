@@ -39,13 +39,7 @@
     "react-dom": "^19.3.1",
     "sharp": "^0.35.5",
     "starlight-auto-sidebar": "^0.4.1",
-    "starlight-page-actions": "^0.7.1",
     "tailwindcss": "^4.3.5"
-  },
-  "overrides": {
-    "vite-plugin-virtual": {
-      "vite": "^8.3.8"
-    }
   },
   "description": "Documentation website for [Bread Cooperative](https://bread.coop), built with [Astro Starlight](https://starlight.astro.build). Deployed at **docs.bread.coop**.",
   "main": "index.js",

@@ -29,7 +29,6 @@ npm run preview   # preview production build
 src/
 ├── content/docs/           # Markdown documentation (one file = one page)
 ├── content/member-projects/ # Member project profiles (MDX)
-├── integrations/           # Astro integrations (post-build Markdown cleanup)
 ├── overrides/              # Custom Starlight component overrides
 ├── plugins/                # Custom Starlight plugins
 ├── styles/global.css       # Bread design system + Starlight theme overrides
@@ -75,9 +74,9 @@ collapsed: true       # Collapse by default (subdirs only)
 - Ensures files (links) appear before folders (groups) at all nesting levels
 - Uses route data middleware with `await next()` to run after `starlight-auto-sidebar`
 
-**`starlight-page-actions`**
-- Adds share buttons (LinkedIn, X, Threads, Bluesky, etc.) and AI prompt buttons to each page
-- Configured in `astro.config.mjs`
+**Page actions** (`src/components/page-actions/`)
+- Copy Markdown, open-in-AI and share buttons under each page title
+- Rendered by the `PageTitle` override; options are listed at the top of `PageActions.astro`
 
 **`draftBlocks`** (`src/plugins/`)
 - Markdown plugin for `:::draft` blocks: shown in `astro dev`, left out of production builds

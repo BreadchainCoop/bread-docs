@@ -62,7 +62,7 @@ Documentation website for Bread Cooperative. Built with **Astro + Starlight**, d
 | Styling | Tailwind CSS v4 (`@tailwindcss/vite`) + `@astrojs/starlight-tailwind` |
 | Content | Astro Content Collections (`src/content/docs/`) |
 | Markdown | Sätteri, Astro's default processor (`@astrojs/markdown-satteri`) |
-| Plugins | `starlight-page-actions`, `starlight-auto-sidebar` |
+| Plugins | `starlight-auto-sidebar` |
 
 ---
 
@@ -82,11 +82,11 @@ bread-docs/
 │   │   └── tools/                # Solidarity Fund and Stacks
 │   ├── content/member-projects/  # Member project profiles (MDX, separate collection)
 │   ├── assets/fonts/             # Pogaca woff2 files (Bread Display, Bread Body), loaded via the Astro Fonts API
-│   ├── lib/docsIndex.ts          # Builds the Markdown site index (/index.md)
-│   ├── integrations/onlyRoutedMarkdown.ts  # Deletes raw .md copies in dist/ that no route wrote
+│   ├── lib/docsIndex.ts          # Builds the Markdown site index (/index.md, /llms.txt)
 │   ├── overrides/
 │   │   ├── Head.astro            # Adds Astro Fonts API <Font /> tags (preload + @font-face)
 │   │   ├── MarkdownContent.astro # Appends project galleries to pages that set `gallery`
+│   │   ├── PageTitle.astro       # Adds the page actions (Copy Markdown / Open / Share)
 │   │   └── SiteTitle.astro       # Bread logomark + BREAD COOPERATIVE wordmark
 │   ├── pages/
 │   │   ├── index.astro           # Home page
@@ -161,9 +161,9 @@ Moving or renaming a page changes its URL. Add a rule to `public/_redirects` whe
 ## Home page and Markdown routes
 
 - **`src/pages/index.astro`** is the home page (an Astro page, not a content file). It routes visitors by intent ("Start here"), explains the BREAD bake → earn → vote → distribute loop, and lists quick-reference facts (contract address, apps, community call). Facts on it must match the docs pages they link to. Update it when those pages change.
-- **`/<page>.md`** (`src/pages/[...slug].md.ts`): a Markdown copy of every published docs page, used by the page actions' "Copy Markdown" / "View in Markdown" and by AI tools. Draft pages and `:::draft` blocks are left out. The plugin also copies every raw `.md` file into `dist/`, drafts included, and can't be told not to. This route overwrites those copies, and `src/integrations/onlyRoutedMarkdown.ts` deletes any it didn't write after the build, so drafts never publish.
+- **`/<page>.md`** (`src/pages/[...slug].md.ts`): a Markdown copy of every published docs page, used by the page actions' "Copy Markdown" / "View in Markdown" and by AI tools. Draft pages and `:::draft` blocks are left out.
 - **`/index.md`** (`src/lib/docsIndex.ts`): a Markdown index of every page with its description, grouped like the sidebar. The home page's Markdown actions point here.
-- **`/llms.txt`** is written by `starlight-page-actions` in its `astro:build:done` hook (a plain list of sidebar URLs). It overwrites anything at that path, so don't add an `llms.txt` route.
+- **`/llms.txt`** (`src/pages/llms.txt.ts`): the same index at the conventional [llms.txt](https://llmstxt.org/) location for AI tools.
 
 ---
 
@@ -248,12 +248,13 @@ Starlight sets `data-theme` (`dark` or `light`) on `<html>`. Following Starlight
 
 ## Plugins
 
-### `starlight-page-actions`
+### Page actions (`src/components/page-actions/`)
 
-Adds share/AI-prompt buttons to each page. Config in `astro.config.mjs`:
-- Base URL: `https://docs.bread.coop/`
-- Enabled actions: ChatGPT, Claude, T3Chat, v0, raw Markdown
-- Prompt template: `Please read and summarize the following documentation page: {url}`
+Not a plugin: a first-party component rendered under every page title by the `PageTitle` override (`src/overrides/PageTitle.astro`).
+- "Copy Markdown" and "View in Markdown" use the site's own `/<page>.md` routes, so they only appear on docs pages and the home page (which uses `/index.md`)
+- "Open" menu: ChatGPT, Claude, T3 Chat, v0, with the prompt `Please read and summarize the following documentation page: {url}`
+- "Share" menu: LinkedIn, X, Threads, Bluesky, Facebook, Reddit, Hacker News, email, WhatsApp, Telegram
+- To add or remove an action, edit the option lists at the top of `PageActions.astro`
 
 ### `draftBlocks` (`src/plugins/draftBlocks.ts`)
 

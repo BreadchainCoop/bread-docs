@@ -1,10 +1,8 @@
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
 import starlight from '@astrojs/starlight';
-import starlightPageActions from 'starlight-page-actions';
 import starlightAutoSidebar from 'starlight-auto-sidebar';
 import starlightFilesBeforeFolders from './src/plugins/starlightFilesBeforeFolders.ts';
-import onlyRoutedMarkdown from './src/integrations/onlyRoutedMarkdown.ts';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import markdoc from '@astrojs/markdoc';
@@ -68,18 +66,6 @@ export default defineConfig({
           plugins: [
               starlightAutoSidebar(),
               starlightFilesBeforeFolders(),
-              starlightPageActions({
-                  baseUrl: 'https://docs.bread.coop/',
-                  share: true,
-                  prompt: 'Please read and summarize the following documentation page: {url}',
-                  actions: {
-                      chatgpt: true,
-                      claude: true,
-                      t3chat: true,
-                      v0: true,
-                      markdown: true,
-                  },
-              }),
           ],
           title: 'Bread Docs',
           // Square code frames to match the design system (0px radius everywhere)
@@ -97,6 +83,8 @@ export default defineConfig({
               // Override SiteTitle with Bread logo
               SiteTitle: './src/overrides/SiteTitle.astro',
               MarkdownContent: './src/overrides/MarkdownContent.astro',
+              // Adds the Copy Markdown / Open / Share buttons under the page title
+              PageTitle: './src/overrides/PageTitle.astro',
               // Adds the Astro Fonts API <Font /> tags (preload + @font-face)
               Head: './src/overrides/Head.astro',
           },
@@ -183,8 +171,6 @@ export default defineConfig({
       }),
       keystatic(),
       mdx(),
-      // Runs last: deletes raw .md copies (e.g. drafts) that no route wrote
-      onlyRoutedMarkdown(),
   	],
 
   vite: {

@@ -2,14 +2,10 @@ import type { APIRoute, GetStaticPaths } from 'astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 /**
- * Markdown version of every docs page at `<page>.md`, used by the
- * starlight-page-actions "Copy Markdown" / "View in Markdown" actions and by
- * AI tools (see /index.md for the site index).
- *
- * The plugin also copies the raw .md files into `dist/`, drafts included. This
- * static file endpoint overwrites them, leaving out draft pages and `:::draft`
- * blocks, and src/integrations/onlyRoutedMarkdown.ts deletes any raw copy it
- * didn't write.
+ * Markdown version of every published docs page at `<page>.md`, used by the
+ * page actions' "Copy Markdown" / "View in Markdown" and by AI tools (see
+ * /index.md and /llms.txt for the site index). Draft pages and `:::draft`
+ * blocks are left out.
  * https://docs.astro.build/en/guides/endpoints/#static-file-endpoints
  */
 export const getStaticPaths = (async () => {

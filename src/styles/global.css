@@ -484,7 +484,7 @@ mobile-starlight-toc nav {
   border-color: var(--bread-border);
 }
 
-/* starlight-page-actions buttons — square, outlined, lift on hover */
+/* Page action buttons (src/components/page-actions) — square, outlined, lift on hover */
 main .content-panel .action-button {
   border-radius: 0;
   background-color: transparent;
@@ -502,7 +502,7 @@ main .content-panel .action-button:hover {
   box-shadow: 2px 2px 0 var(--bread-border-strong);
 }
 
-main .content-panel #dropdown-menu {
+main .content-panel .dropdown-menu {
   border-radius: 0;
   background-color: var(--bread-bg-raised);
   border-color: var(--bread-border-strong);
