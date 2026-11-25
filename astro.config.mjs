@@ -65,6 +65,18 @@ export default defineConfig({
           // PNG favicon fallback for browsers/rss readers that don't render SVG.
           // SVG favicon is added automatically by Starlight at /favicon.svg.
           head: [
+              // Preload the two faces visible above the fold so uppercase
+              // titles don't flash in the fallback font.
+              ...['PogacaDisplayBlack', 'PogacaBodyRegular'].map((f) => ({
+                  tag: 'link',
+                  attrs: {
+                      rel: 'preload',
+                      href: `/fonts/${f}.woff2`,
+                      as: 'font',
+                      type: 'font/woff2',
+                      crossorigin: '',
+                  },
+              })),
               {
                   tag: 'link',
                   attrs: {
