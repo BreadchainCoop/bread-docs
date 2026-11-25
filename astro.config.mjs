@@ -13,12 +13,16 @@ import keystatic from '@keystatic/astro';
 import tailwindcss from '@tailwindcss/vite';
 
 import netlify from '@astrojs/netlify';
+import { unified } from '@astrojs/markdown-remark';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://docs.bread.coop',
   output: 'static',
   trailingSlash: 'ignore',
+  // Astro 7 defaults to the Sätteri Markdown processor; starlight-markdown-blocks
+  // only supports unified. https://docs.astro.build/en/guides/upgrade-to/v7/
+  markdown: { processor: unified() },
 
   // Bread typefaces (Pogaca) via the Astro Fonts API: generates @font-face
   // rules, metric-matched fallbacks and preload links. Rendered by
