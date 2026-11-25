@@ -1,61 +1,98 @@
 ---
 /**
  * SiteTitle override for Bread Cooperative docs site
- * 
- * Replaces the default Starlight site title with the Bread logo
- * and custom text styling using the Bread font family.
+ *
+ * Mirrors the bread.coop navbar lockup: the round Bread logomark followed by
+ * the uppercase "BREAD COOPERATIVE" wordmark, with a "Docs" label so readers
+ * can tell which property they are on.
  */
 ---
 
-<a href="/" class="site-title">
-  <!-- Bread Logo SVG -->
-  <svg 
-    width="32" 
-    height="32" 
-    viewBox="0 0 24 24" 
-    fill="none" 
+<a href="/" class="site-title" aria-label="Bread Cooperative Docs — home">
+  <svg
+    width="32"
+    height="32"
+    viewBox="0 0 40 40"
+    fill="none"
     xmlns="http://www.w3.org/2000/svg"
     class="site-logo"
     aria-hidden="true"
   >
-    <rect width="24" height="24" rx="1" fill="#EA5817"/>
-    <path 
-      d="M12 2C17.5229 2 22 6.47707 22 12C22 17.5229 17.5229 22 12 22C6.47715 22 2 17.5229 2 12C2 6.47708 6.47715 2.00003 12 2ZM14.3408 5.29297C12.4756 3.38695 9.24614 4.31242 9.00781 7.06836C8.71004 10.2135 6.428 8.50568 4.73242 10.2549C4.23121 10.8325 3.93217 11.6407 4.03223 12.4004C4.1788 13.457 5.00016 14.3578 6.04688 14.6133C7.23725 14.9308 8.47122 14.7913 8.87402 16.2539C9.10395 17.2226 9.02515 18.1173 9.82617 18.873C11.2248 20.1897 13.7586 20.0309 14.666 18.251C14.9821 17.6941 15.0286 17.0362 15.1455 16.4199C15.2641 15.7661 15.6561 15.2425 16.2715 15.0195C17.1065 14.6907 18.1474 14.7487 18.916 14.209C19.7227 13.6639 20.1575 12.6219 20.0127 11.665L20.0107 11.6553H20.0117C19.8534 10.6212 18.999 9.75756 18.0195 9.45215C17.4388 9.2583 16.7938 9.27297 16.2266 9.03711C15.7147 8.84214 15.3674 8.41598 15.2119 7.89551C14.9524 6.97173 15.0667 6.05432 14.3408 5.29297ZM11.5635 9.73633C13.5275 9.52302 14.8604 10.5413 14.5449 12.5957L14.542 12.6064C14.3779 13.5544 13.7225 14.1602 12.7842 14.2852C12.2152 14.3748 11.5674 14.3599 11.0068 14.2266C10.7009 14.1515 10.4206 14.0289 10.1963 13.8496C9.41978 13.2008 9.2933 11.9151 9.65918 10.999C9.97258 10.2334 10.7541 9.81643 11.5635 9.73633Z" 
-      fill="#F6F3EB"
+    <path
+      d="M20 0C31.0457 0 39.9999 8.95421 40 20C40 31.0459 31.0457 40 20 40C8.9543 39.9999 0 31.0458 0 20C8.24632e-05 8.95424 8.95435 5.25753e-05 20 0ZM24.6816 6.58496C20.9513 2.773 14.4934 4.62406 14.0166 10.1357C13.4214 16.4275 8.85619 13.0113 5.46484 16.5107C4.46239 17.6659 3.86527 19.2814 4.06543 20.8008C4.35857 22.914 5.99941 24.7165 8.09277 25.2275C10.4737 25.8629 12.9424 25.5824 13.748 28.5078C14.2079 30.4452 14.0501 32.2355 15.6523 33.7471C18.4496 36.38 23.5172 36.0617 25.332 32.502C25.9642 31.3881 26.0581 30.0724 26.292 28.8398C26.5292 27.5322 27.3122 26.4841 28.543 26.0381C30.2134 25.3804 32.2957 25.4971 33.833 24.417C35.4464 23.3267 36.3142 21.2439 36.0244 19.3301L36.0215 19.3096L36.0225 19.3105C35.7057 17.2422 33.9972 15.5159 32.0381 14.9053C30.8767 14.5176 29.5876 14.545 28.4531 14.0732C27.4295 13.6832 26.7349 12.8319 26.4238 11.791C25.9047 9.94326 26.134 8.10776 24.6816 6.58496ZM19.126 15.4727C23.0544 15.0457 25.7199 17.0824 25.0889 21.1914L25.084 21.2119V21.2109C24.7562 23.108 23.4449 24.3204 21.5674 24.5703C20.4297 24.7495 19.1356 24.7197 18.0146 24.4531C17.4026 24.303 16.8413 24.0578 16.3926 23.6992C14.8397 22.4017 14.5858 19.8311 15.3174 17.999C15.9439 16.4674 17.5071 15.633 19.126 15.4727Z"
+      fill="#EA6023"
     />
   </svg>
-  
-  <!-- Site Title Text -->
-  <span class="site-title-text">Bread Docs</span>
+
+  <span class="site-title-text">
+    <span class="wordmark">Bread Cooperative</span>
+    <span class="divider" aria-hidden="true"></span>
+    <span class="product">Docs</span>
+  </span>
 </a>
 
 <style>
   .site-title {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.625rem;
     text-decoration: none;
-    color: inherit;
+    color: var(--bread-heading);
+    white-space: nowrap;
   }
-  
-  .site-title:hover {
-    text-decoration: none;
-  }
-  
+
   .site-logo {
     flex-shrink: 0;
+    transition: transform 300ms ease;
   }
-  
+
+  .site-title:hover .site-logo {
+    transform: rotate(-20deg);
+  }
+
   .site-title-text {
-    font-family: var(--font-breadDisplay), "Bread Display", ui-sans-serif, system-ui, sans-serif;
-    font-weight: 700;
-    font-size: 1.25rem;
-    line-height: 1.2;
-    color: var(--color-surface-ink, #1b201a);
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-family: var(--font-breadBody);
+    line-height: 1;
   }
-  
-  /* Dark mode support */
-  :global([data-theme='dark']) .site-title-text {
-    color: var(--color-paper-0, #fdfcf9);
+
+  .wordmark {
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+  }
+
+  .divider {
+    width: 1px;
+    height: 1.125rem;
+    background-color: var(--bread-border-strong);
+  }
+
+  .product {
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--bread-text-muted);
+  }
+
+  /* Small screens: logo + "Docs" only */
+  @media (max-width: 30rem) {
+    .wordmark,
+    .divider {
+      display: none;
+    }
+    .product {
+      color: var(--bread-heading);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-logo {
+      transition: none;
+    }
   }
 </style>

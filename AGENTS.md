@@ -80,15 +80,22 @@ bread-docs/
 │   │   ├── get-involved/         # Contributors and member projects
 │   │   └── tools/                # Solidarity Fund and Stacks
 │   ├── content/member-projects/  # Member project profiles (MDX, separate collection)
+│   ├── assets/fonts/             # Pogaca woff2 files (Bread Display, Bread Body), loaded via the Astro Fonts API
+│   ├── lib/docsIndex.ts          # Builds the Markdown site index (/index.md)
 │   ├── overrides/
-│   │   └── SiteTitle.astro       # Replaces Starlight header title with Bread logo
+│   │   ├── Head.astro            # Adds Astro Fonts API <Font /> tags (preload + @font-face)
+│   │   ├── MarkdownContent.astro # Appends project galleries to pages that set `gallery`
+│   │   └── SiteTitle.astro       # Bread logomark + BREAD COOPERATIVE wordmark
+│   ├── pages/
+│   │   ├── index.astro           # Home page
+│   │   ├── [...slug].md.ts       # Markdown copy of every docs page (<page>.md)
+│   │   ├── index.md.ts           # Markdown site index
 │   ├── plugins/
 │   │   ├── starlightFilesBeforeFolders.ts  # Sidebar ordering plugin
 │   │   └── filesBeforeFolders.ts           # Shared utility
 │   └── styles/
-│       └── global.css            # Full design system: fonts, tokens, Starlight overrides
+│       └── global.css            # Theme: tokens, Starlight mapping and overrides
 ├── public/
-│   ├── fonts/                    # Pogaca woff2 files (Bread Display, Bread Body)
 │   └── images/                   # Static images referenced in markdown
 
 ```
@@ -148,6 +155,15 @@ Moving or renaming a page changes its URL. Add a rule to `public/_redirects` whe
 
 ---
 
+## Home page and Markdown routes
+
+- **`src/pages/index.astro`** is the home page (an Astro page, not a content file). It routes visitors by intent ("Start here"), explains the BREAD bake → earn → vote → distribute loop, and lists quick-reference facts (contract address, apps, community call). Facts on it must match the docs pages they link to. Update it when those pages change.
+- **`/<page>.md`** (`src/pages/[...slug].md.ts`): a Markdown copy of every published docs page, used by the page actions' "Copy Markdown" / "View in Markdown" and by AI tools. Draft pages and `:::draft` blocks are left out. This replaces the plugin's own copy, which lands in `.netlify/build` instead of `dist/` and so isn't served.
+- **`/index.md`** (`src/lib/docsIndex.ts`): a Markdown index of every page with its description, grouped like the sidebar. The home page's Markdown actions point here.
+- **`/llms.txt`** is written by `starlight-page-actions` in its `astro:build:done` hook (a plain list of sidebar URLs). It overwrites anything at that path, so don't add an `llms.txt` route.
+
+---
+
 ## Sidebar Structure
 
 Defined in `astro.config.mjs` via `autogenerate`. Adding a directory under one of these roots automatically includes it:
@@ -184,27 +200,46 @@ To override additional Starlight components, create a `.astro` file in `src/over
 
 ### Fonts
 
-- **Bread Display** (`PogacaDisplay*.woff2`) — headings, h1–h3, site title
-- **Bread Body** (`PogacaBody*.woff2`) — body text, navigation, h4–h6
+- **Bread Display** (`PogacaDisplay*.woff2`) — page titles and h2
+- **Bread Body** (`PogacaBody*.woff2`) — body text, navigation, h3–h6
 
-CSS variables: `--font-breadDisplay`, `--font-breadBody`
+Fonts are registered with the [Astro Fonts API](https://docs.astro.build/en/guides/fonts/) (`fonts` in `astro.config.mjs`), which generates the `@font-face` rules, size-matched fallbacks and preload links. `src/overrides/Head.astro` renders them and preloads only Bread Display Black and Bread Body Regular. Don't add `@font-face` rules to `global.css`. CSS variables: `--font-breadDisplay`, `--font-breadBody`.
 
 ### Color Tokens
 
-| Token | Value | Use |
-|-------|-------|-----|
-| `--color-primary-orange` | `#ea6023` | Brand primary, links, accent |
-| `--color-paper-main` | `#f6f3eb` | Page/nav background (light mode) |
-| `--color-paper-0` | `#fdfcf9` | Lightest background |
-| `--color-surface-ink` | `#1b201a` | Primary text, dark background |
+`global.css` has two token tiers. **Use the semantic tier in components** — never raw hex or palette values — so light and dark mode both work without per-component `[data-theme='dark']` overrides.
+
+**Brand palette** (mirrors `@breadcoop/ui` `theme.css`): `--color-primary-orange` `#ea6023`, `--color-orange-2` `#b83c08`, `--color-paper-main` `#f6f3eb`, `--color-paper-0` `#fdfcf9`, `--color-surface-ink` `#1b201a`, etc.
+
+**Semantic tokens** (redefined per theme):
+
+| Token | Light | Dark | Use |
+|-------|-------|------|-----|
+| `--bread-bg` | paper-main | `#1b201a` (ink) | Page, header, sidebar |
+| `--bread-bg-raised` | paper-0 | `#222821` | Cards, search, menus |
+| `--bread-bg-sunken` | paper-1 | `#161a15` | Inline code, hover, table head |
+| `--bread-border` / `--bread-border-strong` | paper-2 / `#d6ccbb` | `#2d342c` / `#424a40` | Hairlines / control outlines |
+| `--bread-heading` / `--bread-text` / `--bread-text-muted` | ink / `#2b2f29` / grey-2 | paper-main / `#dcd7cb` / `#a49f93` | Text hierarchy |
+| `--bread-link` | orange-2 `#b83c08` | `#f08a52` | Link text (AA contrast) |
+| `--bread-accent` | primary-orange | primary-orange | Rules, markers, focus, fills |
+
+Starlight's `--sl-color-*` variables are mapped from these tokens in one place.
+
+### Visual rules
+
+- **Square corners** everywhere (DS: 0px radius) — cards, buttons, search, asides, code.
+- **Orange is an accent, not a fill** — active nav uses an orange rule, not an orange pill. Brand orange `#ea6023` is only 3.3:1 on paper, so body-size link text uses `--bread-link`.
+- **Lifted offset shadow** (from `<LiftedButton>`) is the hover signature for cards and pagination.
+- **Typography**: page title = Bread Display Black, uppercase; h2 = Bread Display Black; h3–h6 = Bread Body Bold (DS Header/3 is the body face).
+- **Sub-brand colour** marks product content: Solidarity Fund = orange, Stacks = blue, Safety Net = jade.
 
 ### Dark Mode
 
-Starlight's dark mode is driven by `[data-theme='dark']` on the `<html>` element. Override dark-mode colors by targeting this selector in `global.css`.
+Starlight sets `data-theme` (`dark` or `light`) on `<html>`. Following Starlight's convention, `global.css` defines dark values on `:root` and light values on `:root[data-theme='light']`. The dark theme is a single ink ramp derived from `#1B201A` (the colour bread.coop uses for its dark sections) with paper-tinted text. To change either theme, edit the `--bread-*` tokens; don't add per-component dark overrides.
 
 ### CSS Layers
 
-`global.css` declares explicit layer order: `base → starlight → theme → components → utilities`. Custom component styles go in `@layer components {}`.
+`global.css` follows the [Starlight Tailwind setup](https://starlight.astro.build/guides/css-and-tailwind/#tailwind-css): layer order `base, starlight, theme, components, utilities`, then `@astrojs/starlight-tailwind`, Tailwind's theme and utilities. It deliberately does **not** `@import "tailwindcss"`, which would add Tailwind's Preflight reset on top of Starlight's. Theme rules outside a layer override Starlight's layered defaults; reusable utility classes go in `@layer components {}`.
 
 ---
 
