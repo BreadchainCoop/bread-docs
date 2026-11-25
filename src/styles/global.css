@@ -926,3 +926,21 @@ h1#_top {
     --btn-hover-text: var(--color-red-main);
   }
 }
+
+/* `:::draft` blocks — dev only, see src/plugins/draftBlocks.ts */
+.draft-block {
+  --block-padding: calc(0.75 * var(--sl-content-pad-x));
+  margin-inline: calc(-1 * var(--block-padding));
+  border: 2px solid var(--sl-color-orange-low);
+  padding: 0 var(--block-padding) var(--block-padding);
+}
+.draft-block__title {
+  margin-inline: calc(-1 * var(--block-padding));
+  margin-bottom: var(--block-padding);
+  padding: 1rem;
+  background-color: var(--sl-color-orange-low);
+  font-size: var(--sl-text-body-sm);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--sl-color-orange-high);
+}

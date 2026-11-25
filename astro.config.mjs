@@ -2,7 +2,6 @@
 import { defineConfig, fontProviders } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightPageActions from 'starlight-page-actions';
-import starlightMarkdownBlocks, { Draft } from 'starlight-markdown-blocks';
 import starlightAutoSidebar from 'starlight-auto-sidebar';
 import starlightFilesBeforeFolders from './src/plugins/starlightFilesBeforeFolders.ts';
 import onlyRoutedMarkdown from './src/integrations/onlyRoutedMarkdown.ts';
@@ -14,16 +13,21 @@ import keystatic from '@keystatic/astro';
 import tailwindcss from '@tailwindcss/vite';
 
 import netlify from '@astrojs/netlify';
-import { unified } from '@astrojs/markdown-remark';
+import { satteri } from '@astrojs/markdown-satteri';
+import draftBlocks from './src/plugins/draftBlocks.ts';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://docs.bread.coop',
   output: 'static',
   trailingSlash: 'ignore',
-  // Astro 7 defaults to the Sätteri Markdown processor; starlight-markdown-blocks
-  // only supports unified. https://docs.astro.build/en/guides/upgrade-to/v7/
-  markdown: { processor: unified() },
+  // `:::draft` blocks render in `astro dev` only (src/plugins/draftBlocks.ts).
+  // https://docs.astro.build/en/guides/markdown-content/#markdown-processor-plugins
+  markdown: {
+    processor: satteri({
+      mdastPlugins: [draftBlocks({ show: process.argv.includes('dev') })],
+    }),
+  },
 
   // Bread typefaces (Pogaca) via the Astro Fonts API: generates @font-face
   // rules, metric-matched fallbacks and preload links. Rendered by
@@ -74,11 +78,6 @@ export default defineConfig({
                       t3chat: true,
                       v0: true,
                       markdown: true,
-                  },
-              }),
-              starlightMarkdownBlocks({
-                  blocks: {
-                      draft: Draft(),
                   },
               }),
           ],

@@ -79,8 +79,8 @@ collapsed: true       # Collapse by default (subdirs only)
 - Adds share buttons (LinkedIn, X, Threads, Bluesky, etc.) and AI prompt buttons to each page
 - Configured in `astro.config.mjs`
 
-**`starlight-markdown-blocks`**
-- Enables custom admonition blocks like `:::draft`
+**`draftBlocks`** (`src/plugins/`)
+- Markdown plugin for `:::draft` blocks: shown in `astro dev`, left out of production builds
 
 ### URL Redirects
 

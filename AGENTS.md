@@ -61,7 +61,8 @@ Documentation website for Bread Cooperative. Built with **Astro + Starlight**, d
 | CMS | Keystatic (`@keystatic/astro`) |
 | Styling | Tailwind CSS v4 (`@tailwindcss/vite`) + `@astrojs/starlight-tailwind` |
 | Content | Astro Content Collections (`src/content/docs/`) |
-| Plugins | `starlight-page-actions`, `starlight-markdown-blocks`, `starlight-auto-sidebar` |
+| Markdown | Sätteri, Astro's default processor (`@astrojs/markdown-satteri`) |
+| Plugins | `starlight-page-actions`, `starlight-auto-sidebar` |
 
 ---
 
@@ -92,6 +93,7 @@ bread-docs/
 │   │   ├── [...slug].md.ts       # Markdown copy of every docs page (<page>.md)
 │   │   ├── index.md.ts           # Markdown site index
 │   ├── plugins/
+│   │   ├── draftBlocks.ts                  # `:::draft` Markdown plugin (dev only)
 │   │   ├── starlightFilesBeforeFolders.ts  # Sidebar ordering plugin
 │   │   └── filesBeforeFolders.ts           # Shared utility
 │   └── styles/
@@ -130,7 +132,7 @@ Content here
 :::
 
 :::draft
-Work-in-progress content (uses starlight-markdown-blocks Draft block — hidden in production)
+Work-in-progress content (rendered by `src/plugins/draftBlocks.ts` — shown in `astro dev`, hidden in production)
 :::
 ```
 
@@ -253,10 +255,10 @@ Adds share/AI-prompt buttons to each page. Config in `astro.config.mjs`:
 - Enabled actions: ChatGPT, Claude, T3Chat, v0, raw Markdown
 - Prompt template: `Please read and summarize the following documentation page: {url}`
 
-### `starlight-markdown-blocks`
+### `draftBlocks` (`src/plugins/draftBlocks.ts`)
 
-Enables custom admonition blocks. Currently registers:
-- `draft` — marks content as a draft (use `:::draft` in markdown)
+A Sätteri mdast plugin, registered under `markdown.processor` in `astro.config.mjs`:
+- `:::draft` — work-in-progress content, shown in `astro dev` and left out of production builds
 
 ### `starlightFilesBeforeFolders`
 
