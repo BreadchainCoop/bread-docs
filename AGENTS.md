@@ -81,7 +81,7 @@ bread-docs/
 │   │   └── tools/                # Solidarity Fund and Stacks
 │   ├── content/member-projects/  # Member project profiles (MDX, separate collection)
 │   ├── assets/fonts/             # Pogaca woff2 files (Bread Display, Bread Body), loaded via the Astro Fonts API
-│   ├── lib/docsIndex.ts          # Builds the Markdown site index (/index.md, /llms.txt)
+│   ├── lib/docsIndex.ts          # Builds the Markdown site index (/index.md)
 │   ├── overrides/
 │   │   ├── Head.astro            # Adds Astro Fonts API <Font /> tags (preload + @font-face)
 │   │   ├── MarkdownContent.astro # Appends project galleries to pages that set `gallery`
@@ -89,7 +89,7 @@ bread-docs/
 │   ├── pages/
 │   │   ├── index.astro           # Home page
 │   │   ├── [...slug].md.ts       # Markdown copy of every docs page (<page>.md)
-│   │   ├── index.md.ts, llms.txt.ts  # Markdown site index
+│   │   ├── index.md.ts           # Markdown site index
 │   ├── plugins/
 │   │   ├── starlightFilesBeforeFolders.ts  # Sidebar ordering plugin
 │   │   └── filesBeforeFolders.ts           # Shared utility
@@ -159,7 +159,8 @@ Moving or renaming a page changes its URL. Add a rule to `public/_redirects` whe
 
 - **`src/pages/index.astro`** is the home page (an Astro page, not a content file). It routes visitors by intent ("Start here"), explains the BREAD bake → earn → vote → distribute loop, and lists quick-reference facts (contract address, apps, community call). Facts on it must match the docs pages they link to. Update it when those pages change.
 - **`/<page>.md`** (`src/pages/[...slug].md.ts`): a Markdown copy of every published docs page, used by the page actions' "Copy Markdown" / "View in Markdown" and by AI tools. Draft pages and `:::draft` blocks are left out. This replaces the plugin's own copy, which lands in `.netlify/build` instead of `dist/` and so isn't served.
-- **`/index.md` and `/llms.txt`** (`src/lib/docsIndex.ts`): a Markdown index of every page with its description, grouped like the sidebar. The home page's Markdown actions point here.
+- **`/index.md`** (`src/lib/docsIndex.ts`): a Markdown index of every page with its description, grouped like the sidebar. The home page's Markdown actions point here.
+- **`/llms.txt`** is written by `starlight-page-actions` in its `astro:build:done` hook (a plain list of sidebar URLs). It overwrites anything at that path, so don't add an `llms.txt` route.
 
 ---
 

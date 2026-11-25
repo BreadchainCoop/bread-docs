@@ -12,7 +12,8 @@ const SECTIONS: { dir: string; label: string }[] = [
 /**
  * A Markdown index of every docs page (title, URL, description), grouped like
  * the sidebar. Served at /index.md (the home page's "Copy Markdown" / "View in
- * Markdown" target) and /llms.txt (the conventional location for AI tools).
+ * Markdown" target). /llms.txt is generated separately by starlight-page-actions
+ * (a plain URL list written after the build), so it isn't served from here.
  */
 export async function buildDocsIndex(): Promise<string> {
 	const docs = (await getCollection('docs')).filter((d) => !d.data.draft);

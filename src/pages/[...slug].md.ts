@@ -4,7 +4,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 /**
  * Markdown version of every docs page at `<page>.md`, used by the
  * starlight-page-actions "Copy Markdown" / "View in Markdown" actions and by
- * AI tools (see /llms.txt).
+ * AI tools (see /index.md for the site index).
  *
  * The plugin also copies raw .md files, but with the Netlify adapter they land
  * in the server bundle (.netlify/build) rather than the published `dist/`, so
