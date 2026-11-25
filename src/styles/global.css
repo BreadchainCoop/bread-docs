@@ -638,7 +638,7 @@ h1#_top {
 }
 
 .sl-markdown-content .sl-anchor-link {
-  color: var(--bread-text-subtle);
+  color: var(--bread-link);
 }
 
 /* Links — underlined, AA contrast */

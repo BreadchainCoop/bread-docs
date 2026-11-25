@@ -1,61 +1,92 @@
 ---
+/**
+ * Docs home page.
+ *
+ * The sidebar already lists every page by section, so the home page doesn't
+ * repeat it. It answers three questions a first-time visitor has:
+ *   1. "Where do I start, given who I am?"   → Start here (routes by intent)
+ *   2. "How does this actually work?"        → How Bread works (the core loop)
+ *   3. "Where's the thing I keep looking up?" → Quick reference
+ * All facts here are taken from the docs pages they link to.
+ */
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 
-type Section = {
-	eyebrow: string;
-	title: string;
-	href: string;
-	blurb: string;
-	/** Sub-brand colour, per the Bread Design System (one colour per product) */
-	tone: 'ink' | 'orange' | 'blue';
-	links: { label: string; href: string; note: string }[];
-};
+const BREAD_CONTRACT = '0xa555d5344f6fb6c65da19e403cb4c1ec4a1a5ee3';
 
-const sections: Section[] = [
+type Route = { label: string; href: string; note: string; tone?: 'blue' };
+type Path = { who: string; goal: string; routes: Route[] };
+
+const paths: Path[] = [
 	{
-		eyebrow: 'About',
-		title: 'Bread Cooperative',
-		href: '/cooperative/',
-		blurb: 'Who we are, how we govern ourselves, and the community currency that funds the work.',
-		tone: 'ink',
-		links: [
+		who: 'BREAD holders',
+		goal: 'Put my savings to work for mutual aid',
+		routes: [
+			{ label: 'How to Bake BREAD', href: '/cooperative/currency/how-to-bake/', note: 'Connect a wallet, bake xDAI into BREAD, burn it back' },
+			{ label: 'How the Solidarity Fund works', href: '/tools/solidarity-fund/how-it-works/', note: 'Yield, the monthly vote and voting power' },
+			{ label: 'Liquidity Providing', href: '/tools/solidarity-fund/liquidity-providing/', note: 'Provide liquidity without losing your vote' },
+		],
+	},
+	{
+		who: 'Organisations',
+		goal: 'Bring my organisation into the network',
+		routes: [
+			{ label: 'Eligibility', href: '/get-involved/member-projects/eligibility/', note: 'Whether your organisation is a fit' },
+			{ label: 'How to Apply', href: '/get-involved/member-projects/how-to-apply/', note: 'Nomination and the unanimous vote' },
+			{ label: 'Run savings circles with Stacks', href: '/tools/stacks/how-stacks-works/', note: 'For employees, members or a wider community', tone: 'blue' },
+			{ label: 'Hire us', href: '/cooperative/#working-with-us', note: 'Bread as a development studio' },
+		],
+	},
+	{
+		who: 'Individuals',
+		goal: 'Contribute my skills to the co-op',
+		routes: [
+			{ label: 'What We Need', href: '/get-involved/contributors/what-we-need/', note: 'The skills we’re looking for' },
+			{ label: 'How to Get Started', href: '/get-involved/contributors/how-to-get-started/', note: 'From Discord to the core team' },
+		],
+	},
+	{
+		who: 'Everyone',
+		goal: 'Understand how Bread is run',
+		routes: [
 			{ label: 'Our Manifesto', href: '/manifesto/', note: 'What we stand for' },
-			{ label: 'BREAD Token', href: '/cooperative/currency/bread-token/', note: 'How it works and where to use it' },
-			{ label: 'Governance', href: '/cooperative/governance/', note: 'Principles, people and finances' },
+			{ label: 'Governance', href: '/cooperative/governance/', note: 'How decisions get made' },
+			{ label: 'Finances', href: '/cooperative/governance/finances/', note: 'Where the money sits, and who controls it' },
 		],
+	},
+];
+
+const steps = [
+	{
+		verb: 'Bake',
+		text: 'Deposit xDAI into the Solidarity Fund and receive BREAD at 1:1. Burn it back to xDAI whenever you like.',
+		href: '/cooperative/currency/how-to-bake/',
+		link: 'How to bake',
 	},
 	{
-		eyebrow: 'Join',
-		title: 'Get Involved',
-		href: '/get-involved/',
-		blurb: 'Contribute your skills, or bring your organisation into the Bread network.',
-		tone: 'ink',
-		links: [
-			{ label: 'Contributors', href: '/get-involved/contributors/what-we-need/', note: 'The skills we need and how to start' },
-			{ label: 'Member Projects', href: '/get-involved/member-projects/eligibility/', note: 'Joining the network as an organisation' },
-		],
+		verb: 'Earn',
+		text: 'Your xDAI is converted to sDAI and earns yield. The yield goes to the network; your principal stays yours.',
+		href: '/tools/solidarity-fund/how-it-works/#baking-and-burning',
+		link: 'Baking and burning',
 	},
 	{
-		eyebrow: 'Solidarity Tool',
-		title: 'Solidarity Fund',
-		href: '/tools/solidarity-fund/how-it-works/',
-		blurb: 'Yield-funded mutual aid, distributed every month by community vote.',
-		tone: 'orange',
-		links: [
-			{ label: 'How it works', href: '/tools/solidarity-fund/how-it-works/', note: 'From deposit to distribution' },
-			{ label: 'Current member projects', href: '/tools/solidarity-fund/member-projects/', note: 'Who receives the yield' },
-		],
+		verb: 'Vote',
+		text: 'Each month BREAD holders vote on the yield. Your voting power is your average balance over the previous month.',
+		href: '/tools/solidarity-fund/how-it-works/#understanding-voting-power',
+		link: 'Voting power',
 	},
 	{
-		eyebrow: 'Solidarity Tool',
-		title: 'Stacks',
-		href: '/tools/stacks/what-is-a-savings-circle/',
-		blurb: 'Savings circles for the people closest to you.',
-		tone: 'blue',
-		links: [
-			{ label: 'What is a savings circle?', href: '/tools/stacks/what-is-a-savings-circle/', note: 'The idea behind Stacks' },
-		],
+		verb: 'Distribute',
+		text: 'Half the yield is split evenly across member projects. The other half follows the vote.',
+		href: '/tools/solidarity-fund/member-projects/',
+		link: 'Who receives it',
 	},
+];
+
+const headings = [
+	{ depth: 2, slug: 'start-here', text: 'Start here' },
+	{ depth: 2, slug: 'how-bread-works', text: 'How Bread works' },
+	{ depth: 2, slug: 'quick-reference', text: 'Quick reference' },
+	{ depth: 2, slug: 'get-in-touch', text: 'Get in touch' },
 ];
 ---
 
@@ -63,63 +94,175 @@ const sections: Section[] = [
 	frontmatter={{
 		title: 'Bread Docs',
 		description:
-			'Bread Cooperative is a worker-owned collective building financial tools for cooperatives and solidarity-focused communities.',
-		tableOfContents: false,
-		pageActions: false,
+			'How BREAD, the Solidarity Fund and Stacks work, how Bread Cooperative is run, and how to take part.',
 	}}
+	headings={headings}
 >
 	<div class="home not-content">
 		<p class="lead">
-			Bread Cooperative is a worker-owned collective building financial tools for cooperatives
-			and solidarity-focused communities. Everything we build is open source, funded by the
-			tools themselves, and governed collectively.
+			Bread Cooperative is a worker-owned collective building financial tools for cooperatives and
+			solidarity-focused communities. These docs explain how BREAD and our tools work, how the
+			co-op is run, and how to take part.
 		</p>
 
-		<div class="grid">
-			{
-				sections.map((s) => (
-					<section class={`card tone-${s.tone}`}>
-						<p class="eyebrow">{s.eyebrow}</p>
-						<h2 class="card-title">
-							<a href={s.href}>{s.title}</a>
-						</h2>
-						<p class="blurb">{s.blurb}</p>
-						<ul class="links">
-							{s.links.map((l) => (
-								<li>
-									<a href={l.href}>
-										<span class="link-label">{l.label}</span>
-										<span class="link-note">{l.note}</span>
-										<svg class="arrow" viewBox="0 0 256 256" aria-hidden="true">
-											<path
-												fill="currentColor"
-												d="M221.66 133.66l-72 72a8 8 0 0 1-11.32-11.32L196.69 136H40a8 8 0 0 1 0-16h156.69l-58.35-58.34a8 8 0 0 1 11.32-11.32l72 72a8 8 0 0 1 0 11.32Z"
-											/>
-										</svg>
-									</a>
-								</li>
-							))}
-						</ul>
-					</section>
-				))
-			}
-		</div>
+		<!-- 1. Start here ------------------------------------------------- -->
+		<section aria-labelledby="start-here">
+			<h2 id="start-here" class="section-title">Start here</h2>
+			<ul class="paths">
+				{
+					paths.map((p) => (
+						<li class="path">
+							<div class="path-head">
+								<p class="eyebrow">{p.who}</p>
+								<h3 class="path-goal">{p.goal}</h3>
+							</div>
+							<ul class="routes">
+								{p.routes.map((r) => (
+									<li>
+										<a href={r.href} class={r.tone ? `tone-${r.tone}` : undefined}>
+											<span class="route-label">{r.label}</span>
+											<span class="route-note">{r.note}</span>
+											<svg class="arrow" viewBox="0 0 256 256" aria-hidden="true">
+												<path
+													fill="currentColor"
+													d="M221.66 133.66l-72 72a8 8 0 0 1-11.32-11.32L196.69 136H40a8 8 0 0 1 0-16h156.69l-58.35-58.34a8 8 0 0 1 11.32-11.32l72 72a8 8 0 0 1 0 11.32Z"
+												/>
+											</svg>
+										</a>
+									</li>
+								))}
+							</ul>
+						</li>
+					))
+				}
+			</ul>
+		</section>
 
-		<aside class="contact">
+		<!-- 2. How Bread works -------------------------------------------- -->
+		<section aria-labelledby="how-bread-works">
+			<h2 id="how-bread-works" class="section-title">How Bread works</h2>
+			<p class="section-intro">
+				BREAD is a community currency on Gnosis Chain, backed 1:1 by xDAI. Holding it neither earns
+				nor loses you money. Instead, the yield on everyone’s deposits funds the cooperative’s
+				member projects, and holders decide how it’s shared.
+			</p>
+			<ol class="loop">
+				{
+					steps.map((s, i) => (
+						<li class="step">
+							<span class="step-n" aria-hidden="true">
+								{String(i + 1).padStart(2, '0')}
+							</span>
+							<h3 class="step-verb">{s.verb}</h3>
+							<p class="step-text">{s.text}</p>
+							<a class="step-link" href={s.href}>
+								{s.link}
+							</a>
+						</li>
+					))
+				}
+			</ol>
+			<p class="loop-note">
+				BREAD is also spendable: at events, for donations, in token-gated spaces, and in
+				<a href="/tools/stacks/how-stacks-works/" class="tone-blue">Stacks</a> savings circles.
+				<br /><a class="more" href="/cooperative/currency/bread-token/#where-to-use-your-bread">Where to use BREAD</a>
+			</p>
+		</section>
+
+		<!-- 3. Quick reference -------------------------------------------- -->
+		<section aria-labelledby="quick-reference">
+			<h2 id="quick-reference" class="section-title">Quick reference</h2>
+			<dl class="facts">
+				<div class="fact fact-wide">
+					<dt>BREAD contract (Gnosis Chain)</dt>
+					<dd class="contract">
+						<code id="bread-contract">{BREAD_CONTRACT}</code>
+						<button type="button" class="copy" data-copy={BREAD_CONTRACT} aria-describedby="bread-contract">
+							<span class="copy-idle">Copy</span><span class="copy-done">Copied</span>
+						</button>
+						<a href={`https://gnosisscan.io/token/${BREAD_CONTRACT}`}>Gnosisscan</a>
+					</dd>
+				</div>
+				<div class="fact">
+					<dt>Peg</dt>
+					<dd>1 BREAD = 1 xDAI (US dollar)</dd>
+				</div>
+				<div class="fact">
+					<dt>Network</dt>
+					<dd>Gnosis Chain</dd>
+				</div>
+				<div class="fact">
+					<dt>Solidarity Fund app</dt>
+					<dd><a href="https://fund.bread.coop/">fund.bread.coop</a></dd>
+				</div>
+				<div class="fact">
+					<dt>Community call</dt>
+					<dd>Wednesdays, <a href="https://discord.com/invite/zmNqsHRHDa">on Discord</a></dd>
+				</div>
+				<div class="fact">
+					<dt>Source code</dt>
+					<dd><a href="https://github.com/BreadchainCoop">github.com/BreadchainCoop</a></dd>
+				</div>
+				<div class="fact">
+					<dt>For AI tools</dt>
+					<dd><a href="/llms.txt">llms.txt</a> · add <code>.md</code> to any page URL</dd>
+				</div>
+			</dl>
+		</section>
+
+		<!-- 4. Get in touch ------------------------------------------------ -->
+		<section aria-labelledby="get-in-touch" class="contact">
 			<div>
-				<p class="eyebrow">Contact</p>
-				<p class="contact-text">Questions, partnerships, or press — we'd love to hear from you.</p>
+				<h2 id="get-in-touch" class="section-title">Get in touch</h2>
+				<p class="contact-text">
+					Ask in Discord, or email <a href="mailto:contact@bread.coop">contact@bread.coop</a>.
+				</p>
 			</div>
-			<a class="contact-link" href="/contact/">Contact &amp; links</a>
-		</aside>
+			<div class="contact-actions">
+				<a class="btn btn-primary" href="https://discord.com/invite/zmNqsHRHDa">Join the Discord</a>
+				<a class="btn btn-stroke" href="/contact/">All contact links</a>
+			</div>
+		</section>
 	</div>
 </StarlightPage>
 
+<script>
+	// The home page is an Astro page, not a Markdown doc, so starlight-page-actions
+	// points its Markdown actions at "/.md", which doesn't exist. Point them at the
+	// generated docs index instead (/index.md).
+	const copyMarkdown = document.querySelector<HTMLButtonElement>('#copy-markdown');
+	if (copyMarkdown) copyMarkdown.dataset.path = '/index';
+	document
+		.querySelectorAll<HTMLAnchorElement>('a.dropdown-item[href=".md"]')
+		.forEach((a) => (a.href = '/index.md'));
+
+	// Copy-to-clipboard for the contract address
+	document.querySelectorAll<HTMLButtonElement>('button[data-copy]').forEach((btn) => {
+		btn.addEventListener('click', async () => {
+			try {
+				await navigator.clipboard.writeText(btn.dataset.copy ?? '');
+				btn.classList.add('done');
+				setTimeout(() => btn.classList.remove('done'), 2000);
+			} catch {
+				const code = document.getElementById('bread-contract');
+				if (code) window.getSelection()?.selectAllChildren(code);
+			}
+		});
+	});
+</script>
+
 <style>
 	.home {
-		--tone: var(--bread-heading);
+		container-type: inline-size;
 		font-family: var(--font-breadBody);
 		color: var(--bread-text);
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	.home a {
+		color: var(--bread-link);
 	}
 
 	.lead {
@@ -127,42 +270,24 @@ const sections: Section[] = [
 		line-height: 1.55;
 		color: var(--bread-heading);
 		max-width: 38rem;
-		margin: 0 0 2.5rem;
+		margin: 0;
 	}
 
-	.grid {
-		display: grid;
-		grid-template-columns: 100%;
-		gap: 1.25rem;
+	.section-title {
+		font-family: var(--font-breadDisplay);
+		font-weight: 900;
+		font-size: clamp(1.625rem, 1.3rem + 1vw, 2.125rem);
+		line-height: 1.05;
+		letter-spacing: -0.02em;
+		color: var(--bread-heading);
+		margin: 0 0 1.25rem;
+		scroll-margin-top: calc(var(--sl-nav-height) + 1.5rem);
 	}
 
-	@media (min-width: 50rem) {
-		.grid {
-			grid-template-columns: 1fr 1fr;
-		}
-	}
-
-	/* Section card — square, top rule in the product colour */
-	.card {
-		display: flex;
-		flex-direction: column;
-		background-color: var(--bread-bg-raised);
-		border: 1px solid var(--bread-border-strong);
-		border-top: 4px solid var(--tone);
-		padding: 1.5rem 1.5rem 1rem;
-	}
-
-	.tone-ink {
-		--tone: var(--bread-heading);
-	}
-	.tone-orange {
-		--tone: var(--color-primary-orange);
-	}
-	.tone-blue {
-		--tone: var(--color-primary-blue);
-	}
-	:global([data-theme='dark']) .tone-blue {
-		--tone: var(--color-blue-1);
+	.section-intro {
+		max-width: 38rem;
+		margin: -0.25rem 0 1.5rem;
+		line-height: 1.6;
 	}
 
 	.eyebrow {
@@ -171,71 +296,80 @@ const sections: Section[] = [
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
 		color: var(--bread-text-muted);
-		margin: 0 0 0.5rem;
+		margin: 0 0 0.25rem;
 	}
 
-	.card-title {
-		font-family: var(--font-breadDisplay);
-		font-weight: 900;
-		font-size: clamp(1.625rem, 1.3rem + 1vw, 2rem);
-		line-height: 1;
-		letter-spacing: -0.02em;
-		margin: 0 0 0.625rem;
-	}
-
-	.card-title a {
-		color: var(--bread-heading);
-		text-decoration: none;
-	}
-
-	.card-title a:hover {
-		color: var(--tone);
-	}
-
-	.blurb {
-		font-size: 0.9375rem;
-		line-height: 1.55;
-		color: var(--bread-text-muted);
-		margin: 0 0 1rem;
-	}
-
-	.links {
+	/* --- Start here: ruled index, intent on the left, routes on the right --- */
+	.paths,
+	.routes {
 		list-style: none;
 		padding: 0;
-		margin: auto 0 0;
+		margin: 0;
+	}
+
+	.paths {
+		border-top: 2px solid var(--bread-heading);
+	}
+
+	.path {
+		display: grid;
+		grid-template-columns: 100%;
+		gap: 0.5rem;
+		padding: 1.25rem 0;
+		border-bottom: 1px solid var(--bread-border-strong);
+	}
+
+	@container (min-width: 36rem) {
+		.path {
+			grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+			gap: 2rem;
+		}
+	}
+
+	.path-goal {
+		font-family: var(--font-breadBody);
+		font-weight: 700;
+		font-size: 1.1875rem;
+		line-height: 1.25;
+		color: var(--bread-heading);
+		margin: 0;
+		text-wrap: balance;
+	}
+
+	.routes li + li {
 		border-top: 1px solid var(--bread-border);
 	}
 
-	.links li {
-		border-bottom: 1px solid var(--bread-border);
-	}
-
-	.links li:last-child {
-		border-bottom: 0;
-	}
-
-	.links a {
+	.routes a {
+		--tone: var(--bread-accent);
 		display: grid;
-		grid-template-columns: 1fr auto;
+		grid-template-columns: minmax(0, 1fr) auto;
 		grid-template-areas:
 			'label arrow'
 			'note arrow';
 		column-gap: 1rem;
 		align-items: center;
-		padding: 0.75rem 0;
+		padding: 0.5rem 0;
 		text-decoration: none;
 		color: var(--bread-heading);
 	}
 
-	.link-label {
-		grid-area: label;
-		font-weight: 700;
-		font-size: 0.9375rem;
+	.routes a.tone-blue {
+		--tone: var(--color-primary-blue);
 	}
 
-	.link-note {
+	:global([data-theme='dark']) .routes a.tone-blue {
+		--tone: var(--color-blue-1);
+	}
+
+	.route-label {
+		grid-area: label;
+		font-weight: 700;
+	}
+
+	.route-note {
 		grid-area: note;
-		font-size: 0.8125rem;
+		font-size: 0.875rem;
 		color: var(--bread-text-muted);
 	}
 
@@ -249,30 +383,256 @@ const sections: Section[] = [
 			color 150ms ease;
 	}
 
-	.links a:hover .link-label {
+	.routes a:hover .route-label,
+	.routes a:focus-visible .route-label {
 		color: var(--tone);
 	}
 
-	.links a:hover .arrow {
+	.routes a:hover .arrow,
+	.routes a:focus-visible .arrow {
 		color: var(--tone);
 		transform: translateX(3px);
 	}
 
-	/* Contact strip */
+	/* --- How Bread works: the four-step loop ---------------------------- */
+	.loop {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		grid-template-columns: 100%;
+		border: 1px solid var(--bread-border-strong);
+		border-top: 4px solid var(--color-primary-orange);
+		background-color: var(--bread-bg-raised);
+	}
+
+	@container (min-width: 36rem) {
+		.loop {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@container (min-width: 56rem) {
+		.loop {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+
+	.step {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		padding: 1.25rem;
+		border-bottom: 1px solid var(--bread-border);
+	}
+
+	@container (min-width: 36rem) and (max-width: 55.99rem) {
+		.step:nth-child(odd) {
+			border-right: 1px solid var(--bread-border);
+		}
+		.step:nth-child(n + 3) {
+			border-bottom: 0;
+		}
+	}
+
+	@container (min-width: 56rem) {
+		.step {
+			border-bottom: 0;
+		}
+		.step:not(:last-child) {
+			border-right: 1px solid var(--bread-border);
+		}
+		/* arrow between steps */
+		.step:not(:last-child)::after {
+			content: '';
+			position: absolute;
+			top: 1.6rem;
+			right: -0.4rem;
+			width: 0.75rem;
+			height: 0.75rem;
+			background-color: var(--bread-bg-raised);
+			border-top: 1px solid var(--bread-border-strong);
+			border-right: 1px solid var(--bread-border-strong);
+			transform: rotate(45deg);
+			z-index: 1;
+		}
+	}
+
+	@container (max-width: 35.99rem) {
+		.step:last-child {
+			border-bottom: 0;
+		}
+	}
+
+	.step-n {
+		font-family: var(--font-breadDisplay);
+		font-weight: 900;
+		font-size: 0.875rem;
+		letter-spacing: 0.02em;
+		color: var(--bread-link);
+	}
+
+	.step-verb {
+		font-family: var(--font-breadDisplay);
+		font-weight: 900;
+		font-size: 1.5rem;
+		line-height: 1;
+		letter-spacing: -0.02em;
+		text-transform: uppercase;
+		color: var(--bread-heading);
+		margin: 0;
+	}
+
+	.step-text {
+		font-size: 0.9375rem;
+		line-height: 1.55;
+		color: var(--bread-text);
+		margin: 0;
+		flex: 1;
+	}
+
+	.step-link {
+		font-size: 0.875rem;
+		font-weight: 700;
+		text-underline-offset: 0.2em;
+	}
+
+	.loop-note {
+		margin: 1rem 0 0;
+		font-size: 0.9375rem;
+		color: var(--bread-text-muted);
+	}
+
+	.loop-note a {
+		font-weight: 700;
+		text-underline-offset: 0.2em;
+	}
+
+	.loop-note a.tone-blue {
+		color: var(--color-primary-blue);
+	}
+
+	:global([data-theme='dark']) .loop-note a.tone-blue {
+		color: var(--color-blue-1);
+	}
+
+	.loop-note .more {
+		display: inline-block;
+		margin-top: 0.25rem;
+	}
+
+	.loop-note .more::after {
+		content: ' →';
+	}
+
+	/* --- Quick reference ------------------------------------------------- */
+	.facts {
+		display: grid;
+		grid-template-columns: 100%;
+		margin: 0;
+		border-top: 2px solid var(--bread-heading);
+	}
+
+	@container (min-width: 32rem) {
+		.facts {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			column-gap: 2rem;
+		}
+		.fact-wide {
+			grid-column: 1 / -1;
+		}
+	}
+
+	.fact {
+		padding: 0.875rem 0;
+		border-bottom: 1px solid var(--bread-border);
+		min-width: 0;
+	}
+
+	.fact dt {
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--bread-text-muted);
+		margin-bottom: 0.25rem;
+	}
+
+	.fact dd {
+		margin: 0;
+		color: var(--bread-heading);
+	}
+
+	.fact a {
+		text-underline-offset: 0.2em;
+	}
+
+	.fact code {
+		font-family: var(--sl-font-mono);
+		font-size: 0.875em;
+		background-color: var(--bread-bg-sunken);
+		border: 1px solid var(--bread-border);
+		padding: 0.1em 0.35em;
+	}
+
+	.contract {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem 0.75rem;
+	}
+
+	.contract code {
+		overflow-wrap: anywhere;
+		min-width: 0;
+	}
+
+	.copy {
+		font-family: var(--font-breadBody);
+		font-size: 0.8125rem;
+		height: 1.75rem;
+		padding: 0 0.625rem;
+		background: transparent;
+		border: 1px solid var(--bread-border-strong);
+		color: var(--bread-heading);
+		cursor: pointer;
+		transition:
+			transform 150ms ease,
+			box-shadow 150ms ease,
+			border-color 150ms ease;
+	}
+
+	.copy:hover {
+		border-color: var(--bread-heading);
+		transform: translate(-1px, -1px);
+		box-shadow: 2px 2px 0 var(--bread-border-strong);
+	}
+
+	.copy-done,
+	.copy.done .copy-idle {
+		display: none;
+	}
+
+	.copy.done .copy-done {
+		display: inline;
+	}
+
+	/* --- Get in touch ---------------------------------------------------- */
 	.contact {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
 		justify-content: space-between;
-		gap: 1rem;
-		margin-top: 1.25rem;
-		padding: 1.25rem 1.5rem;
-		border: 1px solid var(--bread-border-strong);
+		gap: 1.25rem;
+		padding: 1.5rem;
 		background-color: var(--bread-bg-sunken);
+		border: 1px solid var(--bread-border-strong);
 	}
 
-	.contact .eyebrow {
-		margin-bottom: 0.25rem;
+	.contact .section-title {
+		font-size: 1.5rem;
+		margin-bottom: 0.375rem;
 	}
 
 	.contact-text {
@@ -280,14 +640,18 @@ const sections: Section[] = [
 		color: var(--bread-heading);
 	}
 
-	/* Lifted primary button, as on bread.coop */
-	.contact-link {
+	.contact-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.875rem;
+	}
+
+	/* Lifted buttons, as on bread.coop */
+	.btn {
 		display: inline-flex;
 		align-items: center;
 		height: 2.75rem;
-		padding: 0 1.5rem;
-		background-color: var(--color-primary-orange);
-		color: var(--color-paper-main);
+		padding: 0 1.25rem;
 		font-weight: 700;
 		text-decoration: none;
 		box-shadow: 3px 3px 0 var(--bread-lift);
@@ -297,20 +661,36 @@ const sections: Section[] = [
 			background-color 150ms ease;
 	}
 
-	.contact-link:hover {
-		background-color: var(--color-orange-1);
+	.btn:hover {
 		transform: translate(-1px, -1px);
 		box-shadow: 4px 4px 0 var(--bread-lift);
 	}
 
-	.contact-link:active {
+	.btn:active {
 		transform: translate(2px, 2px);
 		box-shadow: 1px 1px 0 var(--bread-lift);
 	}
 
+	.home .btn-primary {
+		background-color: var(--color-primary-orange);
+		color: var(--color-surface-ink);
+	}
+
+	.home .btn-primary:hover {
+		background-color: var(--color-orange-0);
+		color: var(--color-surface-ink);
+	}
+
+	.home .btn-stroke {
+		background-color: var(--bread-bg-raised);
+		color: var(--bread-heading);
+		border: 1px solid var(--bread-heading);
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		.arrow,
-		.contact-link {
+		.btn,
+		.copy {
 			transition: none;
 		}
 	}

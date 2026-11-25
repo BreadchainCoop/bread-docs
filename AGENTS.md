@@ -148,6 +148,14 @@ Moving or renaming a page changes its URL. Add a rule to `public/_redirects` whe
 
 ---
 
+## Home page and Markdown routes
+
+- **`src/pages/index.astro`** is the home page (an Astro page, not a content file). It routes visitors by intent ("Start here"), explains the BREAD bake → earn → vote → distribute loop, and lists quick-reference facts (contract address, apps, community call). Facts on it must match the docs pages they link to. Update it when those pages change.
+- **`/<page>.md`** (`src/pages/[...slug].md.ts`): a Markdown copy of every published docs page, used by the page actions' "Copy Markdown" / "View in Markdown" and by AI tools. Draft pages and `:::draft` blocks are left out. This replaces the plugin's own copy, which lands in `.netlify/build` instead of `dist/` and so isn't served.
+- **`/index.md` and `/llms.txt`** (`src/lib/docsIndex.ts`): a Markdown index of every page with its description, grouped like the sidebar. The home page's Markdown actions point here.
+
+---
+
 ## Sidebar Structure
 
 Defined in `astro.config.mjs` via `autogenerate`. Adding a directory under one of these roots automatically includes it:
