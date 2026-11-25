@@ -1,5 +1,62 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+
+type Section = {
+	eyebrow: string;
+	title: string;
+	href: string;
+	blurb: string;
+	/** Sub-brand colour, per the Bread Design System (one colour per product) */
+	tone: 'ink' | 'orange' | 'blue';
+	links: { label: string; href: string; note: string }[];
+};
+
+const sections: Section[] = [
+	{
+		eyebrow: 'About',
+		title: 'Bread Cooperative',
+		href: '/cooperative/',
+		blurb: 'Who we are, how we govern ourselves, and the community currency that funds the work.',
+		tone: 'ink',
+		links: [
+			{ label: 'Our Manifesto', href: '/manifesto/', note: 'What we stand for' },
+			{ label: 'BREAD Token', href: '/cooperative/currency/bread-token/', note: 'How it works and where to use it' },
+			{ label: 'Governance', href: '/cooperative/governance/', note: 'Principles, people and finances' },
+		],
+	},
+	{
+		eyebrow: 'Join',
+		title: 'Get Involved',
+		href: '/get-involved/',
+		blurb: 'Contribute your skills, or bring your organisation into the Bread network.',
+		tone: 'ink',
+		links: [
+			{ label: 'Contributors', href: '/get-involved/contributors/what-we-need/', note: 'The skills we need and how to start' },
+			{ label: 'Member Projects', href: '/get-involved/member-projects/eligibility/', note: 'Joining the network as an organisation' },
+		],
+	},
+	{
+		eyebrow: 'Solidarity Tool',
+		title: 'Solidarity Fund',
+		href: '/tools/solidarity-fund/how-it-works/',
+		blurb: 'Yield-funded mutual aid, distributed every month by community vote.',
+		tone: 'orange',
+		links: [
+			{ label: 'How it works', href: '/tools/solidarity-fund/how-it-works/', note: 'From deposit to distribution' },
+			{ label: 'Current member projects', href: '/tools/solidarity-fund/member-projects/', note: 'Who receives the yield' },
+		],
+	},
+	{
+		eyebrow: 'Solidarity Tool',
+		title: 'Stacks',
+		href: '/tools/stacks/what-is-a-savings-circle/',
+		blurb: 'Savings circles for the people closest to you.',
+		tone: 'blue',
+		links: [
+			{ label: 'What is a savings circle?', href: '/tools/stacks/what-is-a-savings-circle/', note: 'The idea behind Stacks' },
+		],
+	},
+];
 ---
 
 <StarlightPage
@@ -7,110 +64,254 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 		title: 'Bread Docs',
 		description:
 			'Bread Cooperative is a worker-owned collective building financial tools for cooperatives and solidarity-focused communities.',
+		tableOfContents: false,
+		pageActions: false,
 	}}
 >
-	<div class="home-page">
-		<p class="intro-text">
-			Bread Cooperative is a worker-owned collective building financial tools
-			for cooperatives and solidarity-focused communities. Everything we build
-			is open source, funded by the tools themselves, and governed
-			collectively.
+	<div class="home not-content">
+		<p class="lead">
+			Bread Cooperative is a worker-owned collective building financial tools for cooperatives
+			and solidarity-focused communities. Everything we build is open source, funded by the
+			tools themselves, and governed collectively.
 		</p>
 
-		<h2 class="section-heading">Bread Cooperative</h2>
-		<ul class="link-list">
-			<li>
-				<a href="/manifesto/">Our Manifesto</a> — what we stand for
-			</li>
-			<li>
-				<a href="/cooperative/">Overview</a> — who we are and what we do
-			</li>
-			<li>
-				<a href="/cooperative/currency/bread-token/">BREAD Token</a> — what
-				BREAD is, how it works, and where to use it
-			</li>
-			<li>
-				<a href="/cooperative/governance/">Governance</a> —
-				the principles we operate by and where the money sits
-			</li>
-		</ul>
+		<div class="grid">
+			{
+				sections.map((s) => (
+					<section class={`card tone-${s.tone}`}>
+						<p class="eyebrow">{s.eyebrow}</p>
+						<h2 class="card-title">
+							<a href={s.href}>{s.title}</a>
+						</h2>
+						<p class="blurb">{s.blurb}</p>
+						<ul class="links">
+							{s.links.map((l) => (
+								<li>
+									<a href={l.href}>
+										<span class="link-label">{l.label}</span>
+										<span class="link-note">{l.note}</span>
+										<svg class="arrow" viewBox="0 0 256 256" aria-hidden="true">
+											<path
+												fill="currentColor"
+												d="M221.66 133.66l-72 72a8 8 0 0 1-11.32-11.32L196.69 136H40a8 8 0 0 1 0-16h156.69l-58.35-58.34a8 8 0 0 1 11.32-11.32l72 72a8 8 0 0 1 0 11.32Z"
+											/>
+										</svg>
+									</a>
+								</li>
+							))}
+						</ul>
+					</section>
+				))
+			}
+		</div>
 
-		<h2 class="section-heading">Get Involved</h2>
-		<ul class="link-list">
-			<li>
-				<a href="/get-involved/contributors/what-we-need/">Contributors</a> —
-				the skills we need and how to start
-			</li>
-			<li>
-				<a href="/get-involved/member-projects/eligibility/">Member Projects</a
-				> — joining the network as an organisation
-			</li>
-		</ul>
-
-		<h2 class="section-heading">Solidarity Tools</h2>
-		<ul class="link-list">
-			<li>
-				<a href="/tools/solidarity-fund/how-it-works/">Solidarity Fund</a> —
-				yield-funded mutual aid, distributed by community vote
-			</li>
-			<li>
-				<a href="/tools/stacks/what-is-a-savings-circle/">Stacks</a> — savings
-				circles for those closest to you
-			</li>
-		</ul>
-
-		<h2 class="section-heading">Contact</h2>
-		<ul class="link-list">
-			<li>
-				<a href="/contact/">Contact &amp; Links</a> — how to reach us
-			</li>
-		</ul>
+		<aside class="contact">
+			<div>
+				<p class="eyebrow">Contact</p>
+				<p class="contact-text">Questions, partnerships, or press — we'd love to hear from you.</p>
+			</div>
+			<a class="contact-link" href="/contact/">Contact &amp; links</a>
+		</aside>
 	</div>
 </StarlightPage>
 
 <style>
-	.home-page {
+	.home {
+		--tone: var(--bread-heading);
 		font-family: var(--font-breadBody);
+		color: var(--bread-text);
 	}
 
-	.intro-text {
-		font-family: var(--font-breadBody);
-		font-size: 1rem;
-		line-height: 1.6;
-		color: var(--color-surface-ink);
-		margin-bottom: 1.25rem;
-		max-width: 70ch;
+	.lead {
+		font-size: clamp(1.125rem, 1rem + 0.4vw, 1.3125rem);
+		line-height: 1.55;
+		color: var(--bread-heading);
+		max-width: 38rem;
+		margin: 0 0 2.5rem;
 	}
 
-	.section-heading {
+	.grid {
+		display: grid;
+		grid-template-columns: 100%;
+		gap: 1.25rem;
+	}
+
+	@media (min-width: 50rem) {
+		.grid {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	/* Section card — square, top rule in the product colour */
+	.card {
+		display: flex;
+		flex-direction: column;
+		background-color: var(--bread-bg-raised);
+		border: 1px solid var(--bread-border-strong);
+		border-top: 4px solid var(--tone);
+		padding: 1.5rem 1.5rem 1rem;
+	}
+
+	.tone-ink {
+		--tone: var(--bread-heading);
+	}
+	.tone-orange {
+		--tone: var(--color-primary-orange);
+	}
+	.tone-blue {
+		--tone: var(--color-primary-blue);
+	}
+	:global([data-theme='dark']) .tone-blue {
+		--tone: var(--color-blue-1);
+	}
+
+	.eyebrow {
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--bread-text-muted);
+		margin: 0 0 0.5rem;
+	}
+
+	.card-title {
 		font-family: var(--font-breadDisplay);
 		font-weight: 900;
-		font-size: 1.5rem;
-		color: var(--color-surface-ink);
-		margin: 2rem 0 0.75rem;
-		letter-spacing: -0.025em;
+		font-size: clamp(1.625rem, 1.3rem + 1vw, 2rem);
+		line-height: 1;
+		letter-spacing: -0.02em;
+		margin: 0 0 0.625rem;
 	}
 
-	.link-list {
-		list-style: disc;
-		padding-inline-start: 1.25rem;
-		margin-bottom: 1rem;
-		color: var(--color-surface-ink);
+	.card-title a {
+		color: var(--bread-heading);
+		text-decoration: none;
 	}
 
-	.link-list li {
-		margin-bottom: 0.35rem;
+	.card-title a:hover {
+		color: var(--tone);
 	}
 
-	:global([data-theme='dark']) .intro-text {
-		color: var(--color-paper-0);
+	.blurb {
+		font-size: 0.9375rem;
+		line-height: 1.55;
+		color: var(--bread-text-muted);
+		margin: 0 0 1rem;
 	}
 
-	:global([data-theme='dark']) .section-heading {
-		color: var(--color-paper-0);
+	.links {
+		list-style: none;
+		padding: 0;
+		margin: auto 0 0;
+		border-top: 1px solid var(--bread-border);
 	}
 
-	:global([data-theme='dark']) .link-list {
-		color: var(--color-paper-0);
+	.links li {
+		border-bottom: 1px solid var(--bread-border);
+	}
+
+	.links li:last-child {
+		border-bottom: 0;
+	}
+
+	.links a {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		grid-template-areas:
+			'label arrow'
+			'note arrow';
+		column-gap: 1rem;
+		align-items: center;
+		padding: 0.75rem 0;
+		text-decoration: none;
+		color: var(--bread-heading);
+	}
+
+	.link-label {
+		grid-area: label;
+		font-weight: 700;
+		font-size: 0.9375rem;
+	}
+
+	.link-note {
+		grid-area: note;
+		font-size: 0.8125rem;
+		color: var(--bread-text-muted);
+	}
+
+	.arrow {
+		grid-area: arrow;
+		width: 1.125rem;
+		height: 1.125rem;
+		color: var(--bread-text-subtle);
+		transition:
+			transform 150ms ease,
+			color 150ms ease;
+	}
+
+	.links a:hover .link-label {
+		color: var(--tone);
+	}
+
+	.links a:hover .arrow {
+		color: var(--tone);
+		transform: translateX(3px);
+	}
+
+	/* Contact strip */
+	.contact {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-top: 1.25rem;
+		padding: 1.25rem 1.5rem;
+		border: 1px solid var(--bread-border-strong);
+		background-color: var(--bread-bg-sunken);
+	}
+
+	.contact .eyebrow {
+		margin-bottom: 0.25rem;
+	}
+
+	.contact-text {
+		margin: 0;
+		color: var(--bread-heading);
+	}
+
+	/* Lifted primary button, as on bread.coop */
+	.contact-link {
+		display: inline-flex;
+		align-items: center;
+		height: 2.75rem;
+		padding: 0 1.5rem;
+		background-color: var(--color-primary-orange);
+		color: var(--color-paper-main);
+		font-weight: 700;
+		text-decoration: none;
+		box-shadow: 3px 3px 0 var(--bread-lift);
+		transition:
+			transform 150ms ease,
+			box-shadow 150ms ease,
+			background-color 150ms ease;
+	}
+
+	.contact-link:hover {
+		background-color: var(--color-orange-1);
+		transform: translate(-1px, -1px);
+		box-shadow: 4px 4px 0 var(--bread-lift);
+	}
+
+	.contact-link:active {
+		transform: translate(2px, 2px);
+		box-shadow: 1px 1px 0 var(--bread-lift);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.arrow,
+		.contact-link {
+			transition: none;
+		}
 	}
 </style>

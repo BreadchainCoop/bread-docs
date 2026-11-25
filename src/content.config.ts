@@ -11,6 +11,8 @@ export const collections = {
 		schema: docsSchema({
 			extend: z.object({
 				gallery: z.string().optional(),
+				// starlight-page-actions: set false to hide Copy/Open/Share on a page
+				pageActions: z.boolean().optional(),
 			}),
 		}),
 	}),

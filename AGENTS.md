@@ -191,16 +191,35 @@ CSS variables: `--font-breadDisplay`, `--font-breadBody`
 
 ### Color Tokens
 
-| Token | Value | Use |
-|-------|-------|-----|
-| `--color-primary-orange` | `#ea6023` | Brand primary, links, accent |
-| `--color-paper-main` | `#f6f3eb` | Page/nav background (light mode) |
-| `--color-paper-0` | `#fdfcf9` | Lightest background |
-| `--color-surface-ink` | `#1b201a` | Primary text, dark background |
+`global.css` has two token tiers. **Use the semantic tier in components** — never raw hex or palette values — so light and dark mode both work without per-component `[data-theme='dark']` overrides.
+
+**Brand palette** (mirrors `@breadcoop/ui` `theme.css`): `--color-primary-orange` `#ea6023`, `--color-orange-2` `#b83c08`, `--color-paper-main` `#f6f3eb`, `--color-paper-0` `#fdfcf9`, `--color-surface-ink` `#1b201a`, etc.
+
+**Semantic tokens** (redefined per theme):
+
+| Token | Light | Dark | Use |
+|-------|-------|------|-----|
+| `--bread-bg` | paper-main | `#1b201a` (ink) | Page, header, sidebar |
+| `--bread-bg-raised` | paper-0 | `#222821` | Cards, search, menus |
+| `--bread-bg-sunken` | paper-1 | `#161a15` | Inline code, hover, table head |
+| `--bread-border` / `--bread-border-strong` | paper-2 / `#d6ccbb` | `#2d342c` / `#424a40` | Hairlines / control outlines |
+| `--bread-heading` / `--bread-text` / `--bread-text-muted` | ink / `#2b2f29` / grey-2 | paper-main / `#dcd7cb` / `#a49f93` | Text hierarchy |
+| `--bread-link` | orange-2 `#b83c08` | `#f08a52` | Link text (AA contrast) |
+| `--bread-accent` | primary-orange | primary-orange | Rules, markers, focus, fills |
+
+Starlight's `--sl-color-*` variables are mapped from these tokens in one place.
+
+### Visual rules
+
+- **Square corners** everywhere (DS: 0px radius) — cards, buttons, search, asides, code.
+- **Orange is an accent, not a fill** — active nav uses an orange rule, not an orange pill. Brand orange `#ea6023` is only 3.3:1 on paper, so body-size link text uses `--bread-link`.
+- **Lifted offset shadow** (from `<LiftedButton>`) is the hover signature for cards and pagination.
+- **Typography**: page title = Bread Display Black, uppercase; h2 = Bread Display Black; h3–h6 = Bread Body Bold (DS Header/3 is the body face).
+- **Sub-brand colour** marks product content: Solidarity Fund = orange, Stacks = blue, Safety Net = jade.
 
 ### Dark Mode
 
-Starlight's dark mode is driven by `[data-theme='dark']` on the `<html>` element. Override dark-mode colors by targeting this selector in `global.css`.
+Starlight's dark mode is driven by `[data-theme='dark']` on `<html>`. The dark theme is a single ink ramp derived from `#1B201A` (the colour bread.coop uses for its dark sections) with paper-tinted text. To change dark mode, edit the `--bread-*` tokens under `:root[data-theme='dark']` — don't add per-component dark overrides.
 
 ### CSS Layers
 

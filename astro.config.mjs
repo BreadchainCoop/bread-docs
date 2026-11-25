@@ -46,6 +46,13 @@ export default defineConfig({
               }),
           ],
           title: 'Bread Docs',
+          // Square code frames to match the design system (0px radius everywhere)
+          expressiveCode: {
+              styleOverrides: {
+                  borderRadius: '0px',
+                  borderColor: 'var(--bread-border-strong)',
+              },
+          },
           customCss: [
               // Path to Tailwind CSS entry with Starlight integration
               './src/styles/global.css',
