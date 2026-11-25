@@ -203,4 +203,7 @@ export default defineConfig({
   },
 
   adapter: netlify(),
+  // Nothing uses Astro.session; without this the Netlify adapter enables
+  // Netlify Blobs sessions. https://docs.astro.build/en/guides/sessions/
+  session: false,
 });
