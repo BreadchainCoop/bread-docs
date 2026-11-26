@@ -328,14 +328,15 @@ site-search button[data-open-modal]:hover {
 }
 
 /* Mobile menu toggle + "On this page" toggle — square like everything else */
-starlight-menu-button button {
+/* Starlight 0.42+ popover toggle: <button class="sl-menu-button"> */
+.sl-menu-button {
   border-radius: 0;
   background-color: transparent;
   color: var(--bread-heading);
   box-shadow: none;
 }
 
-starlight-menu-button button:hover {
+.sl-menu-button:hover {
   background-color: var(--bread-bg-sunken);
 }
 
@@ -483,7 +484,7 @@ mobile-starlight-toc nav {
   border-color: var(--bread-border);
 }
 
-/* starlight-page-actions buttons — square, outlined, lift on hover */
+/* Page action buttons (src/components/page-actions) — square, outlined, lift on hover */
 main .content-panel .action-button {
   border-radius: 0;
   background-color: transparent;
@@ -501,7 +502,7 @@ main .content-panel .action-button:hover {
   box-shadow: 2px 2px 0 var(--bread-border-strong);
 }
 
-main .content-panel #dropdown-menu {
+main .content-panel .dropdown-menu {
   border-radius: 0;
   background-color: var(--bread-bg-raised);
   border-color: var(--bread-border-strong);
@@ -924,4 +925,22 @@ h1#_top {
     --btn-hover-bg: var(--color-red-1);
     --btn-hover-text: var(--color-red-main);
   }
+}
+
+/* `:::draft` blocks — dev only, see src/plugins/draftBlocks.ts */
+.draft-block {
+  --block-padding: calc(0.75 * var(--sl-content-pad-x));
+  margin-inline: calc(-1 * var(--block-padding));
+  border: 2px solid var(--sl-color-orange-low);
+  padding: 0 var(--block-padding) var(--block-padding);
+}
+.draft-block__title {
+  margin-inline: calc(-1 * var(--block-padding));
+  margin-bottom: var(--block-padding);
+  padding: 1rem;
+  background-color: var(--sl-color-orange-low);
+  font-size: var(--sl-text-body-sm);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--sl-color-orange-high);
 }

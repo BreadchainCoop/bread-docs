@@ -1,0 +1,10 @@
+---
+import Default from '@astrojs/starlight/components/PageTitle.astro';
+import PageActions from '../components/page-actions/PageActions.astro';
+
+// Pages can opt out with `pageActions: false` (e.g. the dev-only Card Maker)
+const { pageActions } = Astro.locals.starlightRoute.entry.data;
+---
+
+<Default />
+{pageActions !== false && <PageActions />}

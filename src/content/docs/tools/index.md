@@ -3,6 +3,8 @@ title: Overview
 description: "The solidarity tools Bread Cooperative builds — the Solidarity Fund, Stacks, and what's in development."
 sidebar:
   order: 0
+og:
+  description: "The Solidarity Fund and Stacks."
 ---
 
 Bread Cooperative builds financial tools designed to move money in ways that serve communities rather than extract from them. Everything here is open source, runs on Gnosis Chain, and is funded by the tools themselves.

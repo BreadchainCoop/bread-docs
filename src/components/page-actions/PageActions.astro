@@ -1,0 +1,321 @@
+---
+/**
+ * Page actions shown under every page title: "Copy Markdown", an "Open" menu
+ * (AI assistants + the page's Markdown version) and a "Share" menu.
+ *
+ * The Markdown actions use this site's own Markdown routes
+ * (src/pages/[...slug].md.ts and src/pages/index.md.ts), so they only appear on
+ * pages that have one: docs pages and the home page.
+ *
+ * Markup, styles and icons are adapted from starlight-page-actions (MIT,
+ * © Daniel Castillo, https://github.com/dlcastillop/starlight-page-actions).
+ */
+import { Icon } from '@astrojs/starlight/components';
+import { getCollection } from 'astro:content';
+import BlueskyIcon from './icons/Bluesky.astro';
+import ChatGPTIcon from './icons/Chatgpt.astro';
+import ClaudeIcon from './icons/Claude.astro';
+import EmailIcon from './icons/Email.astro';
+import FacebookIcon from './icons/Facebook.astro';
+import HackerNewsIcon from './icons/HackerNews.astro';
+import LinkedInIcon from './icons/LinkedIn.astro';
+import MarkdownIcon from './icons/Markdown.astro';
+import RedditIcon from './icons/Reddit.astro';
+import T3ChatIcon from './icons/T3Chat.astro';
+import TelegramIcon from './icons/Telegram.astro';
+import ThreadsIcon from './icons/Threads.astro';
+import V0Icon from './icons/v0.astro';
+import WhatsAppIcon from './icons/WhatsApp.astro';
+import XIcon from './icons/X.astro';
+
+const { entry } = Astro.locals.starlightRoute;
+const path = Astro.url.pathname.replace(/\/$/, '');
+
+// Only published docs pages have a Markdown route (same filter as
+// src/pages/[...slug].md.ts); the home page's Markdown version is the site index.
+const docs = await getCollection('docs', (doc) => !doc.data.draft);
+const markdownPath =
+	path === ''
+		? '/index.md'
+		: docs.some((doc) => doc.id === path.slice(1))
+			? `${path}.md`
+			: undefined;
+
+const url = encodeURIComponent(Astro.url.href);
+const title = encodeURIComponent(entry.data.title);
+const prompt = encodeURIComponent(
+	`Please read and summarize the following documentation page: ${Astro.url.href}`,
+);
+
+const openOptions = [
+	{ id: 'chatgpt', label: 'Open in ChatGPT', href: `https://chatgpt.com/?q=${prompt}`, icon: ChatGPTIcon },
+	{ id: 'claude', label: 'Open in Claude', href: `https://claude.ai/new?q=${prompt}`, icon: ClaudeIcon },
+	{ id: 't3chat', label: 'Open in T3 Chat', href: `https://t3.chat/new?q=${prompt}`, icon: T3ChatIcon },
+	{ id: 'v0', label: 'Open in v0', href: `https://v0.app/?q=${prompt}`, icon: V0Icon },
+	...(markdownPath
+		? [{ id: 'markdown', label: 'View in Markdown', href: markdownPath, icon: MarkdownIcon }]
+		: []),
+];
+
+const shareOptions = [
+	{ id: 'linkedin', label: 'Share on LinkedIn', href: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`, icon: LinkedInIcon },
+	{ id: 'x', label: 'Share on X', href: `https://x.com/intent/tweet?url=${url}&text=${title}`, icon: XIcon },
+	{ id: 'threads', label: 'Share on Threads', href: `https://threads.net/intent/post?url=${url}&text=${title}`, icon: ThreadsIcon },
+	{ id: 'bluesky', label: 'Share on Bluesky', href: `https://bsky.app/intent/compose?text=${title}%20${url}`, icon: BlueskyIcon },
+	{ id: 'facebook', label: 'Share on Facebook', href: `https://www.facebook.com/sharer/sharer.php?u=${url}`, icon: FacebookIcon },
+	{ id: 'reddit', label: 'Share on Reddit', href: `https://reddit.com/submit?url=${url}&title=${title}`, icon: RedditIcon },
+	{ id: 'hackernews', label: 'Share on Hacker News', href: `https://news.ycombinator.com/submitlink?u=${url}&t=${title}`, icon: HackerNewsIcon },
+	{ id: 'email', label: 'Share on Email', href: `mailto:?subject=${title}&body=${url}`, icon: EmailIcon },
+	{ id: 'whatsapp', label: 'Share on WhatsApp', href: `https://wa.me/?text=${title}%20${url}`, icon: WhatsAppIcon },
+	{ id: 'telegram', label: 'Share on Telegram', href: `https://t.me/share/url?url=${url}&text=${title}`, icon: TelegramIcon },
+];
+
+const menus = [
+	{ label: 'Open', options: openOptions },
+	{ label: 'Share', options: shareOptions },
+];
+---
+
+<div class="actions-container">
+	{
+		markdownPath && (
+			<button class="action-button" data-copy-markdown={markdownPath}>
+				<MarkdownIcon class="icon-default copy-markdown-icon" aria-hidden="true" />
+				<Icon name="approve-check" size="1rem" class="icon-success" />
+				<Icon name="error" size="1rem" class="icon-error" />
+				<span>Copy Markdown</span>
+			</button>
+		)
+	}
+
+	<div class="dropdown-container">
+		{
+			menus.map(({ label, options }) => (
+				<div class="dropdown">
+					<button class="action-button dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+						<span>{label}</span>
+						<Icon name="down-caret" size="1rem" />
+					</button>
+					<div class="dropdown-menu">
+						{options.map(({ id, label, href, icon: OptionIcon }) => (
+							<a href={href} class="dropdown-item" target="_blank" rel="noopener">
+								<OptionIcon class="action-icon" data-action-icon={id} aria-hidden="true" />
+								<span>{label}</span>
+								<Icon name="external" size="1rem" class="external-icon" />
+							</a>
+						))}
+					</div>
+				</div>
+			))
+		}
+	</div>
+</div>
+
+<style>
+	.actions-container,
+	.dropdown-container {
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	.actions-container {
+		flex-direction: column;
+	}
+
+	.action-button {
+		background-color: var(--sl-color-gray-6);
+		color: var(--sl-color-white);
+		border: 1px solid var(--sl-color-gray-5);
+		padding: 0.5rem 0.75rem;
+		border-radius: 0.25rem;
+		font-size: 0.875rem;
+		font-weight: 500;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		transition: opacity 0.2s ease;
+		height: 2rem;
+		line-height: 1;
+		width: fit-content;
+	}
+
+	.action-button:disabled {
+		opacity: 0.7;
+	}
+
+	.copy-markdown-icon {
+		color: currentColor;
+		width: 1rem;
+		height: 1rem;
+		transform: scale(1.2);
+	}
+
+	.copy-markdown-icon :global([fill]:not([fill='none'])) {
+		fill: currentColor;
+	}
+
+	.copy-markdown-icon :global([stroke]:not([stroke='none'])) {
+		stroke: currentColor;
+		stroke-width: 10;
+	}
+
+	.icon-success,
+	.icon-error,
+	.copied .icon-default,
+	.error .icon-default {
+		display: none;
+	}
+
+	.copied .icon-success,
+	.error .icon-error {
+		display: block;
+	}
+
+	.dropdown {
+		position: relative;
+	}
+
+	.dropdown-menu {
+		position: absolute;
+		top: calc(100% + 0.5rem);
+		left: 0;
+		right: auto;
+		background-color: var(--sl-color-gray-6);
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.25rem;
+		padding: 0.25rem;
+		width: 210px;
+		box-shadow:
+			0 4px 6px -1px rgba(0, 0, 0, 0.3),
+			0 2px 4px -1px rgba(0, 0, 0, 0.2);
+		display: none;
+		z-index: 10;
+	}
+
+	.dropdown-menu.show {
+		display: block;
+	}
+
+	.dropdown-item {
+		--dropdown-item-bg: var(--sl-color-gray-6);
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 0.5rem 0.75rem;
+		color: var(--sl-color-white);
+		text-decoration: none;
+		border-radius: 0.25rem;
+		font-size: 0.875rem;
+		transition: background-color 0.15s ease;
+		cursor: pointer;
+	}
+
+	.dropdown-item:hover {
+		--dropdown-item-bg: var(--sl-color-gray-5);
+		background-color: var(--sl-color-gray-5);
+	}
+
+	.dropdown-item span {
+		flex: 1;
+	}
+
+	.action-icon {
+		color: currentColor;
+		width: 1rem;
+		height: 1rem;
+		flex: 0 0 1rem;
+		transform-origin: center;
+	}
+
+	.action-icon :global([fill]:not([fill='none'])),
+	.action-icon :global(:is(path, circle, ellipse, polygon, rect):not([fill])) {
+		fill: currentColor;
+	}
+
+	.action-icon :global([stroke]:not([stroke='none'])) {
+		stroke: currentColor;
+	}
+
+	.action-icon :global([data-preserve-fill]) {
+		fill: var(--dropdown-item-bg);
+	}
+
+	.action-icon[data-action-icon='t3chat'] {
+		transform: scale(1.35);
+	}
+
+	.action-icon[data-action-icon='markdown'] {
+		transform: scale(1.2);
+	}
+
+	.action-icon[data-action-icon='markdown'] :global([stroke]) {
+		stroke-width: 10;
+	}
+
+	.action-icon:is([data-action-icon='facebook'], [data-action-icon='reddit']) {
+		transform: scale(1.2);
+	}
+
+	.action-icon[data-action-icon='telegram'] {
+		transform: scale(1.6);
+	}
+
+	.external-icon {
+		margin-left: auto;
+	}
+
+	@media (min-width: 425px) {
+		.actions-container {
+			flex-direction: row;
+		}
+
+		.dropdown-menu {
+			right: 0;
+			left: auto;
+			width: 236px;
+		}
+	}
+</style>
+
+<script>
+	// Copy the page's Markdown version to the clipboard.
+	document.querySelectorAll<HTMLButtonElement>('[data-copy-markdown]').forEach((button) => {
+		button.addEventListener('click', async () => {
+			let state: 'copied' | 'error' = 'copied';
+			button.disabled = true;
+			try {
+				const res = await fetch(button.dataset.copyMarkdown!);
+				if (!res.ok) throw new Error(`Failed to fetch Markdown: ${res.status}`);
+				await navigator.clipboard.writeText(await res.text());
+			} catch (error) {
+				console.error(error);
+				state = 'error';
+			}
+			button.classList.add(state);
+			button.disabled = false;
+			setTimeout(() => button.classList.remove(state), 3000);
+		});
+	});
+
+	// Dropdown menus: one open at a time; close on outside click or Escape.
+	const toggles = document.querySelectorAll<HTMLButtonElement>('.dropdown-toggle');
+	const closeAll = (except?: HTMLButtonElement) =>
+		toggles.forEach((toggle) => {
+			if (toggle === except) return;
+			toggle.setAttribute('aria-expanded', 'false');
+			toggle.nextElementSibling?.classList.remove('show');
+		});
+
+	toggles.forEach((toggle) => {
+		toggle.addEventListener('click', (event) => {
+			event.stopPropagation();
+			closeAll(toggle);
+			const open = toggle.nextElementSibling!.classList.toggle('show');
+			toggle.setAttribute('aria-expanded', String(open));
+		});
+		toggle.nextElementSibling?.addEventListener('click', (event) => event.stopPropagation());
+	});
+	document.addEventListener('click', () => closeAll());
+	document.addEventListener('keydown', (event) => event.key === 'Escape' && closeAll());
+</script>

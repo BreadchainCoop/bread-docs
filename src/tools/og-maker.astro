@@ -1,0 +1,347 @@
+---
+/**
+ * Card Maker (/og/maker/, dev server only — see src/integrations/ogMaker.ts).
+ * Makes a custom social card for an existing page from a picture. The words
+ * are the page's approved headline and card line from frontmatter, so the
+ * only input is the picture. Everything runs in the browser with the build's
+ * own template (src/lib/og/browser.ts); the picture is never uploaded.
+ */
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { getCollection } from 'astro:content';
+import { cardFor, customCardPaths, sectionLabels } from '../lib/og/content';
+
+const docs = await getCollection('docs', (e) => !e.data.draft && e.id !== 'index');
+const labels = await sectionLabels();
+
+const TOP = 'Top level';
+const options = await Promise.all(
+	docs.map(async (e) => {
+		const top = e.id.split('/')[0];
+		const card = await cardFor(e);
+		return {
+			id: e.id,
+			label: e.data.title === 'Overview' ? `${card.title} (overview)` : e.data.title,
+			group: e.id.includes('/') || labels.has(top) ? (labels.get(top) ?? top) : TOP,
+			card,
+			paths: customCardPaths(e.id),
+		};
+	})
+);
+options.sort((a, b) =>
+	a.group === b.group ? a.id.localeCompare(b.id) : a.group === TOP ? -1 : b.group === TOP ? 1 : a.group.localeCompare(b.group)
+);
+const groups = [...new Set(options.map((o) => o.group))];
+
+// Unprocessed JSON block (Astro leaves <script type="application/json"> alone).
+// Escape "<" so page text can never close the tag.
+const data = JSON.stringify(Object.fromEntries(options.map(({ id, card, paths }) => [id, { card, paths }]))).replace(
+	/</g,
+	'\\u003c'
+);
+---
+
+<StarlightPage
+	frontmatter={{
+		title: 'Card Maker',
+		description: 'Make a custom social card for a docs page, with your own picture.',
+		pagefind: false,
+		pageActions: false,
+		tableOfContents: false,
+		head: [{ tag: 'meta', attrs: { name: 'robots', content: 'noindex' } }],
+	}}
+>
+	<div class="maker not-content">
+		<p class="intro">
+			Every page already has a generated social card. This makes a custom one with a picture. The words come from the
+			page itself; to change them, edit the page's <em>Social card</em> fields in Keystatic. The picture stays in this
+			browser and is never uploaded.
+		</p>
+
+		<div class="controls">
+			<label class="field">
+				<span class="label">Page</span>
+				<select id="page">
+					{
+						groups.map((g) => (
+							<optgroup label={g}>
+								{options
+									.filter((o) => o.group === g)
+									.map((o) => (
+										<option value={o.id}>{o.label}</option>
+									))}
+							</optgroup>
+						))
+					}
+				</select>
+			</label>
+			<div class="field">
+				<label class="label" for="art">Picture</label>
+				<input id="art" type="file" accept="image/png,image/jpeg,image/webp,image/avif,image/gif" />
+				<label class="check">
+					<input id="remove-bg" type="checkbox" checked />
+					Remove a plain background
+				</label>
+				<span class="hint">
+					PNG, JPEG, WebP, AVIF or GIF. Large pictures are scaled down; the picture is turned greyscale, trimmed and
+					placed bottom-right. A cut-out on a transparent background works best.
+				</span>
+			</div>
+		</div>
+
+		<p id="status" class="status" role="status" aria-live="polite"></p>
+
+		<figure class="preview">
+			<img id="preview" alt="" width="1200" height="630" />
+		</figure>
+
+		<div class="actions">
+			<button id="download" type="button" class="primary" disabled>Download PNG</button>
+			<button id="clear" type="button" class="secondary" disabled>Remove picture</button>
+		</div>
+
+		<section class="publish" aria-labelledby="publish-heading">
+			<h2 id="publish-heading">Publishing the card</h2>
+			<ol>
+				<li>Add the downloaded file to the repo as <code id="file-path"></code>.</li>
+				<li>
+					In Keystatic, open the page and set <em>Social card → Custom image</em> to <code id="image-path"></code>.
+				</li>
+				<li>
+					Set <em>Custom image alt text</em>. Start from <code id="alt-text"></code> and add a few words about the picture.
+				</li>
+				<li>Open a pull request as usual.</li>
+			</ol>
+		</section>
+	</div>
+
+	<script type="application/json" id="cards" set:html={data} />
+</StarlightPage>
+
+<script>
+	import type { CardContent } from '../lib/og/template';
+
+	type Entry = { card: CardContent; paths: { file: string; url: string } };
+	const cards: Record<string, Entry> = JSON.parse(document.getElementById('cards')!.textContent!);
+	const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+	const page = $<HTMLSelectElement>('page');
+	const artInput = $<HTMLInputElement>('art');
+	const removeBg = $<HTMLInputElement>('remove-bg');
+	const preview = $<HTMLImageElement>('preview');
+	const download = $<HTMLButtonElement>('download');
+	const clear = $<HTMLButtonElement>('clear');
+	const status = $<HTMLParagraphElement>('status');
+
+	// Satori (with its layout wasm) is ~2 MB: load it after the page has drawn
+	const renderer = import('../lib/og/browser');
+
+	let art: Awaited<ReturnType<Awaited<typeof renderer>['prepareArt']>> | undefined;
+	let svg = '';
+	let run = 0;
+
+	function showPaths() {
+		const { card, paths } = cards[page.value];
+		$('file-path').textContent = paths.file;
+		$('image-path').textContent = paths.url;
+		$('alt-text').textContent = [card.title, card.tagline].filter(Boolean).join('. ');
+	}
+
+	async function update() {
+		const ticket = ++run;
+		const { card } = cards[page.value];
+		showPaths();
+		download.disabled = true;
+		status.textContent = 'Rendering…';
+		try {
+			const { renderSvg } = await renderer;
+			const next = await renderSvg({ ...card, art: art && { src: art.src, width: art.width, height: art.height } });
+			if (ticket !== run) return;
+			svg = next;
+			preview.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+			preview.alt = `Card preview: ${card.title}`;
+			download.disabled = !art;
+			clear.disabled = !art;
+			status.textContent = !art
+				? 'This is the generated card. Add a picture to make a custom one.'
+				: [
+						...art.notes,
+						art.transparent ? '' : 'No background could be removed. A cut-out on a transparent background works best.',
+					]
+						.filter(Boolean)
+						.join(' ');
+		} catch (err) {
+			if (ticket === run) status.textContent = err instanceof Error ? err.message : 'Something went wrong while rendering.';
+		}
+	}
+
+	async function loadArt() {
+		const file = artInput.files?.[0];
+		if (!file) return;
+		const ticket = ++run;
+		download.disabled = clear.disabled = true;
+		status.textContent = 'Preparing the picture…';
+		try {
+			const { prepareArt } = await renderer;
+			const next = await prepareArt(file, { removeBackground: removeBg.checked });
+			if (ticket !== run) return; // a newer picture or page took over
+			art = next;
+		} catch (err) {
+			if (ticket !== run) return;
+			art = undefined;
+			artInput.value = '';
+			status.textContent = err instanceof Error ? err.message : 'Could not read that image.';
+			clear.disabled = true;
+			return;
+		}
+		update();
+	}
+
+	page.addEventListener('change', update);
+	artInput.addEventListener('change', loadArt);
+	removeBg.addEventListener('change', loadArt);
+	clear.addEventListener('click', () => {
+		art = undefined;
+		artInput.value = '';
+		update();
+	});
+	download.addEventListener('click', async () => {
+		const { svgToPng } = await renderer;
+		const blob = await svgToPng(svg);
+		const a = Object.assign(document.createElement('a'), {
+			href: URL.createObjectURL(blob),
+			download: cards[page.value].paths.url.split('/').pop()!,
+		});
+		a.click();
+		setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+	});
+
+	update();
+</script>
+
+<style>
+	.maker {
+		display: grid;
+		gap: 1.25rem;
+	}
+	.intro {
+		color: var(--bread-text);
+		margin: 0;
+	}
+	.controls {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+		gap: 1rem 1.5rem;
+	}
+	.field {
+		display: grid;
+		gap: 0.4rem;
+		align-content: start;
+	}
+	.label {
+		font-weight: 700;
+		font-size: var(--sl-text-xs);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--bread-text-muted);
+	}
+	.check {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: var(--sl-text-sm);
+		color: var(--bread-text);
+	}
+	.check input {
+		accent-color: var(--bread-accent);
+	}
+	.hint {
+		font-size: var(--sl-text-sm);
+		color: var(--bread-text-muted);
+	}
+	select,
+	input[type='file'] {
+		font: inherit;
+		color: var(--bread-text);
+		background: var(--bread-bg-raised);
+		border: 1px solid var(--bread-border-strong);
+		padding: 0.6rem 0.7rem;
+		min-width: 0;
+		width: 100%;
+	}
+	select:focus-visible,
+	input:focus-visible,
+	button:focus-visible {
+		outline: 2px solid var(--bread-accent);
+		outline-offset: 2px;
+	}
+	.status {
+		margin: 0;
+		min-height: 1.5em;
+		font-size: var(--sl-text-sm);
+		color: var(--bread-text-muted);
+	}
+	.preview {
+		margin: 0;
+	}
+	.preview img {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 1200 / 630;
+		border: 1px solid var(--bread-border);
+		background: #f6f3eb;
+	}
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+	.actions button {
+		font: 700 var(--sl-text-sm) / 1 var(--font-breadBody);
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		padding: 0.9rem 1.3rem;
+		border: 1px solid var(--bread-heading);
+		cursor: pointer;
+		transition: box-shadow 150ms ease, transform 150ms ease;
+	}
+	.actions .primary {
+		background: var(--bread-accent);
+		color: var(--bread-on-accent);
+		border-color: var(--bread-accent);
+	}
+	.actions .secondary {
+		background: transparent;
+		color: var(--bread-heading);
+	}
+	.actions button:not(:disabled):hover {
+		box-shadow: 4px 4px 0 var(--bread-lift);
+		transform: translate(-2px, -2px);
+	}
+	.actions button:disabled {
+		opacity: 0.45;
+		cursor: not-allowed;
+	}
+	.publish h2 {
+		font-size: var(--sl-text-h4);
+		margin: 0.5rem 0 0.5rem;
+		color: var(--bread-heading);
+	}
+	.publish ol {
+		margin: 0;
+		padding-inline-start: 1.25rem;
+		display: grid;
+		gap: 0.4rem;
+	}
+	.publish code {
+		font-size: 0.9em;
+		background: var(--bread-bg-sunken);
+		border: 1px solid var(--bread-border);
+		padding: 0.05em 0.35em;
+		overflow-wrap: anywhere;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.actions button {
+			transition: none;
+		}
+	}
+</style>

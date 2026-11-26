@@ -3,6 +3,8 @@ title: Core Team
 description: "Who the Bread Core Team is, how members join, what they are responsible for, and how they are paid."
 sidebar:
   order: 2
+og:
+  description: "The people who run Bread day to day."
 ---
 
 The Bread Core Team includes those actively contributing to the day-to-day work of Bread Cooperative — development, design, writing, marketing, and everything else within the core team's remit. It is the most dedicated group of contributors to Bread Cooperative's development and community building.

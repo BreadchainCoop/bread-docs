@@ -3,6 +3,8 @@ title: What is a savings circle?
 description: "The centuries-old practice of pooling money in rotating groups — how it works, why it works, and why it breaks."
 sidebar:
   order: 0
+og:
+  description: "Groups that pool money and take turns."
 ---
 
 A savings circle is a group of people who pool money together at regular intervals. Each round, one member receives the full pot. The rotation continues until everyone has had their turn. No bank, no lender, no interest. Just mutual commitment.

@@ -1,10 +1,9 @@
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
 import starlight from '@astrojs/starlight';
-import starlightPageActions from 'starlight-page-actions';
-import starlightMarkdownBlocks, { Draft } from 'starlight-markdown-blocks';
 import starlightAutoSidebar from 'starlight-auto-sidebar';
 import starlightFilesBeforeFolders from './src/plugins/starlightFilesBeforeFolders.ts';
+import ogMaker from './src/integrations/ogMaker.ts';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import markdoc from '@astrojs/markdoc';
@@ -13,12 +12,21 @@ import keystatic from '@keystatic/astro';
 import tailwindcss from '@tailwindcss/vite';
 
 import netlify from '@astrojs/netlify';
+import { satteri } from '@astrojs/markdown-satteri';
+import draftBlocks from './src/plugins/draftBlocks.ts';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://docs.bread.coop',
   output: 'static',
   trailingSlash: 'ignore',
+  // `:::draft` blocks render in `astro dev` only (src/plugins/draftBlocks.ts).
+  // https://docs.astro.build/en/guides/markdown-content/#markdown-processor-plugins
+  markdown: {
+    processor: satteri({
+      mdastPlugins: [draftBlocks({ show: process.argv.includes('dev') })],
+    }),
+  },
 
   // Bread typefaces (Pogaca) via the Astro Fonts API: generates @font-face
   // rules, metric-matched fallbacks and preload links. Rendered by
@@ -59,25 +67,10 @@ export default defineConfig({
           plugins: [
               starlightAutoSidebar(),
               starlightFilesBeforeFolders(),
-              starlightPageActions({
-                  baseUrl: 'https://docs.bread.coop/',
-                  share: true,
-                  prompt: 'Please read and summarize the following documentation page: {url}',
-                  actions: {
-                      chatgpt: true,
-                      claude: true,
-                      t3chat: true,
-                      v0: true,
-                      markdown: true,
-                  },
-              }),
-              starlightMarkdownBlocks({
-                  blocks: {
-                      draft: Draft(),
-                  },
-              }),
           ],
           title: 'Bread Docs',
+          // Per-page Open Graph images (src/routeData.ts → src/pages/og/)
+          routeMiddleware: './src/routeData.ts',
           // Square code frames to match the design system (0px radius everywhere)
           expressiveCode: {
               styleOverrides: {
@@ -93,6 +86,8 @@ export default defineConfig({
               // Override SiteTitle with Bread logo
               SiteTitle: './src/overrides/SiteTitle.astro',
               MarkdownContent: './src/overrides/MarkdownContent.astro',
+              // Adds the Copy Markdown / Open / Share buttons under the page title
+              PageTitle: './src/overrides/PageTitle.astro',
               // Adds the Astro Fonts API <Font /> tags (preload + @font-face)
               Head: './src/overrides/Head.astro',
           },
@@ -106,49 +101,6 @@ export default defineConfig({
                       type: 'image/png',
                       href: '/favicon.png',
                       sizes: '200x200',
-                  },
-              },
-              // Default social/OG image — used when a page doesn't set its own.
-              {
-                  tag: 'meta',
-                  attrs: {
-                      property: 'og:image',
-                      content: 'https://docs.bread.coop/og-image.png',
-                  },
-              },
-              {
-                  tag: 'meta',
-                  attrs: {
-                      property: 'og:image:url',
-                      content: 'https://docs.bread.coop/og-image.png',
-                  },
-              },
-              {
-                  tag: 'meta',
-                  attrs: {
-                      name: 'twitter:image',
-                      content: 'https://docs.bread.coop/og-image.png',
-                  },
-              },
-              {
-                  tag: 'meta',
-                  attrs: {
-                      property: 'og:image:type',
-                      content: 'image/png',
-                  },
-              },
-              {
-                  tag: 'meta',
-                  attrs: {
-                      property: 'og:image:width',
-                      content: '3840',
-                  },
-              },
-              {
-                  tag: 'meta',
-                  attrs: {
-                      property: 'og:image:height',
-                      content: '2160',
                   },
               },
           ],
@@ -171,6 +123,8 @@ export default defineConfig({
                   label: 'Solidarity Tools',
                   items: [{ autogenerate: { directory: 'tools' } }],
               },
+              // Posts imported from Paragraph (src/pages/updates/)
+              { label: 'Updates', link: '/updates/' },
               { label: 'Contact & Links', link: '/contact/' },
           ],
           markdown: {
@@ -178,6 +132,8 @@ export default defineConfig({
           },
       }),
       keystatic(),
+      // Card Maker at /og/maker/ — dev server only, never built
+      ogMaker(),
       mdx(),
   	],
 
@@ -195,5 +151,14 @@ export default defineConfig({
     },
   },
 
+  // Remote images allowed through the image service. The Netlify adapter turns
+  // these into the Netlify Image CDN allowlist. Paragraph stores post images here.
+  image: {
+    remotePatterns: [{ protocol: 'https', hostname: 'storage.googleapis.com', pathname: '/papyrus_images/**' }],
+  },
+
   adapter: netlify(),
+  // Nothing uses Astro.session; without this the Netlify adapter enables
+  // Netlify Blobs sessions. https://docs.astro.build/en/guides/sessions/
+  session: false,
 });

@@ -3,6 +3,8 @@ title: Liquidity Providing
 description: "How to provide liquidity for BREAD on a DeFi market without losing your voting power in the monthly distribution."
 sidebar:
   order: 2
+og:
+  description: "Provide liquidity and keep your vote."
 ---
 
 Providing liquidity for BREAD makes it easier for people to swap in and out of the token, which matters for a currency meant to be spent. The problem is that doing it naively costs you your voice in governance.

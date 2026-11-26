@@ -3,6 +3,8 @@ title: What We Need
 description: "The skills Bread Cooperative is looking for, and what we expect from the people who contribute."
 sidebar:
   order: 0
+og:
+  description: "The skills we are looking for."
 ---
 
 Bread Cooperative is built by the people who use it. We are a small team and we rely on contributors with a range of skills — technical and non-technical — to keep things moving.

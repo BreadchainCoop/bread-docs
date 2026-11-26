@@ -3,6 +3,8 @@ title: How it Works
 description: "How the Bread Solidarity Fund generates yield, how the monthly distribution vote works, and how voting power is calculated."
 sidebar:
   order: 0
+og:
+  description: "BREAD holders vote monthly on its yield."
 ---
 
 *Give without giving.*

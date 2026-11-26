@@ -5,6 +5,7 @@ import { docsSchema } from '@astrojs/starlight/schema';
 import { autoSidebarLoader } from 'starlight-auto-sidebar/loader';
 import { autoSidebarSchema } from 'starlight-auto-sidebar/schema';
 import { glob } from 'astro/loaders';
+import { paragraphLoader } from './lib/updates/loader';
 
 export const collections = {
 	docs: defineCollection({
@@ -12,8 +13,27 @@ export const collections = {
 		schema: docsSchema({
 			extend: z.object({
 				gallery: z.string().optional(),
+				// Set to false to hide the page actions bar (src/overrides/PageTitle.astro).
+				pageActions: z.boolean().optional(),
+				// Social card (Open Graph image) fields. See src/lib/og/.
+				og: z
+					.object({
+						// Card headline when the page title doesn't suit the card.
+						title: z.string().optional(),
+						// One short sentence printed on the card. Separate from `description`,
+						// which is the page lede / meta description and is usually too long.
+						description: z.string().optional(),
+						// Hand-made card in public/og/custom/ replacing the generated one.
+						image: z.string().optional(),
+						alt: z.string().optional(),
+					})
+					.optional(),
 			}),
 		}),
+	}),
+	// Updates section: posts imported from Paragraph at build time (src/lib/updates/)
+	updates: defineCollection({
+		loader: paragraphLoader({ publication: 'breadcoop', basePath: '/updates/' }),
 	}),
 	autoSidebar: defineCollection({
 		loader: autoSidebarLoader(),

@@ -3,6 +3,8 @@ title: Overview
 description: "How Bread Cooperative makes decisions, and how contributors come to take part in governing it."
 sidebar:
   order: 0
+og:
+  description: "How Bread Cooperative makes decisions."
 ---
 
 Bread Cooperative is a worker-owned organisation. There is no CEO and no outside shareholders. The people who do the work are the people who make the decisions. This section documents the principles we operate by and the processes we use to govern ourselves.

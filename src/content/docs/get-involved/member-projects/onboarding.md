@@ -3,6 +3,8 @@ title: Onboarding
 description: "What happens after a member project is accepted — the skills, setup, and steps needed before the first voting cycle."
 sidebar:
   order: 3
+og:
+  description: "Steps after your project is accepted."
 ---
 
 Onboarding runs between acceptance and your first voting cycle. New projects can only be added at the start of a cycle, so this is the window in which everything gets set up.

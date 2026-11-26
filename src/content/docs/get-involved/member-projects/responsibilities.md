@@ -3,6 +3,8 @@ title: Responsibilities
 description: "What Bread Cooperative expects of member projects once accepted, and how a project leaves or is removed."
 sidebar:
   order: 1
+og:
+  description: "What member projects agree to do."
 ---
 
 Once accepted, member projects are part of how the cooperative governs itself. The commitments below are what keep the network functioning.
