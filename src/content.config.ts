@@ -12,8 +12,7 @@ export const collections = {
 		schema: docsSchema({
 			extend: z.object({
 				gallery: z.string().optional(),
-				// starlight-page-actions hides its action bar when this is false
-				// (read from entry data in its PageTitle override).
+				// Set to false to hide the page actions bar (src/overrides/PageTitle.astro).
 				pageActions: z.boolean().optional(),
 				// Social card (Open Graph image) fields. See src/lib/og/.
 				og: z

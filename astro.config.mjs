@@ -1,8 +1,6 @@
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
 import starlight from '@astrojs/starlight';
-import starlightPageActions from 'starlight-page-actions';
-import starlightMarkdownBlocks, { Draft } from 'starlight-markdown-blocks';
 import starlightAutoSidebar from 'starlight-auto-sidebar';
 import starlightFilesBeforeFolders from './src/plugins/starlightFilesBeforeFolders.ts';
 import ogMaker from './src/integrations/ogMaker.ts';
@@ -14,16 +12,21 @@ import keystatic from '@keystatic/astro';
 import tailwindcss from '@tailwindcss/vite';
 
 import netlify from '@astrojs/netlify';
-import { unified } from '@astrojs/markdown-remark';
+import { satteri } from '@astrojs/markdown-satteri';
+import draftBlocks from './src/plugins/draftBlocks.ts';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://docs.bread.coop',
   output: 'static',
   trailingSlash: 'ignore',
-  // Astro 7 defaults to the Sätteri Markdown processor; starlight-markdown-blocks
-  // only supports unified. https://docs.astro.build/en/guides/upgrade-to/v7/
-  markdown: { processor: unified() },
+  // `:::draft` blocks render in `astro dev` only (src/plugins/draftBlocks.ts).
+  // https://docs.astro.build/en/guides/markdown-content/#markdown-processor-plugins
+  markdown: {
+    processor: satteri({
+      mdastPlugins: [draftBlocks({ show: process.argv.includes('dev') })],
+    }),
+  },
 
   // Bread typefaces (Pogaca) via the Astro Fonts API: generates @font-face
   // rules, metric-matched fallbacks and preload links. Rendered by
@@ -64,23 +67,6 @@ export default defineConfig({
           plugins: [
               starlightAutoSidebar(),
               starlightFilesBeforeFolders(),
-              starlightPageActions({
-                  baseUrl: 'https://docs.bread.coop/',
-                  share: true,
-                  prompt: 'Please read and summarize the following documentation page: {url}',
-                  actions: {
-                      chatgpt: true,
-                      claude: true,
-                      t3chat: true,
-                      v0: true,
-                      markdown: true,
-                  },
-              }),
-              starlightMarkdownBlocks({
-                  blocks: {
-                      draft: Draft(),
-                  },
-              }),
           ],
           title: 'Bread Docs',
           // Per-page Open Graph images (src/routeData.ts → src/pages/og/)
@@ -100,6 +86,8 @@ export default defineConfig({
               // Override SiteTitle with Bread logo
               SiteTitle: './src/overrides/SiteTitle.astro',
               MarkdownContent: './src/overrides/MarkdownContent.astro',
+              // Adds the Copy Markdown / Open / Share buttons under the page title
+              PageTitle: './src/overrides/PageTitle.astro',
               // Adds the Astro Fonts API <Font /> tags (preload + @font-face)
               Head: './src/overrides/Head.astro',
           },
@@ -162,4 +150,7 @@ export default defineConfig({
   },
 
   adapter: netlify(),
+  // Nothing uses Astro.session; without this the Netlify adapter enables
+  // Netlify Blobs sessions. https://docs.astro.build/en/guides/sessions/
+  session: false,
 });

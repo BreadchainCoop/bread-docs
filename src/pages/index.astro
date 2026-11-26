@@ -164,7 +164,7 @@ const headings = [
 				}
 			</ol>
 			<p class="loop-note">
-				BREAD is also spendable: at events, for donations, in token-gated spaces, and in
+				BREAD is also spendable: at events, for donations, in token-gated spaces, and in{' '}
 				<a href="/tools/stacks/how-stacks-works/" class="tone-blue">Stacks</a> savings circles.
 				<br /><a class="more" href="/cooperative/currency/bread-token/#where-to-use-your-bread">Where to use BREAD</a>
 			</p>
@@ -228,15 +228,6 @@ const headings = [
 </StarlightPage>
 
 <script>
-	// The home page is an Astro page, not a Markdown doc, so starlight-page-actions
-	// points its Markdown actions at "/.md", which doesn't exist. Point them at the
-	// generated docs index instead (/index.md).
-	const copyMarkdown = document.querySelector<HTMLButtonElement>('#copy-markdown');
-	if (copyMarkdown) copyMarkdown.dataset.path = '/index';
-	document
-		.querySelectorAll<HTMLAnchorElement>('a.dropdown-item[href=".md"]')
-		.forEach((a) => (a.href = '/index.md'));
-
 	// Copy-to-clipboard for the contract address
 	document.querySelectorAll<HTMLButtonElement>('button[data-copy]').forEach((btn) => {
 		btn.addEventListener('click', async () => {
