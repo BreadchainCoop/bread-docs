@@ -61,7 +61,8 @@ Documentation website for Bread Cooperative. Built with **Astro + Starlight**, d
 | CMS | Keystatic (`@keystatic/astro`) |
 | Styling | Tailwind CSS v4 (`@tailwindcss/vite`) + `@astrojs/starlight-tailwind` |
 | Content | Astro Content Collections (`src/content/docs/`) |
-| Plugins | `starlight-page-actions`, `starlight-markdown-blocks`, `starlight-auto-sidebar` |
+| Markdown | Sätteri, Astro's default processor (`@astrojs/markdown-satteri`) |
+| Plugins | `starlight-auto-sidebar` |
 
 ---
 
@@ -81,13 +82,14 @@ bread-docs/
 │   │   └── tools/                # Solidarity Fund and Stacks
 │   ├── content/member-projects/  # Member project profiles (MDX, separate collection)
 │   ├── assets/fonts/             # Pogaca woff2 files (Bread Display, Bread Body), loaded via the Astro Fonts API
-│   ├── lib/docsIndex.ts          # Builds the Markdown site index (/index.md)
+│   ├── lib/docsIndex.ts          # Builds the Markdown site index (/index.md, /llms.txt)
 │   ├── integrations/ogMaker.ts   # Adds the Card Maker route in `astro dev` only
 │   ├── lib/og/                   # Social cards: template, card rules, picture normalising, renderers, WOFF fonts
 │   ├── lib/updates/              # Updates: Paragraph API client, content loader, HTML cleaner, image helpers
 │   ├── overrides/
 │   │   ├── Head.astro            # Adds Astro Fonts API <Font /> tags (preload + @font-face)
 │   │   ├── MarkdownContent.astro # Appends project galleries to pages that set `gallery`
+│   │   ├── PageTitle.astro       # Adds the page actions (Copy Markdown / Open / Share)
 │   │   └── SiteTitle.astro       # Bread logomark + BREAD COOPERATIVE wordmark
 │   ├── pages/
 │   │   ├── index.astro           # Home page
@@ -96,6 +98,7 @@ bread-docs/
 │   │   ├── og/[...slug].png.ts   # Social card for every page (/og/<page>.png)
 │   │   └── updates/              # Updates index and one page per Paragraph post
 │   ├── plugins/
+│   │   ├── draftBlocks.ts                  # `:::draft` Markdown plugin (dev only)
 │   │   ├── starlightFilesBeforeFolders.ts  # Sidebar ordering plugin
 │   │   └── filesBeforeFolders.ts           # Shared utility
 │   ├── routeData.ts              # Starlight route middleware: per-page og:image tags
@@ -141,7 +144,7 @@ Content here
 :::
 
 :::draft
-Work-in-progress content (uses starlight-markdown-blocks Draft block — hidden in production)
+Work-in-progress content (rendered by `src/plugins/draftBlocks.ts` — shown in `astro dev`, hidden in production)
 :::
 ```
 
@@ -170,9 +173,9 @@ Moving or renaming a page changes its URL. Add a rule to `public/_redirects` whe
 ## Home page and Markdown routes
 
 - **`src/pages/index.astro`** is the home page (an Astro page, not a content file). It routes visitors by intent ("Start here"), explains the BREAD bake → earn → vote → distribute loop, and lists quick-reference facts (contract address, apps, community call). Facts on it must match the docs pages they link to. Update it when those pages change.
-- **`/<page>.md`** (`src/pages/[...slug].md.ts`): a Markdown copy of every published docs page, used by the page actions' "Copy Markdown" / "View in Markdown" and by AI tools. Draft pages and `:::draft` blocks are left out. This replaces the plugin's own copy, which lands in `.netlify/build` instead of `dist/` and so isn't served.
+- **`/<page>.md`** (`src/pages/[...slug].md.ts`): a Markdown copy of every published docs page, used by the page actions' "Copy Markdown" / "View in Markdown" and by AI tools. Draft pages and `:::draft` blocks are left out.
 - **`/index.md`** (`src/lib/docsIndex.ts`): a Markdown index of every page with its description, grouped like the sidebar. The home page's Markdown actions point here.
-- **`/llms.txt`** is written by `starlight-page-actions` in its `astro:build:done` hook (a plain list of sidebar URLs). It overwrites anything at that path, so don't add an `llms.txt` route.
+- **`/llms.txt`** (`src/pages/llms.txt.ts`): the same index at the conventional [llms.txt](https://llmstxt.org/) location for AI tools.
 
 ---
 
@@ -311,17 +314,18 @@ Starlight sets `data-theme` (`dark` or `light`) on `<html>`. Following Starlight
 
 ## Plugins
 
-### `starlight-page-actions`
+### Page actions (`src/components/page-actions/`)
 
-Adds share/AI-prompt buttons to each page. Config in `astro.config.mjs`:
-- Base URL: `https://docs.bread.coop/`
-- Enabled actions: ChatGPT, Claude, T3Chat, v0, raw Markdown
-- Prompt template: `Please read and summarize the following documentation page: {url}`
+Not a plugin: a first-party component rendered under every page title by the `PageTitle` override (`src/overrides/PageTitle.astro`).
+- "Copy Markdown" and "View in Markdown" use the site's own `/<page>.md` routes, so they only appear on docs pages and the home page (which uses `/index.md`)
+- "Open" menu: ChatGPT, Claude, T3 Chat, v0, with the prompt `Please read and summarize the following documentation page: {url}`
+- "Share" menu: LinkedIn, X, Threads, Bluesky, Facebook, Reddit, Hacker News, email, WhatsApp, Telegram
+- To add or remove an action, edit the option lists at the top of `PageActions.astro`
 
-### `starlight-markdown-blocks`
+### `draftBlocks` (`src/plugins/draftBlocks.ts`)
 
-Enables custom admonition blocks. Currently registers:
-- `draft` — marks content as a draft (use `:::draft` in markdown)
+A Sätteri mdast plugin, registered under `markdown.processor` in `astro.config.mjs`:
+- `:::draft` — work-in-progress content, shown in `astro dev` and left out of production builds
 
 ### `starlightFilesBeforeFolders`
 

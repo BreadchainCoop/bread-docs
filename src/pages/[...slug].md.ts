@@ -2,15 +2,10 @@ import type { APIRoute, GetStaticPaths } from 'astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 /**
- * Markdown version of every docs page at `<page>.md`, used by the
- * starlight-page-actions "Copy Markdown" / "View in Markdown" actions and by
- * AI tools (see /index.md for the site index).
- *
- * The plugin also copies raw .md files, but with the Netlify adapter they land
- * in the server bundle (.netlify/build) rather than the published `dist/`, so
- * they 404 in production. This static file endpoint builds them into `dist/`
- * and leaves out draft pages and `:::draft` blocks, which the raw copy would
- * publish.
+ * Markdown version of every published docs page at `<page>.md`, used by the
+ * page actions' "Copy Markdown" / "View in Markdown" and by AI tools (see
+ * /index.md and /llms.txt for the site index). Draft pages and `:::draft`
+ * blocks are left out.
  * https://docs.astro.build/en/guides/endpoints/#static-file-endpoints
  */
 export const getStaticPaths = (async () => {
