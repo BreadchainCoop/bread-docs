@@ -105,8 +105,6 @@ bread-docs/
 │   ├── tools/og-maker.astro      # Card Maker page (dev only, injected by integrations/ogMaker.ts)
 │   └── styles/
 │       └── global.css            # Theme: tokens, Starlight mapping and overrides
-├── netlify/functions/
-│   └── rebuild-updates.mts       # Daily build-hook call so new Paragraph posts appear
 ├── public/
 │   └── images/                   # Static images referenced in markdown
 
@@ -227,7 +225,7 @@ The script writes the PNG and prints the `image` and `alt` lines to add under th
 - **Images** go through the image service (the Netlify Image CDN in production and in `astro dev`). `image.remotePatterns` in `astro.config.mjs` allows Paragraph's storage bucket. Nothing is downloaded at build time.
 - **SEO:** each update's canonical URL is the Paragraph post, so search engines credit the original.
 - **Social cards:** each update uses its Paragraph cover image, cropped to 1200×630 by the image CDN. The `/updates/` index has a generated card (`updatesCard()` in `src/lib/og/card.ts`).
-- **Freshness:** Paragraph has no publish webhook. `netlify/functions/rebuild-updates.mts` runs daily and posts to a Netlify build hook. Set it up once: create a build hook for `main` and save its URL as the `UPDATES_BUILD_HOOK` environment variable. To publish a new post sooner, use "Trigger deploy" in Netlify or the function's "Run now".
+- **Freshness:** posts are fetched when the site builds, so a new Paragraph post appears after the next deploy. Nothing triggers a build automatically.
 - **Local builds:** the loader needs network access to `public.api.paragraph.com`. On Node 22, Node's `fetch` ignores `HTTPS_PROXY`; behind a proxy, run with `NODE_USE_ENV_PROXY=1`.
 
 ---
