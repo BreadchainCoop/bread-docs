@@ -1,5 +1,6 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { Aside } from '@astrojs/starlight/components';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -13,6 +14,7 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await render(project);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const isArchived = project.data.status === 'archived';
 ---
 
 <StarlightPage
@@ -21,5 +23,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		head: [{ tag: 'link', attrs: { rel: 'canonical', href: canonicalURL.href } }],
 	}}
 >
+	{
+		isArchived && (
+			<Aside type="caution" title="Archived project">
+				{project.data.title} is no longer an active Bread Cooperative member project and no longer
+				receives Solidarity Fund yield. This page is kept for the record. See{' '}
+				<a href="/tools/solidarity-fund/member-projects/">current member projects</a>.
+			</Aside>
+		)
+	}
 	<Content />
 </StarlightPage>
