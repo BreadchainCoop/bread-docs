@@ -4,7 +4,7 @@ description: The Crypto Commons Association (CCA) is a non-profit that promotes 
 url: https://crypto-commons.org/
 Project Lead: Rok Kranjc, Ron Turetzky, Eva Gentner
 Email: cryptocommons@protonmail.com
-status: active
+status: archived
 image: "../../../images/member-projects/cca.png"
 isMemberProject: true
 isFriendOfBread: true
