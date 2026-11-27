@@ -46,10 +46,8 @@ In the short term we plan on continuing to sponsor aligned events through the ye
 
 ### What processes do you have to determine how funds from Bread Cooperative are allocated?
 
-e.g., proposals, directly to contributors, etc.
-
 At the moment the process for determining how funds are allocated is through proposal, deliberation, and consensus to make transactions from the multi-signature wallet. We allow for signers as well as members of individual projects to make proposals for the use of funds.
 
 ### What have you done so far with the funds you've received?
 
-So far with the funds we've received in the treasury we have paid sponsorships for several Crypto Common Association organized events like the Crypto Commons Gathering 2023, ReFi Spring 2023, CoFi Liege, and others. We have also used funds from the treasury to help fund specific development work to integrate BREAD into platforms like Dandelion so users can buy and sell tickets to events in BREAD.
+So far with the funds we've received in the treasury we have paid sponsorships for several [Crypto Commons Association](/projects/crypto-commons-association/)-organized events like the Crypto Commons Gathering 2023, ReFi Spring 2023, CoFi Liege, and others. We have also used funds from the treasury to help fund specific development work to integrate BREAD into platforms like Dandelion so users can buy and sell tickets to events in BREAD.
